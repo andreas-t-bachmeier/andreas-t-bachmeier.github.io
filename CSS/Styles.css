@@ -263,7 +263,7 @@ header{
 
 footer {
   background: #55917F;
-  color: #00FFFF;
+  color: #BFDBF7;
   text-align: center;
   padding-top: 20%;
   padding-bottom: 15%;
@@ -282,7 +282,7 @@ footer {
   margin: 10px;
 }
 footer .btn {
-  background: #00FFFF;
+  background: #BFDBF7;
   color: #1D3461;
   text-decoration: none;
   padding: 10px;

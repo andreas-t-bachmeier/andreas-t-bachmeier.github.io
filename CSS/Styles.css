@@ -8,6 +8,9 @@ C7F2A7 = light green
 26547C = dark blue
 #26292A =dimgrey
 #FFFAFA = snow
+#546A7B =dark electric blue
+#F5F5F5 = white smoke
+#62929E = steel teal
 
 *{
   color: blue;
@@ -52,7 +55,7 @@ img {
 }
 
 a {
-  color: #800000;
+  color: #F5F5F5;
 }
 
 a:hover {
@@ -116,18 +119,38 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 2fr;
     column-gap: 20px;
-
   }
+    .job-detail {
+      margin: 0px 0px 0px 15px;
+    }
+    .edu-detail {
+      margin: 0px 0px 0px 15px;
+    }
+    .projects h2 + p {
+      margin: 5px 0px 0px 15px;
+    }
+    .res-item {
+      margin: 0px 0px 0px 15px;
+    }
+
 }
 
 @media screen and (max-width: 665px)
 {
+
+
   #profile_pic {
     width: 150px;
   }
+
   #Name{
     font-size: 30px;
   }
+
+  .projects img {
+    width: 150px;
+  }
+
 }
 
 /*@media screen and (min-width: 451) and (max-width: 700px)
@@ -143,6 +166,7 @@ header{
   margin: 0;
 }
 #profile_pic {
+
   float: right;
   padding: 0 0 0 10px;
   margin: 90px auto 10px auto;
@@ -182,16 +206,13 @@ header{
 
 /* Projects -------------------------*/
 .projects {
-  background: #55917F;
-}
-
-h2 + p {
-  margin: 5px 0px 0px 15px;
+  background: #F5F5F5;
 }
 
 .projects img {
-  width: 150px;
+  width: 250px;
 }
+
 .projects a {
   color: #2F3061;
 }
@@ -218,32 +239,33 @@ h2 + p {
 
 /* WOrk Experience -------------------------*/
 .work {
-  background: #26547C;
+  background: #546A7B;
   color: #FFFAFA;
-}
-
-.job-detail {
-  margin: 0px 0px 0px 15px;
 }
 
 
 /*Education -------------------------*/
 .education {
-  background: #BFDBF7;
+  background: #F5F5F5;
 }
 
-.edu-detail {
-  margin: 0px 0px 0px 15px;
+/*Education -------------------------*/
+.research {
+  background: #62929E;
+  color: #F5F5F5;
 }
+
+
+
 
 /* Contact -------------------------*/
 
 
 footer {
   background: #55917F;
-  color: #BFDBF7;
+  color: #00FFFF;
   text-align: center;
-  padding-top: 15%;
+  padding-top: 20%;
   padding-bottom: 15%;
 }
 footer {
@@ -260,7 +282,7 @@ footer {
   margin: 10px;
 }
 footer .btn {
-  background: #BFDBF7 ;
+  background: #00FFFF;
   color: #1D3461;
   text-decoration: none;
   padding: 10px;

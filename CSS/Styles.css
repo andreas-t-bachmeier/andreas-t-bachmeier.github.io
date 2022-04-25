@@ -181,7 +181,7 @@ header{
   width: 100%;
   text-align: center;
   color: #26292A;
-  background: #FFFAFA;
+  background: rgba(255, 250, 250, 95%);
   padding: 25px 15px 15px 15px;
 /*border: 5px solid #FFFAFA;
   border-radius: 5px;*/

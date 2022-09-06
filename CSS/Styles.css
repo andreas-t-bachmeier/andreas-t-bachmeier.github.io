@@ -241,6 +241,31 @@ header{
 .projects .divider > section:last-of-type {
   border-bottom: none;
 }
+/*BANTHO Image-------------------------*/
+
+.BANTHOimage {
+  background: white;
+  color: #BFDBF7;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.BANTHOimage img {
+  max-width: 700px;
+  width: 100%;
+}
+
+/*Research -------------------------*/
+.BANTHO {
+  background: #000000;
+  color: #F5F5F5;
+}
+.BANTHO .divider > section{
+  border-bottom: 1px dashed #F5F5F5;
+  padding: 15px 0;
+}
+.BANTHO .divider > section:last-of-type {
+  border-bottom: none;
+}
 
 /* WOrk Experience -------------------------*/
 .work {

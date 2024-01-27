@@ -62,12 +62,12 @@ body{
 }
 
 .cookie-banner a {
-  color: #e6640e;
+  color: #FF6400;
   text-decoration: underline;
 }
 
 .btn-accept {
-  background-color: #e6640e;
+  background-color: #FF6400;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -250,7 +250,7 @@ header{
   display: inline-block;
 }
 .projects .btn:hover {
-  background: rgb(153, 215, 231);
+  background: rgb(255, 100, 0);
 }
 .projectitem {
   overflow: hidden;

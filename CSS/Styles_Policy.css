@@ -22,7 +22,7 @@ main {
 }
 
 h1, h2 {
-  color: #4CAF50;
+  color: #f87a05;
 }
 
 p, ul, li {
@@ -30,7 +30,7 @@ p, ul, li {
 }
 
 a {
-  color: #4CAF50;
+  color: #f87a05;
   text-decoration: underline;
 }
 

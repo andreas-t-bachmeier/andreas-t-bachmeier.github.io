@@ -7,21 +7,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* Ensure full viewport height */
 }
 
 main {
   text-align: center;
-  width: 80%;
-  max-width: 800px; /* Adjust max-width as needed */
+  width: 90%; /* Adjusted for better spacing */
+  max-width: 800px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px; /* Added for small screen scrolling */
 }
 
 h1, h2 {
-  color: #4CAF50; /* Green color for headings */
+  color: #4CAF50;
 }
 
 p, ul, li {
@@ -33,8 +34,14 @@ a {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 600px) {
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
   main {
-    width: 95%;
+      width: 95%; /* Increase width on smaller screens */
+      padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  body {
+      text-align: justify; /* Improve readability on narrow screens */
   }
 }

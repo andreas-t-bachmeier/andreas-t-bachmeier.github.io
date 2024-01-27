@@ -38,6 +38,11 @@
 </script> --> 
 
   <body>
+    <div id="cookieBanner" class="cookie-banner">
+      <p>We use cookies to improve your experience. By using our website, you agree to our <a href="cookie-policy.html">cookie policy</a>.</p>
+      <button id="acceptCookies" class="btn-accept">Accept</button>
+    </div>
+    
     <main>
       <!-- ***********************  ABOUT / PROFILE  *********************** -->
       <header>
@@ -534,8 +539,15 @@
             >
           </li>
         </ul>
-        <p id="Imprint">© 2023 - Dr. Andreas T. Bachmeier</p>
+        <p id="Imprint">© 2024 - Dr. Andreas T. Bachmeier</p>
       </footer>
     </main>
+
+    <script>
+      document.getElementById("acceptCookies").onclick = function() {
+        document.getElementById("cookieBanner").style.display = "none";
+      };
+    </script>
+    
   </body>
 </html>

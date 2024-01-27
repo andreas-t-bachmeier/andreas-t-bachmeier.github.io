@@ -49,6 +49,29 @@ body{
 
 }
 
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.cookie-banner a {
+  color: #4CAF50;
+}
+
+.btn-accept {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
 
 img {
   width: 300px;

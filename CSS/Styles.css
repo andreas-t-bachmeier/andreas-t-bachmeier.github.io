@@ -48,19 +48,22 @@ body{
   margin-left:0;
 
 }
-
+/* Cookie Banner -------------------------*/
 .cookie-banner {
   position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
-  text-align: center;
+  text-align: center; /* Centering text */
   padding: 15px;
+  z-index: 1000;
 }
 
 .cookie-banner a {
   color: #4CAF50;
+  text-decoration: underline;
 }
 
 .btn-accept {
@@ -72,6 +75,7 @@ body{
   cursor: pointer;
 }
 
+/*  -------------------------*/
 
 img {
   width: 300px;

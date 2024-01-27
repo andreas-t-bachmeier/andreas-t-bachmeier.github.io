@@ -542,12 +542,23 @@
         <p id="Imprint">© 2024 - Dr. Andreas T. Bachmeier</p>
       </footer>
     </main>
-
+   <!-- Cookie banner Script. -->
     <script>
-      document.getElementById("acceptCookies").onclick = function() {
-        document.getElementById("cookieBanner").style.display = "none";
+      window.onload = function() {
+        var acceptBtn = document.getElementById("acceptCookies");
+        var cookieBanner = document.getElementById("cookieBanner");
+    
+        if (!localStorage.getItem("cookiesAccepted")) {
+          cookieBanner.style.display = "block";
+        }
+    
+        acceptBtn.onclick = function() {
+          localStorage.setItem("cookiesAccepted", "true");
+          cookieBanner.style.display = "none";
+        };
       };
     </script>
+    
     
   </body>
 </html>

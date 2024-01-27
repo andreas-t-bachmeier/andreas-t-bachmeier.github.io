@@ -48,6 +48,20 @@ body{
   margin-left:0;
 
 }
+
+/* Fadein -------------------------*/
+#intro_text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
 /* Cookie Banner -------------------------*/
 .cookie-banner {
   position: fixed;
@@ -76,6 +90,13 @@ body{
 }
 
 /*  -------------------------*/
+/* Decreasing Header -------------------------*/
+
+
+
+
+
+
 
 img {
   width: 300px;
@@ -92,7 +113,19 @@ a:hover {
 h1{
   font-size: 40px;
   line-height: 0.9;
+
 }
+
+Name{
+width: 100%; /* Full width initially */
+transition: width 1s ease;
+transition: font-size 1s ease; /* Smooth transition for font resizing */
+}
+.small-header {
+  width: 80%; /* Smaller width for scrolling down */
+  font-size: 20px; /* Smaller font size for scrolling down */
+}
+
 h2 {
   font-size: 25px;
   line-height: 1;
@@ -182,6 +215,11 @@ h3 {
   }
 }*/
 /* Profile -------------------------*/
+h1 {
+  position: relative; /* Needed for z-index */
+  z-index: 10; /* High z-index to ensure it's on top */
+  /* Rest of your header styling */
+}
 
 header{
   background: #26292A;

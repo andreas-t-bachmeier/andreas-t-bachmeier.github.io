@@ -1,0 +1,40 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+main {
+  text-align: center;
+  width: 80%;
+  max-width: 800px; /* Adjust max-width as needed */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+  color: #4CAF50; /* Green color for headings */
+}
+
+p, ul, li {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    width: 95%;
+  }
+}

@@ -574,7 +574,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('touchmove', handleScroll); // Handle mobile scroll
+    document.addEventListener('touchstart', handleScroll);
+    document.addEventListener('touchend', handleScroll);
 });
 </script>
   </body>

@@ -180,38 +180,32 @@ function moveBall() {
 }
 // ---------------TOUCH
 
-let touchStartY = 0;
-let touchEndY = 0;
 
-// Function to handle the start of a touch
-function handleTouchStart(evt) {
-    touchStartY = evt.touches[0].clientY;
-}
+function handleTouch(evt) {
+    // Prevent the default touch action, like scrolling
+    evt.preventDefault();
 
-// Function to handle the end of a touch
-function handleTouchMove(evt) {
-    touchEndY = evt.touches[0].clientY;
-}
+    // Get the touch position
+    let touchX = evt.touches[0].clientX;
+    let touchY = evt.touches[0].clientY;
+    let gameAreaRect = gameArea.getBoundingClientRect();
 
-// Function to move the paddle based on the swipe
-function handleTouchEnd() {
-    if (touchStartY > touchEndY) {
-        // Swipe Up
-        currentPaddleBPosition -= 20; // Adjust value as needed for responsiveness
-    } else if (touchStartY < touchEndY) {
-        // Swipe Down
-        currentPaddleBPosition += 20; // Adjust value as needed
+    // Determine if the touch is on the left or right side of the screen
+    if (touchX < window.innerWidth / 2) {
+        // Tap on the left side of the screen - move the paddle up
+        currentPaddleBPosition -= 20; // Adjust this value for sensitivity
+    } else {
+        // Tap on the right side of the screen - move the paddle down
+        currentPaddleBPosition += 20; // Adjust this value for sensitivity
     }
 
     // Ensure the paddle stays within game boundaries
     currentPaddleBPosition = Math.max(currentPaddleBPosition, 0);
-    currentPaddleBPosition = Math.min(currentPaddleBPosition, gameArea.clientHeight - paddleB.clientHeight);
+    currentPaddleBPosition = Math.min(currentPaddleBPosition, gameAreaRect.height - paddleB.offsetHeight);
 
     // Update paddle position
     paddleB.style.top = `${currentPaddleBPosition}px`;
 }
 
-// Adding event listeners for touch
-gameArea.addEventListener('touchstart', handleTouchStart, false);
-gameArea.addEventListener('touchmove', handleTouchMove, false);
-gameArea.addEventListener('touchend', handleTouchEnd, false);
+// Adding event listener for touch
+gameArea.addEventListener('touchstart', handleTouch, false);

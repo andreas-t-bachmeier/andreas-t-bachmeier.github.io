@@ -141,3 +141,27 @@ body, html {
     font-size: 16px;
     font-family: 'Arial', sans-serif; /* Optional: Set the font family */
 }
+
+
+/* Adjustments for smaller screens (smartphones) */
+@media (max-width: 600px) {
+    #gameArea {
+        width: 300px; /* Reduced */
+        height: 200px; /* Reduced */
+        border-radius: 10px;
+    }
+
+    .paddle {
+        width: 5px; /* Reduced */
+        height: 35px; /* Reduced */
+    }
+
+    #ball {
+        width: 7.5px; /* Reduced */
+        height: 7.5px; /* Reduced */
+    }
+
+    #controlInstructions, #gameTitle {
+        font-size: 24px; /* Adjusted for smaller screen */
+    }
+}

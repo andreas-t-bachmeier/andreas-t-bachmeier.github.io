@@ -21,13 +21,12 @@ const isTouchDevice = () => {
            (navigator.msMaxTouchPoints > 0);
 }
 
-
-
 const controlInstructions = document.getElementById("controlInstructions");
 
 if (isTouchDevice()) {
     // Display touch control instructions
-    controlInstructions.textContent = "Swipe up and down to control the paddle.";
+    controlInstructions.textContent = "Tap left & right to control the paddle.";
+    gameArea.addEventListener('touchstart', handleTouchStart, false);
 } else {
     // Display keyboard control instructions
     controlInstructions.textContent = "Use the UP and DOWN arrow keys to control the paddle.";
@@ -181,31 +180,25 @@ function moveBall() {
 // ---------------TOUCH
 
 
-function handleTouch(evt) {
-    // Prevent the default touch action, like scrolling
-    evt.preventDefault();
+function handleTouchStart(evt) {
+    evt.preventDefault(); // Prevents the default touch action, like scrolling.
 
-    // Get the touch position
-    let touchX = evt.touches[0].clientX;
-    let touchY = evt.touches[0].clientY;
-    let gameAreaRect = gameArea.getBoundingClientRect();
+    const touchX = evt.touches[0].clientX; // Get the horizontal position of the touch event.
+    const screenWidth = window.innerWidth; // Get the width of the screen.
 
-    // Determine if the touch is on the left or right side of the screen
-    if (touchX < window.innerWidth / 2) {
-        // Tap on the left side of the screen - move the paddle up
-        currentPaddleBPosition -= 20; // Adjust this value for sensitivity
+    if (touchX < screenWidth / 2) {
+        // If the touch is on the left half of the screen, move the paddle down.
+        currentPaddleBPosition += 20; // Adjust this value to control how much the paddle moves.
     } else {
-        // Tap on the right side of the screen - move the paddle down
-        currentPaddleBPosition += 20; // Adjust this value for sensitivity
+        // If the touch is on the right half of the screen, move the paddle up.
+        currentPaddleBPosition -= 20; // Adjust this value accordingly.
     }
 
-    // Ensure the paddle stays within game boundaries
+    // Ensure the paddle stays within the game boundaries.
     currentPaddleBPosition = Math.max(currentPaddleBPosition, 0);
-    currentPaddleBPosition = Math.min(currentPaddleBPosition, gameAreaRect.height - paddleB.offsetHeight);
+    const paddleMaxPosition = gameArea.clientHeight - paddleB.clientHeight;
+    currentPaddleBPosition = Math.min(currentPaddleBPosition, paddleMaxPosition);
 
-    // Update paddle position
+    // Update the paddle's position.
     paddleB.style.top = `${currentPaddleBPosition}px`;
 }
-
-// Adding event listener for touch
-gameArea.addEventListener('touchstart', handleTouch, false);

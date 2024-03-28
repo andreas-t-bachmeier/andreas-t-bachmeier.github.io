@@ -35,25 +35,6 @@ body, html {
 
 }
 
-
-#gameArea::before, #gameArea::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 2px; /* Width of the dotted line */
-    border-left: 2px dotted #000; /* Style the line as dotted and specify color */
-    z-index: 0; /* Ensure it's behind the game title and other elements */
-}
-
-#gameArea::before {
-    top: 0;
-    bottom: 20%; /* This positions the top part of the line, making it stop at the vertical center */
-}
-
-#gameArea::after {
-    top: 20%; /* This positions the bottom part of the line, starting it from the vertical center */
-    bottom: 0;
-}
 /*----------------------------------------------------------------------------------- */
 
 .paddle {

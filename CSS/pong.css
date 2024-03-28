@@ -1,0 +1,143 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+#gameWrapper {
+    display: flex;
+    flex-direction: column; /* This ensures items are stacked vertically */
+    align-items: center; /* Center-align the children */
+    width: 100%; /* Full width of its parent */
+}
+/*Game Area----------------------------------------------------------------------------------- */
+#gameArea {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    background-color: rgb(255, 100, 0); /* Adjust the color as needed */
+    border-radius: 20px; /* Rounded corners for the game area */
+    display: block; /* Confirm block display */
+    margin: 0 auto; /* Centering, if needed */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: 
+            linear-gradient(to right, 
+                            rgb(255,100,0) 49.5%, 
+                            #000 49.5%, 
+                            #000 50.5%, 
+                            rgb(255,100,0) 50.5%);
+
+}
+
+
+#gameArea::before, #gameArea::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 2px; /* Width of the dotted line */
+    border-left: 2px dotted #000; /* Style the line as dotted and specify color */
+    z-index: 0; /* Ensure it's behind the game title and other elements */
+}
+
+#gameArea::before {
+    top: 0;
+    bottom: 20%; /* This positions the top part of the line, making it stop at the vertical center */
+}
+
+#gameArea::after {
+    top: 20%; /* This positions the bottom part of the line, starting it from the vertical center */
+    bottom: 0;
+}
+/*----------------------------------------------------------------------------------- */
+
+.paddle {
+    width: 10px;
+    height: 70px;
+    position: absolute;
+    background-color: #000;
+}
+
+#paddleA {
+    left: 20px;
+    top: 165px;
+}
+
+#paddleB {
+    right: 20px;
+    top: 165px;
+}
+
+#ball {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 2; /* Ensure the ball is above the PONG text */
+}
+
+.score {
+    position: absolute;
+    font-size: 30px;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+}
+
+#scoreA {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-150%);
+}
+
+#scoreB {
+    top: 10px;
+    left: 50%;
+    transform: translateX(50%);
+}
+
+#startButton {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(255, 100, 0); /* Same as the game field */
+    color: #fff; /* Text color for better visibility */
+    border: none; /* Remove border for aesthetics */
+    border-radius: 5px; /* Match the game field's rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+#startButton:hover {
+    background-color: rgb(255, 120, 50); /* Lighter shade on hover */
+}
+
+#gameTitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center from its own width and height */
+    color: white;
+    font-size: 70px;
+    font-family: 'Arial', sans-serif;
+    z-index: 1; /* Ensure it's below the ball */
+}
+
+#controlInstructions {
+
+    margin-top: 20px;
+    color: #fff; /* Example color for visibility */
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Optional: Set the font family */
+}

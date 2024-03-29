@@ -81,6 +81,11 @@ function setupTouchControls() {
     if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
     if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
 
+    if (isMobileDevice()) {
+      obstacle.style.width = '50%'; // Example of directly setting width to 50% for mobile
+      obstacle.style.height = 'auto';
+  }
+  
     const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
     const obstacle = document.createElement('img');
     obstacle.className = `obstacle ${type}`;

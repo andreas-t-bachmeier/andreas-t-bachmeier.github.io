@@ -126,8 +126,21 @@ body, html {
 @media (max-width: 600px) {
   #gameArea {
       width: 300px; /* Reduced */
-      height: 600px; /* Reduced */
+      height: 450px; /* Reduced */
       border-radius: 10px;
   }
 
+  .astronaut {
+      width: 30px; /* Reduced */
+      height: auto; /* Reduced */
+  }
+
+  #ball {
+      width: 7.5px; /* Reduced */
+      height: 7.5px; /* Reduced */
+  }
+
+  #instructionText, #score {
+      font-size: 24px; /* Adjusted for smaller screen */
+  }
 }

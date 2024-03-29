@@ -126,12 +126,12 @@ body, html {
 @media (max-width: 600px) {
   #gameArea {
       width: 300px; /* Reduced */
-      height: 300px; /* Reduced */
+      height: 450px; /* Reduced */
       border-radius: 10px;
   }
 
   .astronaut {
-      width: 30px; /* Reduced */
+      width: 20px; /* Reduced */
       height: auto; /* Reduced */
   }
 

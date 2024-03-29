@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let nextObstacleTime = 0; // in milliseconds
   let lastBackgroundChangeScore = 0; // Keeps track of the score at the last background change
   
+  
+  function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
   astronaut.id = 'astronaut';
   gameArea.appendChild(astronaut); // Add astronaut to the game area
@@ -45,6 +49,24 @@ function moveAstronaut(dx) {
   // Apply the calculated position
   astronaut.style.left = `${newPosition}px`;
 }
+
+function setupTouchControls() {
+  document.addEventListener('touchstart', function(e) {
+      // Prevents the default action to avoid scrolling or zooming
+      e.preventDefault();
+
+      // Get the touch location
+      const touchLocation = e.touches[0].clientX;
+
+      // Determine if the touch is on the left or right side of the screen
+      if (touchLocation < window.innerWidth / 2) {
+          moveAstronaut(-30); // Move left
+      } else {
+          moveAstronaut(30); // Move right
+      }
+  }, { passive: false }); // Setting passive to false to enable preventDefault
+}
+
 
   document.addEventListener('keydown', (e) => {
     if (e.key === "ArrowLeft") moveAstronaut(-30);
@@ -176,13 +198,10 @@ function moveObstacles() {
 }
 
 function changeBackgroundColor() {
-  const gameArea = document.getElementById('gameArea'); // Ensure you have this ID in your HTML
-  // Generate a random color
   const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-  // Apply the random color to the gameArea's background
-  gameArea.style.backgroundColor = randomColor;
+  document.body.style.backgroundColor = randomColor;
+  document.documentElement.style.backgroundColor = randomColor; // Also set on <html>
 }
-
 
 
 function startGame() {
@@ -191,40 +210,57 @@ function startGame() {
   gameOverScreen.classList.remove('visible');
   gameOverScreen.classList.add('hidden');
 
+
+  const gameArea = document.getElementById('gameArea'); // Ensure your game area has this ID.
+  if (isMobileDevice()) {
+      gameArea.style.width = '600px'; // Set game area width for mobile devices
+      setupTouchControls(); // Setup touch controls for mobile
+      // Optionally, update on-screen instructions for mobile users
+      document.getElementById('instructionText').textContent = 'Tap on the left or right side of the screen to move.';
+  } else {
+      gameArea.style.width = ''; // You might want to set this to a default or leave it to CSS
+  }
+
+
   gameTime = 0;
   score = 0;
+  lastBackgroundChangeScore = 0; // Reset this variable at the start of each game
   scoreDisplay.textContent = '0 km';
+
+      // Hide the instruction text
+      document.getElementById('instructionText').style.display = 'none';
 
   // Reset nextObstacleTime to immediately generate the first obstacle
   nextObstacleTime = Date.now();
+
 
   gameInterval = setInterval(() => {
       gameTime++;
       score += 7.6; // Increment score every second
       scoreDisplay.textContent = `${score.toFixed(1)} km`;
 
-    // Calculate current threshold based on the score
-    const currentThreshold = Math.floor(score / 50) * 50;
+      // Calculate current threshold based on the score
+      const currentThreshold = Math.floor(score / 200) * 200;
 
-    // Change the background only when crossing to a new threshold
-    if (currentThreshold > lastBackgroundChangeScore) {
-        changeBackgroundColor();
-        // Update lastBackgroundChangeScore to the next threshold
-        lastBackgroundChangeScore = currentThreshold;
-    }
-
-
-      // Generate obstacles based on adjusted timing
-      const now = Date.now();
-      if (now >= nextObstacleTime) {
-          generateObstacle();
-          // Update nextObstacleTime based on current logic for generating obstacles
-          nextObstacleTime = now + Math.max(200, 1000 - gameTime * 10); // Adjust this formula as needed
+      // Change the background only when crossing to a new threshold
+      if (currentThreshold > lastBackgroundChangeScore) {
+          changeBackgroundColor();
+          // Update lastBackgroundChangeScore to the next threshold
+          lastBackgroundChangeScore = currentThreshold;
       }
+
+      // Randomly decide how many obstacles to generate this tick (from 0 to 3)
+      const numberOfObstacles = Math.floor(Math.random() * 5);
+
+      for (let i = 0; i < numberOfObstacles; i++) {
+          generateObstacle(); // Call your existing function
+      }
+
   }, 1000);
 
   moveObstaclesInterval = setInterval(moveObstacles, 20);
 }
+
 
 startButton.addEventListener('click', startGame);
 

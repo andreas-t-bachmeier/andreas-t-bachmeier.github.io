@@ -8,6 +8,10 @@ body, html {
   flex-direction: column;
   height: 100vh;
   background-color: rgb(255, 100, 0); /* Optional: sets the background of the entire page */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #startButton {
@@ -29,7 +33,20 @@ body, html {
 
 
 #score {
-  font-size: 50px; /* Adjust the size as needed */
+  font-size: 40px; /* Adjust the size as needed */
+  color: #FFF; /* Text color */
+  text-align: center;
+  margin-bottom: 0px; /* Adjust spacing around the score display as needed */
+  font-family: 'Arial', sans-serif; /* Example font */
+  background-color: black; /* Background color of the box */
+  padding: 10px 20px; /* Padding around the text */
+  border-radius: 10px; /* Rounded corners */
+  display: inline-block; /* Allows the box to fit the content's width */
+}
+
+
+#instructionText {
+  font-size: 25px; /* Adjust the size as needed */
   color: #FFF; /* Text color */
   text-align: center;
   margin: 20px 0; /* Adjust spacing around the score display as needed */

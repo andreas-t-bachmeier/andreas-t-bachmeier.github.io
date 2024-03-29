@@ -229,12 +229,6 @@ function startGame() {
   nextObstacleTime = Date.now();
 
 
-  if (isMobileDevice()) {
-    setupTouchControls();
-    // Optionally, update on-screen instructions for mobile users
-    document.getElementById('instructionText').textContent = 'Tap on the left or right side of the screen to move.';
-}
-
   gameInterval = setInterval(() => {
       gameTime++;
       score += 7.6; // Increment score every second

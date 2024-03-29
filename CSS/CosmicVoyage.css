@@ -136,6 +136,6 @@ body, html {
   }
 
   #instructionText, #score {
-      font-size: 10px; /* Adjusted for smaller screen */
+      font-size: 15px; /* Adjusted for smaller screen */
   }
 }

@@ -126,7 +126,7 @@ body, html {
 @media (max-width: 600px) {
   #gameArea {
       width: 300px; /* Reduced */
-      height: 450px; /* Reduced */
+      height: 300px; /* Reduced */
       border-radius: 10px;
   }
 

@@ -210,18 +210,7 @@ function startGame() {
   gameOverScreen.classList.remove('visible');
   gameOverScreen.classList.add('hidden');
 
-
-  const gameArea = document.getElementById('gameArea'); // Ensure your game area has this ID.
-  if (isMobileDevice()) {
-      gameArea.style.width = '600px'; // Set game area width for mobile devices
-      setupTouchControls(); // Setup touch controls for mobile
-      // Optionally, update on-screen instructions for mobile users
-      document.getElementById('instructionText').textContent = 'Tap on the left or right side of the screen to move.';
-  } else {
-      gameArea.style.width = ''; // You might want to set this to a default or leave it to CSS
-  }
-
-
+  
   gameTime = 0;
   score = 0;
   lastBackgroundChangeScore = 0; // Reset this variable at the start of each game
@@ -233,6 +222,12 @@ function startGame() {
   // Reset nextObstacleTime to immediately generate the first obstacle
   nextObstacleTime = Date.now();
 
+
+  if (isMobileDevice()) {
+    setupTouchControls();
+    // Optionally, update on-screen instructions for mobile users
+    document.getElementById('instructionText').textContent = 'Tap on the left or right side of the screen to move.';
+}
 
   gameInterval = setInterval(() => {
       gameTime++;

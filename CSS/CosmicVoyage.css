@@ -1,0 +1,104 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: rgb(255, 100, 0); /* Optional: sets the background of the entire page */
+}
+
+#startButton {
+  background-color: black; /* Set the background color to black */
+  color: white; /* Set the text color to white */
+  padding: 10px 20px; /* Add some padding for better visual appearance */
+  font-size: 30px; /* Adjust the font size as needed */
+  border: none; /* Remove the default border */
+  border-radius: 10px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  outline: none; /* Remove the outline to improve aesthetics on focus */
+  margin-top: 30px; /* Add more distance from the game area or other elements */
+}
+
+#startButton:hover {
+  background-color: #333; /* Darken the button a bit on hover */
+  color: #FFF; /* Keep text color white or change as needed */
+}
+
+
+#score {
+  font-size: 50px; /* Adjust the size as needed */
+  color: #FFF; /* Text color */
+  text-align: center;
+  margin: 20px 0; /* Adjust spacing around the score display as needed */
+  font-family: 'Arial', sans-serif; /* Example font */
+  background-color: black; /* Background color of the box */
+  padding: 10px 20px; /* Padding around the text */
+  border-radius: 10px; /* Rounded corners */
+  display: inline-block; /* Allows the box to fit the content's width */
+}
+
+
+#gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#scoreContainer {
+  color: rgb(0, 0, 0);
+  font-family: Arial, sans-serif;
+  margin-bottom: 50px;
+}
+
+#gameArea {
+  width: 800px;
+  height: 800px;
+  border-radius: 20px; /* Rounded corners for the game area */
+  background-image: url('../Icons/background.png');
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the background image */
+  margin: 0 auto; /* Center the game area horizontally */
+  position: relative;
+}
+
+#astronaut {
+  position: absolute;
+  bottom: 10px; /* Adjust based on how you want to position the astronaut from the bottom */
+  left: 45%; /* Start the astronaut in the middle of the game area */
+  width: 60px; /* Adjust based on the size of your astronaut image */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Obstacles */
+.planet, .asteroid, .supernova, .blackhole {
+  position: absolute;
+}
+
+
+.hidden {
+  display: none;
+}
+
+#gameOverScreen {
+  font-size: 35px; /* Adjust the size as needed */
+  color: #FFF; /* Text color */
+  font-family: 'Arial', sans-serif; /* Example font */
+  display: none; /* Start hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  z-index: 100; /* Above the game area */
+}
+
+.visible {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}

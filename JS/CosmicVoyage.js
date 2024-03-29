@@ -50,22 +50,25 @@ function moveAstronaut(dx) {
   astronaut.style.left = `${newPosition}px`;
 }
 
-function setupTouchControls() {
-  document.addEventListener('touchstart', function(e) {
-      // Prevents the default action to avoid scrolling or zooming
-      e.preventDefault();
+function handleTouchStart(e) {
+  e.preventDefault(); // Prevents scrolling or zooming
 
-      // Get the touch location
-      const touchLocation = e.touches[0].clientX;
-
-      // Determine if the touch is on the left or right side of the screen
-      if (touchLocation < window.innerWidth / 2) {
-          moveAstronaut(-30); // Move left
-      } else {
-          moveAstronaut(30); // Move right
-      }
-  }, { passive: false }); // Setting passive to false to enable preventDefault
+  const touchLocation = e.touches[0].clientX;
+  if (touchLocation < window.innerWidth / 2) {
+      moveAstronaut(-30); // Move left
+  } else {
+      moveAstronaut(30); // Move right
+  }
 }
+
+function addTouchControls() {
+  document.addEventListener('touchstart', handleTouchStart, { passive: false });
+}
+
+function removeTouchControls() {
+  document.removeEventListener('touchstart', handleTouchStart, { passive: false });
+}
+
 
 
   document.addEventListener('keydown', (e) => {
@@ -81,40 +84,33 @@ function setupTouchControls() {
     if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
     if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
 
-
-
     const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
     const obstacle = document.createElement('img');
     obstacle.className = `obstacle ${type}`;
     obstacle.style.left = `${Math.random() * (gameArea.offsetWidth - 30)}px`;
     obstacle.style.top = '0px';
 
-    // Assign source and initial size based on type
+    // Set sources and base sizes
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/planet.png';
-            obstacle.style.width = '70px'; // Initial width for planet
+            obstacle.style.width = isMobileDevice() ? '20px' : '70px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/asteroid.png';
-            obstacle.style.width = '30px'; // Initial width for asteroid
+            obstacle.style.width = isMobileDevice() ? '10px' : '30px'; // 50% size for mobile
             break;
         case 'supernova':
             obstacle.src = 'Icons/supernova.png';
-            obstacle.style.width = '100px'; // Initial width for supernova
+            obstacle.style.width = isMobileDevice() ? '30px' : '100px'; // 50% size for mobile
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = '50px'; // Initial width for blackhole
+            obstacle.style.width = isMobileDevice() ? '8px' : '50px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio
 
-    if (isMobileDevice()) {
-      obstacle.style.width = '50%'; // Example of directly setting width to 50% for mobile
-      obstacle.style.height = 'auto';
-  }
-  
     gameArea.appendChild(obstacle);
 }
 
@@ -186,6 +182,7 @@ function moveObstacles() {
   }
 
   function gameOver() {
+    removeTouchControls(); // Disable touch controls
     clearInterval(gameInterval);
     clearInterval(moveObstaclesInterval);
 
@@ -214,6 +211,7 @@ function changeBackgroundColor() {
 
 function startGame() {
   resetGame();
+  addTouchControls(); // Enable touch controls for the astronaut
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('visible');
   gameOverScreen.classList.add('hidden');

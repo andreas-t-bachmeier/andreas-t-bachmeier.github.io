@@ -136,9 +136,14 @@ body, html {
       height: auto; /* Reduced */
   }
 
-  #instructionText, #score {
-      font-size: 15px; /* Adjusted for smaller screen */
+  #score {
+      font-size: 25px; /* Adjusted for smaller screen */
+    
   }
+
+  #instructionText{
+    font-size: 15px; /* Adjusted for smaller screen */
+}
   #gameOverScreen {
     font-size: 30px; /* Adjust the size as needed */
     border-radius: 10px; /* Rounded corners for the game area */

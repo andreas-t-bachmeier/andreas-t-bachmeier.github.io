@@ -233,7 +233,7 @@ function startGame() {
 
   gameInterval = setInterval(() => {
       gameTime++;
-      score += 7.6; // Increment score every second
+      score += 10; // Increment score every second
       scoreDisplay.textContent = `${score.toFixed(1)} km`;
 
       // Calculate current threshold based on the score

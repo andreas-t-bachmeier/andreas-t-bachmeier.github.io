@@ -79,6 +79,7 @@ body, html {
   background-position: center; /* Center the background image */
   margin: 0 auto; /* Center the game area horizontally */
   position: relative;
+  text-align: center;  
 }
 
 
@@ -88,6 +89,18 @@ body, html {
   left: 45%; /* Start the astronaut in the middle of the game area */
   width: 60px; /* Adjust based on the size of your astronaut image */
   height: auto; /* Maintain aspect ratio */
+}
+
+#gameTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'Arial', sans-serif; /* Example font */
+  transform: translate(-50%, -50%);
+  color: lightgrey;
+  opacity: 0.5; /* Adjust for desired transparency */
+  font-size: 100px; /* Adjust based on your design */
+  z-index: 1; /* Ensure it's above the background but below interactive elements */
 }
 
 /* Obstacles */
@@ -144,6 +157,11 @@ body, html {
   #instructionText{
     font-size: 15px; /* Adjusted for smaller screen */
 }
+
+#gameTitle {
+  font-size: 50px;
+}
+
   #gameOverScreen {
     font-size: 30px; /* Adjust the size as needed */
     border-radius: 10px; /* Rounded corners for the game area */

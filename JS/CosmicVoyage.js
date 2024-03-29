@@ -218,7 +218,10 @@ function changeBackgroundColor() {
 
 function startGame() {
   resetGame();
-  addTouchControls(); // Enable touch controls for the astronaut
+
+  if (isMobileDevice()) {
+    addTouchControls(); // Enable touch controls for the astronaut
+}
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('visible');
   gameOverScreen.classList.add('hidden');

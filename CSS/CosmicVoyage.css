@@ -130,7 +130,7 @@ body, html {
       border-radius: 10px;
   }
 
-  .astronaut {
+  #astronaut {
       width: 10px; /* Reduced */
       height: auto; /* Reduced */
   }

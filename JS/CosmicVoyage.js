@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
+if (isMobileDevice()) {
+  // Update the instruction text for touch controls
+  document.getElementById('instructionText').textContent = 'Tap on the left or right side of the screen to move.';
+} else {
+  // For non-mobile devices, set or retain keyboard control instructions
+  document.getElementById('instructionText').textContent = 'Avoid obstacles by using the left and right arrow keys.';
+}
 
   astronaut.id = 'astronaut';
   gameArea.appendChild(astronaut); // Add astronaut to the game area

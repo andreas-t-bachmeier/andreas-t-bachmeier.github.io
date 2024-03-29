@@ -101,7 +101,8 @@ body, html {
 }
 
 #gameOverScreen {
-  font-size: 35px; /* Adjust the size as needed */
+  font-size: 50px; /* Adjust the size as needed */
+  border-radius: 20px; /* Rounded corners for the game area */
   color: #FFF; /* Text color */
   font-family: 'Arial', sans-serif; /* Example font */
   display: none; /* Start hidden */
@@ -137,5 +138,20 @@ body, html {
 
   #instructionText, #score {
       font-size: 15px; /* Adjusted for smaller screen */
+  }
+  #gameOverScreen {
+    font-size: 30px; /* Adjust the size as needed */
+    border-radius: 10px; /* Rounded corners for the game area */
+    color: #FFF; /* Text color */
+    font-family: 'Arial', sans-serif; /* Example font */
+    display: none; /* Start hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    z-index: 100; /* Above the game area */
   }
 }

@@ -62,9 +62,9 @@ function handleTouchStart(e) {
 
   const touchLocation = e.touches[0].clientX;
   if (touchLocation < window.innerWidth / 2) {
-      moveAstronaut(-30); // Move left
+      moveAstronaut(-20); // Move left
   } else {
-      moveAstronaut(30); // Move right
+      moveAstronaut(20); // Move right
   }
 }
 
@@ -101,19 +101,19 @@ function removeTouchControls() {
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/planet.png';
-            obstacle.style.width = isMobileDevice() ? '30px' : '70px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '30px' : '60px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/asteroid.png';
-            obstacle.style.width = isMobileDevice() ? '20px' : '30px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '20px' : '25px'; // 50% size for mobile
             break;
         case 'supernova':
             obstacle.src = 'Icons/supernova.png';
-            obstacle.style.width = isMobileDevice() ? '40px' : '100px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '40px' : '80px'; // 50% size for mobile
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = isMobileDevice() ? '15px' : '50px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '10px' : '20px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio
@@ -122,61 +122,53 @@ function removeTouchControls() {
 }
 
 
-
 function moveObstacles() {
-  const currentTime = Date.now(); // Get the current time for oscillation and growth calculations
+  const currentTime = Date.now(); // Current time for oscillation and growth calculations
 
   document.querySelectorAll('.obstacle').forEach(obstacle => {
-      // Apply consistent downward movement
       let currentTop = parseInt(obstacle.style.top, 10) + 2;
       obstacle.style.top = `${currentTop}px`;
 
-      // Remove the obstacle if it moves beyond the game area
       if (currentTop > gameArea.offsetHeight) obstacle.remove();
       
-      // Check for collision with the astronaut
       if (checkCollision(obstacle)) gameOver();
 
-        // Handle growth for black holes with an accumulation approach
-        if (obstacle.classList.contains('blackhole')) {
-          // Initialize or update the accumulated growth factor
-          let accumulatedGrowth = obstacle.dataset.accumulatedGrowth ? parseFloat(obstacle.dataset.accumulatedGrowth) : 1;
-          let growthFactor = 1.0025; // A more subtle growth factor
-          accumulatedGrowth *= growthFactor;
+      // Growth for black holes
+      if (obstacle.classList.contains('blackhole')) {
+          let growthAccumulator = obstacle.dataset.growthAccumulator ? parseFloat(obstacle.dataset.growthAccumulator) : 0;
+          let growthFactor = 1.0055;
+          let currentWidth = parseFloat(obstacle.offsetWidth);
+
+          // Calculate the desired new width without applying it yet
+          let desiredWidth = currentWidth * growthFactor;
           
-          if (accumulatedGrowth >= 1.01) { // Only apply growth when it accumulates enough
-              let currentWidth = parseFloat(obstacle.offsetWidth);
-              obstacle.style.width = `${currentWidth * accumulatedGrowth}px`;
-              obstacle.style.height = `${currentWidth * accumulatedGrowth}px`; // Maintain aspect ratio
-              obstacle.dataset.accumulatedGrowth = '1'; // Reset accumulation
+          // Accumulate the difference until it's large enough to apply
+          growthAccumulator += (desiredWidth - currentWidth);
+
+          // Check if the accumulated growth is large enough to apply
+          if (growthAccumulator >= 1) { // Using 1px as an example threshold
+              obstacle.style.width = `${currentWidth + growthAccumulator}px`;
+              obstacle.style.height = `${currentWidth + growthAccumulator}px`; // Adjust as needed for aspect ratio
+              obstacle.dataset.growthAccumulator = '0'; // Reset accumulator after applying growth
           } else {
-              // Save the accumulated growth back to the dataset
-              obstacle.dataset.accumulatedGrowth = accumulatedGrowth.toString();
+              // Save the accumulated growth back to the dataset for the next update
+              obstacle.dataset.growthAccumulator = growthAccumulator.toString();
           }
       }
 
-      // Handle oscillation for supernovas
+      // Oscillation for supernovas
       if (obstacle.classList.contains('supernova')) {
-          if (!obstacle.dataset.startTime) {
-              obstacle.dataset.startTime = currentTime.toString(); // Initialize start time
-          }
-          const startTime = parseInt(obstacle.dataset.startTime, 10);
-          const elapsedTime = currentTime - startTime;
-
-          const amplitude = 50; // Amplitude of the oscillation in pixels
-          const period = 2000; // Period of the oscillation in milliseconds
-          const oscillation = amplitude * Math.sin(elapsedTime * 2 * Math.PI / period);
-
-          // Ensure originalLeft is captured and fallback to current left if not available
-          let originalLeft = parseInt(obstacle.dataset.originalLeft || obstacle.style.left, 10);
-          if (!obstacle.dataset.originalLeft) {
-              obstacle.dataset.originalLeft = originalLeft.toString(); // Store if not already
-          }
-
-          obstacle.style.left = `${originalLeft + oscillation}px`;
+          if (!obstacle.dataset.startTime) obstacle.dataset.startTime = currentTime.toString();
+          const elapsedTime = currentTime - parseInt(obstacle.dataset.startTime, 10);
+          const amplitude = 50; // Oscillation amplitude in pixels
+          const period = 2000; // Oscillation period in milliseconds
+          let originalLeft = obstacle.dataset.originalLeft ? parseInt(obstacle.dataset.originalLeft, 10) : parseInt(obstacle.style.left, 10);
+          if (!obstacle.dataset.originalLeft) obstacle.dataset.originalLeft = originalLeft.toString();
+          obstacle.style.left = `${originalLeft + amplitude * Math.sin(elapsedTime * 2 * Math.PI / period)}px`;
       }
   });
 }
+
 
 
   function checkCollision(obstacle) {
@@ -194,7 +186,7 @@ function moveObstacles() {
     clearInterval(moveObstaclesInterval);
 
     const finalScore = document.getElementById('finalScore');
-    finalScore.textContent = `Final Score: ${score.toFixed(1)} km`;
+    finalScore.textContent = `Game Over`;
 
     const gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.classList.remove('hidden');

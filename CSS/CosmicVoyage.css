@@ -81,12 +81,6 @@ body, html {
   position: relative;
 }
 
-@media (max-width: 600px) {
-  #gameArea {
-      width: 100%; /* Use the full width on smaller screens */
-      /* Adjust height and other properties as needed */
-  }
-}
 
 #astronaut {
   position: absolute;
@@ -125,4 +119,15 @@ body, html {
   display: flex !important;
   justify-content: center;
   align-items: center;
+}
+
+
+/* Adjustments for smaller screens (smartphones) */
+@media (max-width: 600px) {
+  #gameArea {
+      width: 300px; /* Reduced */
+      height: 600px; /* Reduced */
+      border-radius: 10px;
+  }
+
 }

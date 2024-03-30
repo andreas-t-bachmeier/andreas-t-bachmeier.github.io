@@ -116,7 +116,7 @@ function removeTouchControls() {
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = isMobileDevice() ? '13px' : '20px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '15px' : '20px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio

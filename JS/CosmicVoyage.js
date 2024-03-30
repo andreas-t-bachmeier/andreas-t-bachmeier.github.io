@@ -90,8 +90,8 @@ function removeTouchControls() {
     let obstacleTypes = ['planet', 'asteroid'];
 
     // Include supernovas and blackholes based on gameTime
-    if (gameTimeInSeconds >= 1) obstacleTypes.push('supernova');
-    if (gameTimeInSeconds >= 1) obstacleTypes.push('blackhole');
+    if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
+    if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
 
     const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
     const obstacle = document.createElement('img');
@@ -115,7 +115,7 @@ function removeTouchControls() {
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = isMobileDevice() ? '10px' : '20px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '13px' : '20px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio

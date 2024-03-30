@@ -155,7 +155,7 @@ body, html {
 @media (max-width: 600px) {
   #gameArea {
       width: 330px; /* Reduced */
-      height: 400px; /* Reduced */
+      height: 420px; /* Reduced */
       border-radius: 10px;
   }
 
@@ -170,7 +170,7 @@ body, html {
   }
 
   #instructionText{
-    font-size: 15px; /* Adjusted for smaller screen */
+    font-size: 12px; /* Adjusted for smaller screen */
 }
 
 #gameTitle {

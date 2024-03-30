@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameTime = 0; // in seconds
   let nextObstacleTime = 0; // in milliseconds
   let lastBackgroundChangeScore = 0; // Keeps track of the score at the last background change
-  
+  let highScore = 0; // Initialize the high score as 0 at the start of the session
+  document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
+  // Rest of your initialization code..
   
   function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -62,9 +64,9 @@ function handleTouchStart(e) {
 
   const touchLocation = e.touches[0].clientX;
   if (touchLocation < window.innerWidth / 2) {
-      moveAstronaut(-20); // Move left
+      moveAstronaut(-18); // Move left
   } else {
-      moveAstronaut(20); // Move right
+      moveAstronaut(18); // Move right
   }
 }
 
@@ -170,36 +172,55 @@ function moveObstacles() {
 }
 
 
+function checkCollision(obstacle) {
+  const astronautRect = astronaut.getBoundingClientRect();
+  const obstacleRect = obstacle.getBoundingClientRect();
+  
+  // Manual adjustments: Define how much to "shrink" the collision box on each side
+  const adjustment = {
+      top: 4, // Reduce the top side of the collision box by 10px
+      right: 2, // Reduce the right side of the collision box by 10px
+      bottom: 0, // Reduce the bottom side of the collision box by 10px
+      left: 2, // Reduce the left side of the collision box by 10px
+  };
 
-  function checkCollision(obstacle) {
-    const astronautRect = astronaut.getBoundingClientRect();
-    const obstacleRect = obstacle.getBoundingClientRect();
-    return !(astronautRect.right < obstacleRect.left ||
-             astronautRect.left > obstacleRect.right ||
-             astronautRect.bottom < obstacleRect.top ||
-             astronautRect.top > obstacleRect.bottom);
+  // Adjusted collision detection logic
+  return !(
+      astronautRect.right - adjustment.right < obstacleRect.left + adjustment.left ||
+      astronautRect.left + adjustment.left > obstacleRect.right - adjustment.right ||
+      astronautRect.bottom - adjustment.bottom < obstacleRect.top + adjustment.top ||
+      astronautRect.top + adjustment.top > obstacleRect.bottom - adjustment.bottom
+  );
+}
+
+
+function gameOver() {
+  removeTouchControls(); // Disable touch controls
+  clearInterval(gameInterval);
+  clearInterval(moveObstaclesInterval);
+
+  // Check if the current score is higher than the high score
+  if (score > highScore) {
+      highScore = score; // Update the high score
+      document.getElementById('highScore').textContent = `High Score: ${highScore} km`; // Update the high score display
   }
 
-  function gameOver() {
-    removeTouchControls(); // Disable touch controls
-    clearInterval(gameInterval);
-    clearInterval(moveObstaclesInterval);
+  const finalScore = document.getElementById('finalScore');
+  finalScore.textContent = `Game Over`;
 
-    const finalScore = document.getElementById('finalScore');
-    finalScore.textContent = `Game Over`;
+  const gameOverScreen = document.getElementById('gameOverScreen');
+  gameOverScreen.classList.remove('hidden');
+  gameOverScreen.classList.add('visible');
 
-    const gameOverScreen = document.getElementById('gameOverScreen');
-    gameOverScreen.classList.remove('hidden');
-    gameOverScreen.classList.add('visible');
-
-    const restartButton = document.getElementById('restartButton');
-    restartButton.onclick = () => {
-        gameOverScreen.classList.add('hidden');
-        gameOverScreen.classList.remove('visible');
-        resetGame();
-        startGame(); // Depending on your game flow, you might want to call startGame() directly or not.
-    };
+  const restartButton = document.getElementById('restartButton');
+  restartButton.onclick = () => {
+      gameOverScreen.classList.add('hidden');
+      gameOverScreen.classList.remove('visible');
+      resetGame();
+      startGame(); // Depending on your game flow, you might want to call startGame() directly or not.
+  };
 }
+
 
 function changeBackgroundColor() {
   const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);

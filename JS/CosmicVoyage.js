@@ -87,9 +87,10 @@ function removeTouchControls() {
 
   function generateObstacle() {
     const gameTimeInSeconds = gameTime; // Assuming 'gameTime' tracks elapsed game time in seconds
-    let obstacleTypes = ['planet', 'asteroid'];
+    let obstacleTypes = ['asteroid'];
 
     // Include supernovas and blackholes based on gameTime
+    if (gameTimeInSeconds >= 30) obstacleTypes.push('planet');
     if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
     if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
 
@@ -103,7 +104,7 @@ function removeTouchControls() {
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/planet.png';
-            obstacle.style.width = isMobileDevice() ? '30px' : '60px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '33px' : '66px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/asteroid.png';
@@ -111,7 +112,7 @@ function removeTouchControls() {
             break;
         case 'supernova':
             obstacle.src = 'Icons/supernova.png';
-            obstacle.style.width = isMobileDevice() ? '40px' : '80px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '50px' : '80px'; // 50% size for mobile
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';

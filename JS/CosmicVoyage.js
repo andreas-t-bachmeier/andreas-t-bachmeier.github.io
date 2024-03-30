@@ -90,8 +90,8 @@ function removeTouchControls() {
     let obstacleTypes = ['planet', 'asteroid'];
 
     // Include supernovas and blackholes based on gameTime
-    if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
-    if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
+    if (gameTimeInSeconds >= 1) obstacleTypes.push('supernova');
+    if (gameTimeInSeconds >= 1) obstacleTypes.push('blackhole');
 
     const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
     const obstacle = document.createElement('img');
@@ -158,16 +158,22 @@ function moveObstacles() {
           }
       }
 
-      // Oscillation for supernovas
-      if (obstacle.classList.contains('supernova')) {
-          if (!obstacle.dataset.startTime) obstacle.dataset.startTime = currentTime.toString();
-          const elapsedTime = currentTime - parseInt(obstacle.dataset.startTime, 10);
-          const amplitude = 50; // Oscillation amplitude in pixels
-          const period = 2000; // Oscillation period in milliseconds
-          let originalLeft = obstacle.dataset.originalLeft ? parseInt(obstacle.dataset.originalLeft, 10) : parseInt(obstacle.style.left, 10);
-          if (!obstacle.dataset.originalLeft) obstacle.dataset.originalLeft = originalLeft.toString();
-          obstacle.style.left = `${originalLeft + amplitude * Math.sin(elapsedTime * 2 * Math.PI / period)}px`;
-      }
+// Oscillation for supernovas
+if (obstacle.classList.contains('supernova')) {
+  if (!obstacle.dataset.startTime) obstacle.dataset.startTime = currentTime.toString();
+  const elapsedTime = currentTime - parseInt(obstacle.dataset.startTime, 10);
+
+  // Reduce oscillation amplitude for mobile devices
+  const amplitude = isMobileDevice() ? 25 : 50; // Half the amplitude for mobile devices
+
+  const period = 2000; // Oscillation period in milliseconds
+  let originalLeft = obstacle.dataset.originalLeft ? parseInt(obstacle.dataset.originalLeft, 10) : parseInt(obstacle.style.left, 10);
+  if (!obstacle.dataset.originalLeft) obstacle.dataset.originalLeft = originalLeft.toString();
+  
+  // Calculate new position with conditional amplitude
+  obstacle.style.left = `${originalLeft + amplitude * Math.sin(elapsedTime * 2 * Math.PI / period)}px`;
+}
+
   });
 }
 

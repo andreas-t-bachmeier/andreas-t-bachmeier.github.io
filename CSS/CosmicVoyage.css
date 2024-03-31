@@ -46,7 +46,7 @@ body, html {
 
 
 #instructionText {
-  font-size: 25px; /* Adjust the size as needed */
+  font-size: 20px; /* Adjust the size as needed */
   font-style: italic;
   color: #FFF; /* Text color */
   text-align: center;
@@ -86,8 +86,8 @@ body, html {
 }
 
 #gameArea {
-  width: 50vw; /* 85% of the viewport width */
-  height: 60vh; /* 70% of the viewport height */
+  width: 27vw; /* 85% of the viewport width */
+  height: 62vh; /* 70% of the viewport height */
    /* Add any additional styles (background, border, etc.) below */
   border-radius: 20px; /* Rounded corners for the game area */
   background-image: url('../Icons/backgroundeaster.png');
@@ -103,7 +103,7 @@ body, html {
   position: absolute;
   bottom: 10px; /* Adjust based on how you want to position the astronaut from the bottom */
   left: 45%; /* Start the astronaut in the middle of the game area */
-  width: 50px; /* Adjust based on the size of your astronaut image */
+  width: 45px; /* Adjust based on the size of your astronaut image */
   height: auto; /* Maintain aspect ratio */
 }
 
@@ -115,7 +115,7 @@ body, html {
   transform: translate(-50%, -50%);
   color: lightgrey;
   opacity: 0.5; /* Adjust for desired transparency */
-  font-size: 100px; /* Adjust based on your design */
+  font-size: 80px; /* Adjust based on your design */
   z-index: 1; /* Ensure it's above the background but below interactive elements */
 }
 

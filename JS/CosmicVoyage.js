@@ -104,19 +104,19 @@ function removeTouchControls() {
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/nest.png';
-            obstacle.style.width = isMobileDevice() ? '33px' : '66px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '33px' : '75px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/egg.png';
-            obstacle.style.width = isMobileDevice() ? '20px' : '25px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '20px' : '35px'; // 50% size for mobile
             break;
         case 'supernova':
             obstacle.src = 'Icons/flowers.png';
-            obstacle.style.width = isMobileDevice() ? '50px' : '80px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '50px' : '90px'; // 50% size for mobile
             break;
         case 'blackhole':
             obstacle.src = 'Icons/goldenegg.png';
-            obstacle.style.width = isMobileDevice() ? '17px' : '20px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '17px' : '23px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio
@@ -283,8 +283,17 @@ function startGame() {
           lastBackgroundChangeScore = currentThreshold;
       }
 
-      // Randomly decide how many obstacles to generate this tick (from 0 to 3)
-      const numberOfObstacles = Math.floor(Math.random() * 5);
+    // Adjust the number of obstacles generated based on the score
+    let maxObstacles;
+    if (score >= 3000) {
+        maxObstacles = 7; // Allows generating up to 6 obstacles (0 to 6)
+    } else if (score >= 2000) {
+        maxObstacles = 6; // Allows generating up to 5 obstacles (0 to 5)
+    } else {
+        maxObstacles = 5; // Default: Generate up to 4 obstacles (0 to 4)
+    }
+    const numberOfObstacles = Math.floor(Math.random() * maxObstacles);
+
 
       for (let i = 0; i < numberOfObstacles; i++) {
           generateObstacle(); // Call your existing function

@@ -182,7 +182,7 @@ body, html {
 }
 
   #gameOverScreen {
-    font-size: 25px; /* Adjust the size as needed */
+    font-size: 20px; /* Adjust the size as needed */
     border-radius: 10px; /* Rounded corners for the game area */
     color: #FFF; /* Text color */
     font-family: 'Arial', sans-serif; /* Example font */

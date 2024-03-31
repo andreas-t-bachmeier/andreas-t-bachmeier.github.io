@@ -104,7 +104,7 @@ function removeTouchControls() {
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/nest.png';
-            obstacle.style.width = isMobileDevice() ? '33px' : '75px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '40px' : '75px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/egg.png';

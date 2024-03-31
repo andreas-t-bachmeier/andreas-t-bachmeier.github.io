@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let nextObstacleTime = 0; // in milliseconds
   let lastBackgroundChangeScore = 0; // Keeps track of the score at the last background change
   let highScore = 0; // Initialize the high score as 0 at the start of the session
-  document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
+  document.getElementById('highScore').textContent = `High Score: ${highScore} m`;
   // Rest of your initialization code..
   
   function isMobileDevice() {
@@ -218,7 +218,7 @@ function gameOver() {
   // Check if the current score is higher than the high score
   if (score > highScore) {
       highScore = score; // Update the high score
-      document.getElementById('highScore').textContent = `High Score: ${highScore} km`; // Update the high score display
+      document.getElementById('highScore').textContent = `High Score: ${highScore} m`; // Update the high score display
   }
 
   const finalScore = document.getElementById('finalScore');
@@ -227,6 +227,9 @@ function gameOver() {
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');
   gameOverScreen.classList.add('visible');
+
+     // Change the start button text to "Restart Voyage" here
+     startButton.textContent = 'Restart Voyage';
 
   const restartButton = document.getElementById('restartButton');
   restartButton.onclick = () => {
@@ -259,7 +262,7 @@ function startGame() {
   gameTime = 0;
   score = 0;
   lastBackgroundChangeScore = 0; // Reset this variable at the start of each game
-  scoreDisplay.textContent = '0 km';
+  scoreDisplay.textContent = '0 m';
 
       // Hide the instruction text
       document.getElementById('instructionText').style.display = 'none';
@@ -271,7 +274,7 @@ function startGame() {
   gameInterval = setInterval(() => {
       gameTime++;
       score += 10; // Increment score every second
-      scoreDisplay.textContent = `${score.toFixed(1)} km`;
+      scoreDisplay.textContent = `${Math.floor(score)} m`;
 
       // Calculate current threshold based on the score
       const currentThreshold = Math.floor(score / 200) * 200;

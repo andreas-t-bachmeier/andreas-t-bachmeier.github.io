@@ -34,7 +34,7 @@ if (isMobileDevice()) {
 
     // Create astronaut image
     astronaut = document.createElement('img');
-    astronaut.src = 'Icons/astronaut.png'; // Update this path to your astronaut image
+    astronaut.src = 'Icons/bunny.png'; // Update this path to your astronaut image
     astronaut.id = 'astronaut';
     gameArea.appendChild(astronaut);
 
@@ -90,7 +90,7 @@ function removeTouchControls() {
     let obstacleTypes = ['asteroid'];
 
     // Include supernovas and blackholes based on gameTime
-    if (gameTimeInSeconds >= 30) obstacleTypes.push('planet');
+    if (gameTimeInSeconds >= 20) obstacleTypes.push('planet');
     if (gameTimeInSeconds >= 60) obstacleTypes.push('supernova');
     if (gameTimeInSeconds >= 120) obstacleTypes.push('blackhole');
 
@@ -103,20 +103,20 @@ function removeTouchControls() {
     // Set sources and base sizes
     switch (type) {
         case 'planet':
-            obstacle.src = 'Icons/planet.png';
+            obstacle.src = 'Icons/nest.png';
             obstacle.style.width = isMobileDevice() ? '33px' : '66px'; // 50% size for mobile
             break;
         case 'asteroid':
-            obstacle.src = 'Icons/asteroid.png';
+            obstacle.src = 'Icons/egg.png';
             obstacle.style.width = isMobileDevice() ? '20px' : '25px'; // 50% size for mobile
             break;
         case 'supernova':
-            obstacle.src = 'Icons/supernova.png';
+            obstacle.src = 'Icons/flowers.png';
             obstacle.style.width = isMobileDevice() ? '50px' : '80px'; // 50% size for mobile
             break;
         case 'blackhole':
-            obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = isMobileDevice() ? '15px' : '20px'; // 50% size for mobile
+            obstacle.src = 'Icons/goldenegg.png';
+            obstacle.style.width = isMobileDevice() ? '17px' : '20px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio
@@ -136,28 +136,37 @@ function moveObstacles() {
       
       if (checkCollision(obstacle)) gameOver();
 
-      // Growth for black holes
-      if (obstacle.classList.contains('blackhole')) {
-          let growthAccumulator = obstacle.dataset.growthAccumulator ? parseFloat(obstacle.dataset.growthAccumulator) : 0;
-          let growthFactor = 1.0055;
-          let currentWidth = parseFloat(obstacle.offsetWidth);
+// Growth for black holes
+if (obstacle.classList.contains('blackhole')) {
+  let growthAccumulator = obstacle.dataset.growthAccumulator ? parseFloat(obstacle.dataset.growthAccumulator) : 0;
+  let growthFactor = 1.005;
+  let currentWidth = parseFloat(obstacle.offsetWidth);
 
-          // Calculate the desired new width without applying it yet
-          let desiredWidth = currentWidth * growthFactor;
-          
-          // Accumulate the difference until it's large enough to apply
-          growthAccumulator += (desiredWidth - currentWidth);
+  // Calculate the desired new width without applying it yet
+  let desiredWidth = currentWidth * growthFactor;
 
-          // Check if the accumulated growth is large enough to apply
-          if (growthAccumulator >= 1) { // Using 1px as an example threshold
-              obstacle.style.width = `${currentWidth + growthAccumulator}px`;
-              obstacle.style.height = `${currentWidth + growthAccumulator}px`; // Adjust as needed for aspect ratio
-              obstacle.dataset.growthAccumulator = '0'; // Reset accumulator after applying growth
-          } else {
-              // Save the accumulated growth back to the dataset for the next update
-              obstacle.dataset.growthAccumulator = growthAccumulator.toString();
-          }
-      }
+  // Assume the original aspect ratio is stored or can be calculated
+  // For example, if original dimensions are known:
+  let originalWidth = parseFloat(obstacle.dataset.originalWidth); // Make sure to set this when creating the obstacle
+  let originalHeight = parseFloat(obstacle.dataset.originalHeight); // Make sure to set this when creating the obstacle
+  let aspectRatio = originalHeight / originalWidth;
+
+  // Accumulate the difference until it's large enough to apply
+  growthAccumulator += (desiredWidth - currentWidth);
+
+  // Check if the accumulated growth is large enough to apply
+  if (growthAccumulator >= 1) { // Using 1px as an example threshold
+      let newWidth = currentWidth + growthAccumulator;
+      let newHeight = newWidth * aspectRatio; // Calculate new height based on aspect ratio
+      obstacle.style.width = `${newWidth}px`;
+      obstacle.style.height = `${newHeight}px`; // Set height proportionally
+      obstacle.dataset.growthAccumulator = '0'; // Reset accumulator after applying growth
+  } else {
+      // Save the accumulated growth back to the dataset for the next update
+      obstacle.dataset.growthAccumulator = growthAccumulator.toString();
+  }
+}
+
 
 // Oscillation for supernovas
 if (obstacle.classList.contains('supernova')) {

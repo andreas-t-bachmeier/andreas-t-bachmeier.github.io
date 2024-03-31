@@ -90,7 +90,7 @@ body, html {
   height: 60vh; /* 70% of the viewport height */
    /* Add any additional styles (background, border, etc.) below */
   border-radius: 20px; /* Rounded corners for the game area */
-  background-image: url('../Icons/background.png');
+  background-image: url('../Icons/backgroundeaster.png');
   background-size: cover; /* Cover the entire area */
   background-position: center; /* Center the background image */
   margin: 0 auto; /* Center the game area horizontally */
@@ -103,7 +103,7 @@ body, html {
   position: absolute;
   bottom: 10px; /* Adjust based on how you want to position the astronaut from the bottom */
   left: 45%; /* Start the astronaut in the middle of the game area */
-  width: 60px; /* Adjust based on the size of your astronaut image */
+  width: 50px; /* Adjust based on the size of your astronaut image */
   height: auto; /* Maintain aspect ratio */
 }
 
@@ -159,7 +159,7 @@ body, html {
 @media (max-width: 800px) {
   #gameArea {
     width: 80vw; /* 85% of the viewport width */
-    height: 70vh; /* 70% of the viewport height */
+    height: 55vh; /* 70% of the viewport height */
       border-radius: 10px;
   }
 

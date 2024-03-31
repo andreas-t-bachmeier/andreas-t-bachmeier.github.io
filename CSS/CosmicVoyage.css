@@ -86,8 +86,9 @@ body, html {
 }
 
 #gameArea {
-  width: 800px;
-  height: 800px;
+  width: 50vw; /* 85% of the viewport width */
+  height: 60vh; /* 70% of the viewport height */
+   /* Add any additional styles (background, border, etc.) below */
   border-radius: 20px; /* Rounded corners for the game area */
   background-image: url('../Icons/background.png');
   background-size: cover; /* Cover the entire area */
@@ -151,11 +152,14 @@ body, html {
 }
 
 
+
+
+
 /* Adjustments for smaller screens (smartphones) */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   #gameArea {
-      width: 330px; /* Reduced */
-      height: 420px; /* Reduced */
+    width: 80vw; /* 85% of the viewport width */
+    height: 70vh; /* 70% of the viewport height */
       border-radius: 10px;
   }
 

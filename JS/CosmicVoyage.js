@@ -222,7 +222,7 @@ function gameOver() {
   }
 
   const finalScore = document.getElementById('finalScore');
-  finalScore.textContent = `Game Over`;
+  finalScore.textContent = `Bunny Died 𐠒`;
 
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');

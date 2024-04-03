@@ -27,7 +27,7 @@ if (isMobileDevice()) {
   gameArea.appendChild(astronaut); // Add astronaut to the game area
 
   function resetGame() {
-    // Clear intervals and game area
+    // Clear intervals and game area test
     clearInterval(gameInterval);
     clearInterval(moveObstaclesInterval);
     gameArea.innerHTML = '';

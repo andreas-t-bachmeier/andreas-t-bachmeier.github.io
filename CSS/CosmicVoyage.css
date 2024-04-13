@@ -86,7 +86,7 @@ body, html {
 }
 
 #gameArea {
-  width: 27vw; /* 85% of the viewport width */
+  width: 21vw; /* 85% of the viewport width */
   height: 62vh; /* 70% of the viewport height */
    /* Add any additional styles (background, border, etc.) below */
   border-radius: 20px; /* Rounded corners for the game area */
@@ -103,7 +103,7 @@ body, html {
   position: absolute;
   bottom: 10px; /* Adjust based on how you want to position the astronaut from the bottom */
   left: 45%; /* Start the astronaut in the middle of the game area */
-  width: 45px; /* Adjust based on the size of your astronaut image */
+  width: 35px; /* Adjust based on the size of your astronaut image */
   height: auto; /* Maintain aspect ratio */
 }
 

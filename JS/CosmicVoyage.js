@@ -104,19 +104,19 @@ function removeTouchControls() {
     switch (type) {
         case 'planet':
             obstacle.src = 'Icons/planet.png';
-            obstacle.style.width = isMobileDevice() ? '40px' : '55px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '40px' : '48px'; // 50% size for mobile
             break;
         case 'asteroid':
             obstacle.src = 'Icons/asteroid.png';
-            obstacle.style.width = isMobileDevice() ? '20px' : '35px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '20px' : '25px'; // 50% size for mobile
             break;
         case 'supernova':
             obstacle.src = 'Icons/supernova.png';
-            obstacle.style.width = isMobileDevice() ? '50px' : '65px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '50px' : '55px'; // 50% size for mobile
             break;
         case 'blackhole':
             obstacle.src = 'Icons/blackhole.png';
-            obstacle.style.width = isMobileDevice() ? '17px' : '23px'; // 50% size for mobile
+            obstacle.style.width = isMobileDevice() ? '17px' : '20px'; // 50% size for mobile
             break;
     }
     obstacle.style.height = 'auto'; // Maintain aspect ratio

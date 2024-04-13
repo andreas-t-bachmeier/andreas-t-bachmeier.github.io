@@ -34,7 +34,7 @@ if (isMobileDevice()) {
 
     // Create astronaut image
     astronaut = document.createElement('img');
-    astronaut.src = 'Icons/bunny.png'; // Update this path to your astronaut image
+    astronaut.src = 'Icons/astronaut.png'; // Update this path to your astronaut image
     astronaut.id = 'astronaut';
     gameArea.appendChild(astronaut);
 
@@ -103,19 +103,19 @@ function removeTouchControls() {
     // Set sources and base sizes
     switch (type) {
         case 'planet':
-            obstacle.src = 'Icons/nest.png';
-            obstacle.style.width = isMobileDevice() ? '40px' : '75px'; // 50% size for mobile
+            obstacle.src = 'Icons/planet.png';
+            obstacle.style.width = isMobileDevice() ? '40px' : '55px'; // 50% size for mobile
             break;
         case 'asteroid':
-            obstacle.src = 'Icons/egg.png';
+            obstacle.src = 'Icons/asteroid.png';
             obstacle.style.width = isMobileDevice() ? '20px' : '35px'; // 50% size for mobile
             break;
         case 'supernova':
-            obstacle.src = 'Icons/flowers.png';
-            obstacle.style.width = isMobileDevice() ? '50px' : '90px'; // 50% size for mobile
+            obstacle.src = 'Icons/supernova.png';
+            obstacle.style.width = isMobileDevice() ? '50px' : '65px'; // 50% size for mobile
             break;
         case 'blackhole':
-            obstacle.src = 'Icons/goldenegg.png';
+            obstacle.src = 'Icons/blackhole.png';
             obstacle.style.width = isMobileDevice() ? '17px' : '23px'; // 50% size for mobile
             break;
     }
@@ -222,7 +222,7 @@ function gameOver() {
   }
 
   const finalScore = document.getElementById('finalScore');
-  finalScore.textContent = `𐠒 Bunny Died 𐠒`;
+  finalScore.textContent = `𐠒 Astronaut Died 𐠒`;
 
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');

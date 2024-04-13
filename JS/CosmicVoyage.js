@@ -79,11 +79,21 @@ function removeTouchControls() {
 }
 
 
+function handleKeyControls(e) {
+  if (e.key === "ArrowLeft") {
+    moveAstronaut(-30);
+  } else if (e.key === "ArrowRight") {
+    moveAstronaut(30);
+  }
+}
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "ArrowLeft") moveAstronaut(-30);
-    else if (e.key === "ArrowRight") moveAstronaut(30);
-  });
+function activateKeyControls() {
+  document.addEventListener('keydown', handleKeyControls);
+}
+
+function deactivateKeyControls() {
+  document.removeEventListener('keydown', handleKeyControls);
+}
 
   function generateObstacle() {
     const gameTimeInSeconds = gameTime; // Assuming 'gameTime' tracks elapsed game time in seconds
@@ -212,6 +222,7 @@ function checkCollision(obstacle) {
 
 function gameOver() {
   removeTouchControls(); // Disable touch controls
+  deactivateKeyControls();  // Disable key controls when game is over
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
 
@@ -250,7 +261,7 @@ function changeBackgroundColor() {
 
 function startGame() {
   resetGame();
-
+  activateKeyControls();  // Initially activate key controls
   if (isMobileDevice()) {
     addTouchControls(); // Enable touch controls for the astronaut
 }

@@ -223,7 +223,10 @@ function resetGame() {
 
   score = 0;
   gameTime = 0;
+  lastBackgroundChangeScore = 0;
   scoreDisplay.textContent = '0';
+
+
 }
 
 function gameOver() {
@@ -246,7 +249,6 @@ function gameOver() {
   startButton.onclick = () => {
     gameOverScreen.classList.add('hidden');
     gameOverScreen.classList.remove('visible');
-    resetGame();
     startGame();
   };
 }
@@ -258,10 +260,6 @@ function startGame() {
   if (isMobileDevice()) {
     addTouchControls(); // Enable touch controls for the astronaut
 }
-  const gameOverScreen = document.getElementById('gameOverScreen');
-  gameOverScreen.classList.remove('visible');
-  gameOverScreen.classList.add('hidden');
-
   
   gameTime = 0;
   score = 0;

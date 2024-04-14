@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
   const startButton = document.getElementById('startButton');
+      // Update this to call resetGame directly
+      startButton.addEventListener('click', function() {
+        resetGame();  // Resets and starts the game
+    });
+    
   let astronaut = document.createElement('div');
   const scoreDisplay = document.getElementById('score');
   const gameArea = document.getElementById('gameArea');

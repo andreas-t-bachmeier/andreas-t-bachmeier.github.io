@@ -63,9 +63,9 @@ function removeTouchControls() {
 
 function handleKeyControls(e) {
   if (e.key === "ArrowLeft") {
-    moveAstronaut(-20);
+    moveAstronaut(-30);
   } else if (e.key === "ArrowRight") {
-    moveAstronaut(20);
+    moveAstronaut(30);
   }
 }
 
@@ -209,46 +209,59 @@ function changeBackgroundColor() {
 // Start, Reset and Game Over
 
 function resetGame() {
+  // Clear intervals and game area test
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
   gameArea.innerHTML = '';
 
+  // Create astronaut image
   astronaut = document.createElement('img');
-  astronaut.src = 'Icons/astronaut.png';
+  astronaut.style.left = '45%';  // Set an initial position
+  astronaut.src = 'Icons/astronaut.png'; // Update this path to your astronaut image
   astronaut.id = 'astronaut';
-  astronaut.style.position = 'absolute';
-  astronaut.style.left = '45%';
-  astronaut.style.bottom = '10px';
+  astronaut.style.position = 'absolute';  // Ensure position style is absolute
   gameArea.appendChild(astronaut);
 
+  // Reset score and other game variables
   score = 0;
   gameTime = 0;
   scoreDisplay.textContent = '0';
 }
 
 function gameOver() {
+  // Disable controls if they are active
   removeTouchControls();
   deactivateKeyControls();
+  // Stop any game interval timers to halt game progression
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
 
+  // Check if the current score is a new high score and update accordingly
   if (score > highScore) {
-    highScore = score;
-    document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
+      highScore = score;
+      document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
   }
 
+  // Display the final score in a pre-defined final score element
   document.getElementById('finalScore').textContent = `𐠒 Astronaut Died 𐠒`;
+
+  // Make the game over screen visible
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');
   gameOverScreen.classList.add('visible');
 
+  // Update the start button text to indicate a game restart is possible
+  const startButton = document.getElementById('startButton');
   startButton.textContent = 'Restart Voyage';
-  startButton.onclick = () => {
-    gameOverScreen.classList.add('hidden');
-    gameOverScreen.classList.remove('visible');
-    resetGame();
-    startGame();
-  };
+
+  // Ensure any previous event listeners are removed to prevent multiple bindings
+  startButton.removeEventListener('click', startGame);
+  startButton.addEventListener('click', function() {
+      gameOverScreen.classList.add('hidden');
+      gameOverScreen.classList.remove('visible');
+      resetGame();
+      startGame();
+  }, { once: true });  // The listener will auto-remove after execution
 }
 
 

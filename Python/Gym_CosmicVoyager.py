@@ -61,28 +61,27 @@ class CosmicVoyageEnv(gym.Env):
 
     def reset(self):
         try:
-            # Ensure the resetGame and startGame functions are defined and callable
+            # Check if the necessary JavaScript functions are available
             if not self.driver.execute_script("return typeof resetGame === 'function' && typeof startGame === 'function';"):
                 print("resetGame or startGame functions are not defined. Please check your JavaScript implementation.")
                 return np.array([0.0])
 
-            # Reset and start the game via JavaScript
-            self.driver.execute_script("resetGame();")
-            self.driver.execute_script("startGame();")
+            # Call resetGame and startGame to ensure the game is in a known state
+            self.driver.execute_script("resetGame(); startGame();")
 
             # Wait for the astronaut to ensure the game has restarted
             WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'astronaut')))
+
+            # Obtain astronaut's style attribute to get initial position
             astronaut = self.driver.find_element(By.ID, 'astronaut')
             astronaut_style = astronaut.get_attribute('style')
 
-            # Optionally simulate a small action to see if the game is responsive
-            self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.ARROW_RIGHT)  # Simulate a key press
-            WebDriverWait(self.driver, 2)  # Wait to see if the game reacts
-
+            # Return the initial position of the astronaut
             return np.array([self.parse_position(astronaut_style)])
         except Exception as e:
             print(f"An error occurred during reset: {str(e)}")
             return np.array([0.0])
+
 
 
 

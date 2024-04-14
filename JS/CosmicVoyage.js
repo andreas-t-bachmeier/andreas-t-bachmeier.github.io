@@ -232,7 +232,8 @@ function resetGame() {
   gameTime = 0;
   lastBackgroundChangeScore = 0;
   scoreDisplay.textContent = '0';
-
+// Return a promise that resolves after all reset operations are complete
+return new Promise(resolve => setTimeout(resolve, 100)); // 100 ms delay to ensure all clear
 
 }
 

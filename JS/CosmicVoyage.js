@@ -261,7 +261,7 @@ function gameOver() {
     startGame();
   };
 }
-
+window.gameOver = gameOver;
 
 function startGame() {
   resetGame();

@@ -35,6 +35,8 @@ class CosmicVoyageEnv(gym.Env):
         astronaut_position = self.parse_position(astronaut.get_attribute('style'))
 
         done = self._check_game_over()
+        if done:
+            self.reset()
 
         return np.array([astronaut_position]), score, done, {}
 
@@ -44,39 +46,21 @@ class CosmicVoyageEnv(gym.Env):
         except Exception as e:
             print(f"Error checking game over status: {e}")
             return False  # Assume not game over on error
-        
-    def dismiss_possible_overlays(self):
-        overlays = self.driver.find_elements(By.CSS_SELECTOR, ".overlay, .modal, .popup")
-        for overlay in overlays:
-            if overlay.is_displayed():
-                self.driver.execute_script("arguments[0].style.display = 'none';", overlay)
-
-
-
-
-
-
 
     def reset(self):
         try:
-            self.dismiss_possible_overlays()
-            # Refresh the page to ensure the game is reset to the initial state
-            self.driver.refresh()
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'gameArea')))
-            
-            # Use ActionChains to simulate a mouse click on the start button
-            start_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, 'startButton')))
-            ActionChains(self.driver).move_to_element(start_button).click().perform()
-            print("Game restarted via simulated mouse action.")
+            # Call JavaScript function to reset the game directly
+            self.driver.execute_script("resetGame();")
+            self.driver.execute_script("startGame();")
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'astronaut')))
 
-            # Wait for the astronaut to be visible again after restart
-            astronaut = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'astronaut')))
+            astronaut = self.driver.find_element(By.ID, 'astronaut')
             astronaut_style = astronaut.get_attribute('style')
 
             return np.array([self.parse_position(astronaut_style)])
         except Exception as e:
             print(f"An error occurred during reset: {str(e)}")
-            return np.array([0.0])  # Default state on error
+            return np.array([0.0])
 
     def parse_position(self, style):
         try:
@@ -92,7 +76,7 @@ class CosmicVoyageEnv(gym.Env):
     def close(self):
         self.driver.quit()
 
-# Testing the environment
+# loop
 if __name__ == "__main__":
     env = CosmicVoyageEnv()
     for _ in range(10):

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update this to call resetGame directly
       startButton.addEventListener('click', function() {
         resetGame();  // Resets and starts the game
+        startGame();
     });
     
   let astronaut = document.createElement('div');
@@ -235,6 +236,8 @@ function resetGame() {
 
 }
 
+window.resetGame = resetGame;
+
 function gameOver() {
   removeTouchControls();
   deactivateKeyControls();
@@ -310,11 +313,12 @@ function startGame() {
   moveObstaclesInterval = setInterval(moveObstacles, 20);
 }
 
-
+window.startGame = startGame;
 startButton.addEventListener('click', startGame);
 
 
-});
+}
+);
 
 
 

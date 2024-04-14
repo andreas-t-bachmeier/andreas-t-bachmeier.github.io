@@ -40,31 +40,46 @@ class CosmicVoyageEnv(gym.Env):
         done = 'Game Over' in self.driver.page_source
 
         return np.array([astronaut_position]), score, done, {}
+#############Reset
 
     def reset(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'gameContainer')))
         try:
-            gameOverVisible = self.driver.find_element(By.ID, 'gameOverScreen').get_attribute('class') == 'visible'
-            if gameOverVisible:
-                restart_button = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.ID, 'restartButton')))
-                restart_button.click()
-            else:
-                start_button = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.ID, 'startButton')))
-                start_button.click()
-        except TimeoutException:
-            print("Failed to find the start or restart button. Check the game state.")
+            self.driver.refresh()  # Refresh the page to reset the game
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, 'gameArea'))
+            )
 
-        astronaut = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'astronaut')))
-        return np.array([self.parse_position(astronaut.get_attribute('style'))])
+            # Handling both the start and restart scenarios
+            start_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, 'startButton'))
+            )
+            button_text = start_button.text
+            start_button.click()
+            print(f"Clicked {'restart' if 'Restart' in button_text else 'start'} button.")
+
+            # Ensure astronaut is present and obtain its position
+            astronaut = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, 'astronaut'))
+            )
+            astronaut_style = astronaut.get_attribute('style')
+            return np.array([self.parse_position(astronaut_style)])
+
+        except Exception as e:
+            print(f"An error occurred during reset: {str(e)}")
+            # Optionally, return a default state or raise an exception to stop training
+            return np.array([0.0])  # This is an example, adjust according to your needs
 
     def parse_position(self, style):
         try:
-            position = float(style.split('left:')[1].split('px')[0].strip())
+            position_info = next(s for s in style.split(';') if 'left' in s)
+            return float(position_info.split(':')[1].replace('px', '').strip())
         except Exception as e:
-            print(f"Failed to parse astronaut position: {e}")
-            position = 0.0
-        return position
+            print(f"Failed to parse astronaut position from style: '{style}'. Error: {e}")
+            return 0.0  # Return a default position in case of an error
 
+
+    
+###################
     def render(self, mode='human', close=False):
         pass
 

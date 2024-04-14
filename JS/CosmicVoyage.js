@@ -221,36 +221,40 @@ function checkCollision(obstacle) {
 
 
 function gameOver() {
-  removeTouchControls(); // Disable touch controls
-  deactivateKeyControls();  // Disable key controls when game is over
+  // Disable controls if they are active
+  removeTouchControls();
+  deactivateKeyControls();
+  // Stop any game interval timers to halt game progression
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
 
-  // Check if the current score is higher than the high score
+  // Check if the current score is a new high score and update accordingly
   if (score > highScore) {
-      highScore = score; // Update the high score
-      document.getElementById('highScore').textContent = `High Score: ${highScore} km`; // Update the high score display
+      highScore = score;
+      document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
   }
 
-  const finalScore = document.getElementById('finalScore');
-  finalScore.textContent = `𐠒 Astronaut Died 𐠒`;
+  // Display the final score in a pre-defined final score element
+  document.getElementById('finalScore').textContent = `𐠒 Astronaut Died 𐠒`;
 
+  // Make the game over screen visible
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');
   gameOverScreen.classList.add('visible');
 
-     // Change the start button text to "Restart Voyage" here
-     startButton.textContent = 'Restart Voyage';
+  // Update the start button text to indicate a game restart is possible
+  const startButton = document.getElementById('startButton');
+  startButton.textContent = 'Restart Voyage';
 
-  const restartButton = document.getElementById('restartButton');
-  restartButton.onclick = () => {
+  // Ensure any previous event listeners are removed to prevent multiple bindings
+  startButton.removeEventListener('click', startGame);
+  startButton.addEventListener('click', function() {
       gameOverScreen.classList.add('hidden');
       gameOverScreen.classList.remove('visible');
       resetGame();
-      startGame(); // Depending on your game flow, you might want to call startGame() directly or not.
-  };
+      startGame();
+  }, { once: true });  // The listener will auto-remove after execution
 }
-
 
 function changeBackgroundColor() {
   const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);

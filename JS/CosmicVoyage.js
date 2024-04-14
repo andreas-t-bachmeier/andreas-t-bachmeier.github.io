@@ -34,8 +34,10 @@ if (isMobileDevice()) {
 
     // Create astronaut image
     astronaut = document.createElement('img');
+    astronaut.style.left = '45%';  // Set an initial position
     astronaut.src = 'Icons/astronaut.png'; // Update this path to your astronaut image
     astronaut.id = 'astronaut';
+    astronaut.style.position = 'absolute';  // Ensure position style is absolute
     gameArea.appendChild(astronaut);
 
     // Reset score and other game variables

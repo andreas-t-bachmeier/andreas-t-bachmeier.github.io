@@ -260,11 +260,6 @@ function startGame() {
   if (isMobileDevice()) {
     addTouchControls(); // Enable touch controls for the astronaut
 }
-  
-  gameTime = 0;
-  score = 0;
-  lastBackgroundChangeScore = 0; // Reset this variable at the start of each game
-  scoreDisplay.textContent = '0 km';
 
       // Hide the instruction text
       document.getElementById('instructionText').style.display = 'none';

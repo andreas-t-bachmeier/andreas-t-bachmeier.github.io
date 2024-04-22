@@ -57,8 +57,15 @@ class CosmicVoyageEnv(gym.Env):
 
         done = self._check_game_over()
         observation = self.get_observation()
+        collision = self._check_collision()  # You need to implement this method
         score_text = self.driver.find_element(By.ID, 'score').text
         score = float(score_text.split(' ')[0])
+
+        if collision:
+            reward = -100  # Large negative reward for collision
+            done = True  # End the episode on collision
+        else:
+            reward = score  # Use the score as the reward
 
         if done:
             time.sleep(0.01)  # Allow UI to stabilize before attempting reset
@@ -67,7 +74,14 @@ class CosmicVoyageEnv(gym.Env):
             
         self.last_observation = self.get_observation()  # Store last observation
 
-        return observation, score, done, {}
+        return observation, reward, done, {}
+
+
+    def _check_collision(self):
+        # JavaScript to check for any collisions
+        script = "return checkCollision();"
+        collision = self.driver.execute_script(script)
+        return collision
 
     
     def get_last_observation(self):

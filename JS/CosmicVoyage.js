@@ -209,26 +209,30 @@ function moveObstacles() {
 }
 
 
-function checkCollision(obstacle) {
-  const astronautRect = astronaut.getBoundingClientRect();
-  const obstacleRect = obstacle.getBoundingClientRect();
-  
-  // Manual adjustments: Define how much to "shrink" the collision box on each side
-  const adjustment = {
-      top: 4, // Reduce the top side of the collision box by 10px
-      right: 2, // Reduce the right side of the collision box by 10px
-      bottom: 0, // Reduce the bottom side of the collision box by 10px
-      left: 2, // Reduce the left side of the collision box by 10px
-  };
+function checkCollision() {
+  const astronautRect = document.getElementById('astronaut').getBoundingClientRect();
+  const obstacles = document.querySelectorAll('.obstacle');
+  for (let obstacle of obstacles) {
+      const obstacleRect = obstacle.getBoundingClientRect();
+      // Manual adjustments: Define how much to "shrink" the collision box on each side
+      const adjustment = {
+          top: 4, // Reduce the top side of the collision box by 10px
+          right: 2, // Reduce the right side of the collision box by 10px
+          bottom: 0, // Reduce the bottom side of the collision box by 10px
+          left: 2, // Reduce the left side of the collision box by 10px
+      };
 
-  // Adjusted collision detection logic
-  return !(
-      astronautRect.right - adjustment.right < obstacleRect.left + adjustment.left ||
-      astronautRect.left + adjustment.left > obstacleRect.right - adjustment.right ||
-      astronautRect.bottom - adjustment.bottom < obstacleRect.top + adjustment.top ||
-      astronautRect.top + adjustment.top > obstacleRect.bottom - adjustment.bottom
-  );
+      // Adjusted collision detection logic
+      if (!(astronautRect.right - adjustment.right < obstacleRect.left + adjustment.left ||
+          astronautRect.left + adjustment.left > obstacleRect.right - adjustment.right ||
+          astronautRect.bottom - adjustment.bottom < obstacleRect.top + adjustment.top ||
+          astronautRect.top + adjustment.top > obstacleRect.bottom - adjustment.bottom)) {
+          return true; // Collision detected
+      }
+  }
+  return false; // No collisions detected
 }
+
 function changeBackgroundColor() {
   const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
   document.body.style.backgroundColor = randomColor;

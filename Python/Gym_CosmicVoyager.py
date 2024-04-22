@@ -25,7 +25,7 @@ class CosmicVoyageEnv(gym.Env):
 
         # Define the action space and the observation space
         self.action_space = spaces.Discrete(3)  # Actions: stay, move left, move right
-        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(21,), dtype=np.float32)  # 1 astronaut position + 10 obstacles * 2 distances each
+        self.observation_space = spaces.Box(low=-1.0, high=1.0, shape=(51,), dtype=np.float32)  # 1 astronaut position + 10 obstacles * 2 distances each
 
         self.reset()
 
@@ -40,7 +40,7 @@ class CosmicVoyageEnv(gym.Env):
                 EC.element_to_be_clickable((By.ID, 'startButton'))
             )
             button.click()  # Click to reset the game
-            time.sleep(2)  # Ensure that reset has time to fully process
+            time.sleep(0.1)  # Ensure that reset has time to fully process
             self.last_reset_time = current_time  # Update last reset timestamp
         except Exception as e:
             print(f"An error occurred during reset: {str(e)}")
@@ -53,7 +53,7 @@ class CosmicVoyageEnv(gym.Env):
         elif action == 2:
             self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.ARROW_RIGHT)
 
-        time.sleep(0.5)  # Delay to allow the action to take effect
+        time.sleep(0.01)  # Delay to allow the action to take effect
 
         done = self._check_game_over()
         observation = self.get_observation()
@@ -61,7 +61,7 @@ class CosmicVoyageEnv(gym.Env):
         score = float(score_text.split(' ')[0])
 
         if done:
-            time.sleep(1)  # Allow UI to stabilize before attempting reset
+            time.sleep(0.01)  # Allow UI to stabilize before attempting reset
             self.reset()
 
             
@@ -96,24 +96,21 @@ class CosmicVoyageEnv(gym.Env):
             
             # JavaScript to fetch distances and check visibility and attribute presence
             script = """
-            return Array.from(document.querySelectorAll('.obstacle')).map(obstacle => {
-                const horizontal = obstacle.getAttribute('data-horizontal-distance');
-                const vertical = obstacle.getAttribute('data-vertical-distance');
-                return {
-                    visible: window.getComputedStyle(obstacle).display !== 'none' && horizontal !== null && vertical !== null,
-                    horizontal: horizontal || 'Attribute not set',  // Provide default message if attribute is missing
-                    vertical: vertical || 'Attribute not set'
-                };
-            }).slice(0, 10);
-            """
-            for attempt in range(5):  # Retry up to 5 times
+                return Array.from(document.querySelectorAll('.obstacle')).map(obstacle => {
+                    const horizontal = obstacle.getAttribute('data-horizontal-distance');
+                    const vertical = obstacle.getAttribute('data-vertical-distance');
+                    return {
+                        visible: window.getComputedStyle(obstacle).display !== 'none',
+                        horizontal: horizontal,
+                        vertical: vertical
+                    };
+                }).filter(o => o.visible && o.horizontal !== null && o.vertical !== null).slice(0, 25);
+                """
+            for attempt in range(5):  # Retry up to 5 times if necessary
                 results = self.driver.execute_script(script)
-                # Check if all obstacles have their attributes set
-                if all(r['horizontal'] != 'Attribute not set' and r['vertical'] != 'Attribute not set' for r in results):
-                    print("Results fetched successfully:", results)
-                    return results
-                print(f"Retrying to fetch results... Attempt {attempt + 1}")
-                time.sleep(1)  # Wait a bit before retrying
+                if results:
+                    return results  # Return as soon as a valid result is obtained
+                time.sleep(0.1)  # Wait a bit before retrying if no valid results
 
             print("Failed to fetch all required attributes after retries.")
             return []
@@ -123,6 +120,15 @@ class CosmicVoyageEnv(gym.Env):
 
             return []
 
+    def get_game_area_dimensions(self):
+        try:
+            game_area = self.driver.find_element(By.ID, 'gameArea')
+            width = game_area.get_attribute('offsetWidth')
+            height = game_area.get_attribute('offsetHeight')
+            return float(width), float(height)
+        except Exception as e:
+            print(f"Error fetching game area dimensions: {str(e)}")
+            return None, None  # Return None if dimensions cannot be fetched
 
     
 
@@ -130,17 +136,26 @@ class CosmicVoyageEnv(gym.Env):
         astronaut = self.driver.find_element(By.ID, 'astronaut')
         astronaut_position = self.parse_position(astronaut.get_attribute('style'))
         
+        # Fetch game area dimensions
+        game_area_width, game_area_height = self.get_game_area_dimensions()
+        
         distances = self.get_obstacle_distances()
         
-        obs = [astronaut_position]  # Start with the astronaut's position
+        # Start with the astronaut's position, normalized
+        obs = [astronaut_position / game_area_width if game_area_width else 0.0]
+        
+        # Normalize and extend the observation list with distances
         for dist in distances:
-            obs.extend([dist['horizontal'], dist['vertical']])
+            horizontal = float(dist['horizontal']) / game_area_width if game_area_width else 0.0
+            vertical = float(dist['vertical']) / game_area_height if game_area_height else 0.0
+            obs.extend([horizontal, vertical])
         
         # Ensure the observation is of the correct length by padding if necessary
-        if len(obs) < 21:  # If fewer than 10 obstacles, pad the observation
-            obs += [0.0] * (21 - len(obs))
+        if len(obs) < 51:
+            obs += [0.0] * (51 - len(obs))
         
-        return np.array(obs)
+        return np.array(obs, dtype=np.float32)
+
 
     def parse_position(self, style):
         try:

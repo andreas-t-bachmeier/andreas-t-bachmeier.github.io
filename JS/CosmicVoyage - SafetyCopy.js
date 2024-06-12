@@ -1,12 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   const startButton = document.getElementById('startButton');
-      // Update this to call resetGame directly
-      startButton.addEventListener('click', function() {
-        resetGame();  // Resets and starts the game
-        startGame();
-    });
-    
   let astronaut = document.createElement('div');
   const scoreDisplay = document.getElementById('score');
   const gameArea = document.getElementById('gameArea');
@@ -70,9 +63,9 @@ function removeTouchControls() {
 
 function handleKeyControls(e) {
   if (e.key === "ArrowLeft") {
-    moveAstronaut(-20);
+    moveAstronaut(-30);
   } else if (e.key === "ArrowRight") {
-    moveAstronaut(20);
+    moveAstronaut(30);
   }
 }
 
@@ -123,118 +116,90 @@ function deactivateKeyControls() {
     gameArea.appendChild(obstacle);
 }
 
-function updateDistances() {
-  const astronautRect = astronaut.getBoundingClientRect();
-  document.querySelectorAll('.obstacle').forEach(obstacle => {
-      const obstacleRect = obstacle.getBoundingClientRect();
-      let horizontalDistance = obstacleRect.left - astronautRect.left + (obstacleRect.width / 2) - (astronautRect.width / 2);
-      let verticalDistance = obstacleRect.top - astronautRect.top;
-      obstacle.setAttribute('data-horizontal-distance', horizontalDistance.toString());
-      obstacle.setAttribute('data-vertical-distance', verticalDistance.toString());
-  });
-}
 
 function moveObstacles() {
   const currentTime = Date.now(); // Current time for oscillation and growth calculations
-  const astronaut = document.getElementById('astronaut');
-  const astronautRect = astronaut.getBoundingClientRect(); // Get astronaut's current position
 
   document.querySelectorAll('.obstacle').forEach(obstacle => {
-    let currentTop = parseInt(obstacle.style.top, 10) + 2;
-    obstacle.style.top = `${currentTop}px`;
+      let currentTop = parseInt(obstacle.style.top, 10) + 2;
+      obstacle.style.top = `${currentTop}px`;
 
-    // Calculate and update relative horizontal and vertical distances
-    const obstacleRect = obstacle.getBoundingClientRect();
-    let horizontalDistance = obstacleRect.left - astronautRect.left + (obstacleRect.width / 2) - (astronautRect.width / 2);
-    let verticalDistance = obstacleRect.top - astronautRect.top;
-
-    // Debug output to console
-    //console.log(`Obstacle at top ${obstacle.style.top}: Horizontal Distance = ${horizontalDistance}, Vertical Distance = ${verticalDistance}`);
-    
-    // Store these distances as attributes on the obstacle for easy access
-    obstacle.setAttribute('data-horizontal-distance', horizontalDistance.toString());
-    obstacle.setAttribute('data-vertical-distance', verticalDistance.toString());
-
-    if (currentTop > gameArea.offsetHeight) {
-      obstacle.remove(); // Remove the obstacle if it moves beyond the game area
-    }
-
-    if (checkCollision(obstacle)) {
-      gameOver(); // End game if there's a collision
-    }
-
-    // Growth for black holes
-    if (obstacle.classList.contains('blackhole')) {
-      let growthAccumulator = parseFloat(obstacle.dataset.growthAccumulator || '0');
-      let growthFactor = 1.005;
-      let currentWidth = parseFloat(obstacle.offsetWidth);
-
-      // Calculate the desired new width
-      let desiredWidth = currentWidth * growthFactor;
-      let originalWidth = parseFloat(obstacle.dataset.originalWidth || currentWidth);
-      let originalHeight = parseFloat(obstacle.dataset.originalHeight || obstacle.offsetHeight);
-      let aspectRatio = originalHeight / originalWidth;
-
-      growthAccumulator += (desiredWidth - currentWidth);
-
-      if (growthAccumulator >= 1) { // Apply accumulated growth once it reaches a threshold
-        let newWidth = currentWidth + growthAccumulator;
-        let newHeight = newWidth * aspectRatio;
-        obstacle.style.width = `${newWidth}px`;
-        obstacle.style.height = `${newHeight}px`;
-        obstacle.dataset.growthAccumulator = '0'; // Reset the accumulator
-      } else {
-        obstacle.dataset.growthAccumulator = growthAccumulator.toString();
-      }
-    }
-
-    // Oscillation for supernovas
-    if (obstacle.classList.contains('supernova')) {
-      if (!obstacle.dataset.startTime) obstacle.dataset.startTime = currentTime.toString();
-      const elapsedTime = currentTime - parseInt(obstacle.dataset.startTime, 10);
-
-      // Reduce oscillation amplitude for mobile devices
-      const amplitude = isMobileDevice() ? 25 : 50; // Half the amplitude for mobile devices
-
-      const period = 2000; // Oscillation period in milliseconds
-      let originalLeft = obstacle.dataset.originalLeft ? parseInt(obstacle.dataset.originalLeft, 10) : parseInt(obstacle.style.left, 10);
-      if (!obstacle.dataset.originalLeft) obstacle.dataset.originalLeft = originalLeft.toString();
+      if (currentTop > gameArea.offsetHeight) obstacle.remove();
       
-      // Calculate new position with conditional amplitude
-      obstacle.style.left = `${originalLeft + amplitude * Math.sin(elapsedTime * 2 * Math.PI / period)}px`;
-    }
+      if (checkCollision(obstacle)) gameOver();
+
+// Growth for black holes
+if (obstacle.classList.contains('blackhole')) {
+  let growthAccumulator = obstacle.dataset.growthAccumulator ? parseFloat(obstacle.dataset.growthAccumulator) : 0;
+  let growthFactor = 1.005;
+  let currentWidth = parseFloat(obstacle.offsetWidth);
+
+  // Calculate the desired new width without applying it yet
+  let desiredWidth = currentWidth * growthFactor;
+
+  // Assume the original aspect ratio is stored or can be calculated
+  // For example, if original dimensions are known:
+  let originalWidth = parseFloat(obstacle.dataset.originalWidth); // Make sure to set this when creating the obstacle
+  let originalHeight = parseFloat(obstacle.dataset.originalHeight); // Make sure to set this when creating the obstacle
+  let aspectRatio = originalHeight / originalWidth;
+
+  // Accumulate the difference until it's large enough to apply
+  growthAccumulator += (desiredWidth - currentWidth);
+
+  // Check if the accumulated growth is large enough to apply
+  if (growthAccumulator >= 1) { // Using 1px as an example threshold
+      let newWidth = currentWidth + growthAccumulator;
+      let newHeight = newWidth * aspectRatio; // Calculate new height based on aspect ratio
+      obstacle.style.width = `${newWidth}px`;
+      obstacle.style.height = `${newHeight}px`; // Set height proportionally
+      obstacle.dataset.growthAccumulator = '0'; // Reset accumulator after applying growth
+  } else {
+      // Save the accumulated growth back to the dataset for the next update
+      obstacle.dataset.growthAccumulator = growthAccumulator.toString();
+  }
+}
+
+
+// Oscillation for supernovas
+if (obstacle.classList.contains('supernova')) {
+  if (!obstacle.dataset.startTime) obstacle.dataset.startTime = currentTime.toString();
+  const elapsedTime = currentTime - parseInt(obstacle.dataset.startTime, 10);
+
+  // Reduce oscillation amplitude for mobile devices
+  const amplitude = isMobileDevice() ? 25 : 50; // Half the amplitude for mobile devices
+
+  const period = 2000; // Oscillation period in milliseconds
+  let originalLeft = obstacle.dataset.originalLeft ? parseInt(obstacle.dataset.originalLeft, 10) : parseInt(obstacle.style.left, 10);
+  if (!obstacle.dataset.originalLeft) obstacle.dataset.originalLeft = originalLeft.toString();
+  
+  // Calculate new position with conditional amplitude
+  obstacle.style.left = `${originalLeft + amplitude * Math.sin(elapsedTime * 2 * Math.PI / period)}px`;
+}
 
   });
-  updateDistances();
 }
 
 
-function checkCollision() {
-  const astronautRect = document.getElementById('astronaut').getBoundingClientRect();
-  const obstacles = document.querySelectorAll('.obstacle');
-  for (let obstacle of obstacles) {
-      const obstacleRect = obstacle.getBoundingClientRect();
-      // Manual adjustments: Define how much to "shrink" the collision box on each side
-      const adjustment = {
-          top: 4, // Reduce the top side of the collision box by 10px
-          right: 2, // Reduce the right side of the collision box by 10px
-          bottom: 0, // Reduce the bottom side of the collision box by 10px
-          left: 2, // Reduce the left side of the collision box by 10px
-      };
+function checkCollision(obstacle) {
+  const astronautRect = astronaut.getBoundingClientRect();
+  const obstacleRect = obstacle.getBoundingClientRect();
+  
+  // Manual adjustments: Define how much to "shrink" the collision box on each side
+  const adjustment = {
+      top: 4, // Reduce the top side of the collision box by 10px
+      right: 2, // Reduce the right side of the collision box by 10px
+      bottom: 0, // Reduce the bottom side of the collision box by 10px
+      left: 2, // Reduce the left side of the collision box by 10px
+  };
 
-      // Adjusted collision detection logic
-      if (!(astronautRect.right - adjustment.right < obstacleRect.left + adjustment.left ||
-          astronautRect.left + adjustment.left > obstacleRect.right - adjustment.right ||
-          astronautRect.bottom - adjustment.bottom < obstacleRect.top + adjustment.top ||
-          astronautRect.top + adjustment.top > obstacleRect.bottom - adjustment.bottom)) {
-          return true; // Collision detected
-      }
-  }
-  return false; // No collisions detected
+  // Adjusted collision detection logic
+  return !(
+      astronautRect.right - adjustment.right < obstacleRect.left + adjustment.left ||
+      astronautRect.left + adjustment.left > obstacleRect.right - adjustment.right ||
+      astronautRect.bottom - adjustment.bottom < obstacleRect.top + adjustment.top ||
+      astronautRect.top + adjustment.top > obstacleRect.bottom - adjustment.bottom
+  );
 }
-
-window.checkCollision = checkCollision;
-
 function changeBackgroundColor() {
   const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
   document.body.style.backgroundColor = randomColor;
@@ -244,54 +209,61 @@ function changeBackgroundColor() {
 // Start, Reset and Game Over
 
 function resetGame() {
+  // Clear intervals and game area test
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
   gameArea.innerHTML = '';
 
+  // Create astronaut image
   astronaut = document.createElement('img');
-  astronaut.src = 'Icons/astronaut.png';
+  astronaut.style.left = '45%';  // Set an initial position
+  astronaut.src = 'Icons/astronaut.png'; // Update this path to your astronaut image
   astronaut.id = 'astronaut';
-  astronaut.style.position = 'absolute';
-  astronaut.style.left = '45%';
-  astronaut.style.bottom = '10px';
+  astronaut.style.position = 'absolute';  // Ensure position style is absolute
   gameArea.appendChild(astronaut);
 
+  // Reset score and other game variables
   score = 0;
   gameTime = 0;
-  lastBackgroundChangeScore = 0;
   scoreDisplay.textContent = '0';
-// Return a promise that resolves after all reset operations are complete
-return new Promise(resolve => setTimeout(resolve, 100)); // 100 ms delay to ensure all clear
-
 }
 
-window.resetGame = resetGame;
-
 function gameOver() {
+  // Disable controls if they are active
   removeTouchControls();
   deactivateKeyControls();
+  // Stop any game interval timers to halt game progression
   clearInterval(gameInterval);
   clearInterval(moveObstaclesInterval);
 
+  // Check if the current score is a new high score and update accordingly
   if (score > highScore) {
-    highScore = score;
-    document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
+      highScore = score;
+      document.getElementById('highScore').textContent = `High Score: ${highScore} km`;
   }
 
+  // Display the final score in a pre-defined final score element
   document.getElementById('finalScore').textContent = `𐠒 Astronaut Died 𐠒`;
+
+  // Make the game over screen visible
   const gameOverScreen = document.getElementById('gameOverScreen');
   gameOverScreen.classList.remove('hidden');
   gameOverScreen.classList.add('visible');
 
+  // Update the start button text to indicate a game restart is possible
+  const startButton = document.getElementById('startButton');
   startButton.textContent = 'Restart Voyage';
-  startButton.onclick = () => {
-    gameOverScreen.classList.add('hidden');
-    gameOverScreen.classList.remove('visible');
-    startGame();
-  };
+
+  // Ensure any previous event listeners are removed to prevent multiple bindings
+  startButton.removeEventListener('click', startGame);
+  startButton.addEventListener('click', function() {
+      gameOverScreen.classList.add('hidden');
+      gameOverScreen.classList.remove('visible');
+      resetGame();
+      startGame();
+  }, { once: true });  // The listener will auto-remove after execution
 }
 
-window.gameOver = gameOver;
 
 function startGame() {
   resetGame();
@@ -299,6 +271,15 @@ function startGame() {
   if (isMobileDevice()) {
     addTouchControls(); // Enable touch controls for the astronaut
 }
+  const gameOverScreen = document.getElementById('gameOverScreen');
+  gameOverScreen.classList.remove('visible');
+  gameOverScreen.classList.add('hidden');
+
+  
+  gameTime = 0;
+  score = 0;
+  lastBackgroundChangeScore = 0; // Reset this variable at the start of each game
+  scoreDisplay.textContent = '0 km';
 
       // Hide the instruction text
       document.getElementById('instructionText').style.display = 'none';
@@ -343,12 +324,11 @@ function startGame() {
   moveObstaclesInterval = setInterval(moveObstacles, 20);
 }
 
-window.startGame = startGame;
+
 startButton.addEventListener('click', startGame);
 
 
-}
-);
+});
 
 
 

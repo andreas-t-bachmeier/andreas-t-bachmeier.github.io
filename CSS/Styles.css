@@ -342,7 +342,7 @@ header{
 }
  .BANTHObutton .btn_bantho {
   color: black;
-  background: white;
+  background: #FF6400;
   text-decoration: none;
   font-size: 15px;
   padding: 10px;
@@ -353,7 +353,7 @@ header{
 } 
 
 .btn_bantho:hover {
-  background: rgb(153, 215, 231);
+  background: white;
 }
 
 /* WOrk Experience -------------------------*/
@@ -396,6 +396,28 @@ header{
 .researchimage img {
   max-width: 800px;
   width: 100%;
+}
+/* Discover fibulaXpand Button ------------------------- */
+.discover-button {
+  background: white;
+  color: black;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.discover-button .btn_discover {
+  color: black;
+  background: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.btn_discover:hover {
+  background: green;
+  border-color: green;
 }
 
 /*Research -------------------------*/

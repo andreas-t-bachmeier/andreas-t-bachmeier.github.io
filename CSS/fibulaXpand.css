@@ -1,0 +1,292 @@
+body {
+    background-color: darkgreen;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+h1, h2, h3, h4 {
+    color: black;  /* Adjusted for readability on white background */
+    font-family: 'Josefin Sans', sans-serif;
+}
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: black;  /* Adjusted for readability on white background */
+}
+p {
+    margin: 0 0 20px;
+    color: black;  /* Adjusted for readability on white background */
+}
+p, ul {
+    font-size: 1.20em; /* Increased by 25% */
+}
+.image-container {
+    overflow: hidden;
+    width: 85%;
+    margin: 20px auto;
+}
+.image-container img {
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+.image-container.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+.image-container.left {
+    margin-left: 0;
+    margin-right: auto;
+}
+.image-container.right {
+    margin-left: auto;
+    margin-right: 0;
+}
+.image-container.centered img.shrink {
+    transform: scale(0.5);
+}
+.image-container img.enlarged {
+    transform: scale(1.15);
+}
+.btn-accept, .btn-foot, .btn-scientific {
+    background-color: darkgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 0;
+    border-radius: 5px;  /* Rounded corners for buttons */
+    text-align: center;  /* Center text inside buttons */
+}
+.btn-accept:hover, .btn-foot:hover, .btn-scientific:hover {
+    background-color: green;
+}
+/* Updated button text size */
+.btn-discover {
+    background-color: darkgreen;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 25px; /* Increased font size */
+    margin-top: 10px;
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+.btn-discover:hover {
+    background-color: green;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+.contact-list li {
+    display: inline;
+    margin-right: 10px;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+    p,h2 {
+        margin: 0 0 20px;
+        color: white;  /* Adjusted for readability on white background */
+    }
+}
+
+/* Cookie Banner -------------------------*/
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    text-align: center; /* Centering text */
+    padding: 15px;
+    z-index: 1000;
+    p {
+        margin: 0 0 20px;
+        color: white;  /* Adjusted for readability on white background */
+    }
+}
+.cookie-banner a {
+    color: darkgreen;
+    text-decoration: underline;
+}
+.btn-accept {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;  /* Rounded corners for buttons */
+}
+
+/* Banner Styles */
+.banner {
+    width: 100%;
+    text-align: center;
+    background: white; /* Solid background color */
+    padding: 25px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    border-bottom: 1px solid #ccc;
+    transition: padding 0.3s ease;
+}
+.banner.small-header {
+    padding: 10px 0;
+}
+.banner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner img {
+    width: 400px; /* Larger initial size */
+    transition: width 0.3s ease;
+    transform-origin: center; /* Ensure the transform keeps the image centered */
+}
+.banner img.shrink {
+    width: 200px; /* Reduced size on scroll */
+}
+
+
+
+/* Add margin to the main content to avoid overlap with the fixed header */
+main {
+    margin-top: 175px; /* Adjust based on the initial banner height */
+}
+
+/* Main Content Wrapper */
+.content-wrapper {
+    width: 75%;
+    margin: 20px auto; /* Margin to separate from other content */
+    text-align: left;
+    background-color: white;  /* White background for main content wrapper */
+    padding: 20px;  /* Optional: Add padding for better spacing */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Optional: Add subtle shadow for better separation */
+    border-radius: 5px;  /* Rounded corners for content wrapper */
+}
+
+/* Separate Content Wrapper for Specific Sections */
+.content-wrapper-gray {
+    width: 75%;
+    margin: 20px auto;  /* Margin to separate from other content */
+    text-align: left;
+    background-color: #f0f0f0;  /* Light gray background for separate sections */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;  /* Rounded corners for content wrapper */
+}
+
+/* Footer Image Styles */
+footer .image-container {
+    width: 40%;
+    margin: 20px auto;
+}
+
+/* Button Styles for Scientific Links */
+.btn-scientific {
+    background-color: darkgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 10px;
+    text-align: center;
+    border-radius: 5px;  /* Rounded corners for buttons */
+}
+.btn-scientific:hover {
+    background-color: green;
+}
+.btn-container {
+    text-align: center; /* Center the buttons */
+}
+
+/* Visibility and Animation */
+.section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-text {
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+    text-align: center;
+    color: white;
+    background-color: darkgreen;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.intro-text.hidden {
+    opacity: 0;
+    height: 0; /* Optionally collapse the space */
+    overflow: hidden;
+    transition: opacity 0.6s ease-out, height 0.6s ease-out;
+}
+.hidden {
+    display: none;
+}
+/* Style for enlarged images */
+.enlarged-fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.enlarged-fullscreen {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.enlarged {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    p {
+        max-width: 100%;
+        font-size: 14px;
+    }
+    h1, h2, h3, h4 {
+        font-size: 20px;
+    }
+    .image-container {
+        width: 100%;
+    }
+    .btn-discover {
+        font-size: 16px;
+    }
+}

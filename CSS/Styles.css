@@ -92,12 +92,6 @@ body{
 /*  -------------------------*/
 /* Decreasing Header -------------------------*/
 
-
-
-
-
-
-
 img {
   width: 300px;
 }
@@ -282,6 +276,8 @@ header{
   color: black;
   background: white;
   text-decoration: none;
+  text-align: center;
+  width: 150px;
   padding: 10px;
   border: 2px solid black;
   border-radius: 2px;

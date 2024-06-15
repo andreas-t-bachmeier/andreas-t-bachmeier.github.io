@@ -5,6 +5,9 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 h1, h2, h3, h4 {
     color: black;  /* Adjusted for readability on white background */
@@ -52,6 +55,7 @@ p, ul {
 .btn-accept, .btn-foot, .btn-scientific {
     background-color: darkgreen;
     color: white;
+    width: 125px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -74,6 +78,7 @@ p, ul {
     text-decoration: none;
     font-size: 25px; /* Increased font size */
     margin-top: 10px;
+    border: 3px solid white;
     border-radius: 5px; /* Slightly rounded corners */
 }
 
@@ -91,13 +96,18 @@ p, ul {
 }
 footer {
     text-align: center;
+    width: 70%;
     padding: 20px;
     background-color: #333;
     color: white;
-    margin-top: 40px;
-    p,h2 {
+    margin: 20px auto; /* Ensure the footer is placed at the bottom of the content */
+    border-radius: 5px; /* Rounded corners for content wrapper */
+    p,h1 {
         margin: 0 0 20px;
         color: white;  /* Adjusted for readability on white background */
+    }
+    .footer-img {
+        width: 400px;  /* Set the footer image width */
     }
 }
 
@@ -105,9 +115,10 @@ footer {
 .cookie-banner {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 0; /* Positioned at the bottom of the page */
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    height: 25vh; /* 25% of the screen height */
+    background-color: rgba(0, 0, 0, 0.95); /* 95% opaque for readability */
     color: white;
     text-align: center; /* Centering text */
     padding: 15px;
@@ -135,13 +146,13 @@ footer {
 .banner {
     width: 100%;
     text-align: center;
-    background: white; /* Solid background color */
+    background: rgba(255, 255, 255, 1); /* transparent */
     padding: 25px 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
     transition: padding 0.3s ease;
 }
 .banner.small-header {
@@ -156,21 +167,22 @@ footer {
     width: 400px; /* Larger initial size */
     transition: width 0.3s ease;
     transform-origin: center; /* Ensure the transform keeps the image centered */
+    opacity: 1; /* transparent */
 }
 .banner img.shrink {
-    width: 200px; /* Reduced size on scroll */
+    width: 250px; /* Reduced size on scroll */
 }
-
 
 
 /* Add margin to the main content to avoid overlap with the fixed header */
 main {
+    flex: 1;
     margin-top: 175px; /* Adjust based on the initial banner height */
 }
 
 /* Main Content Wrapper */
 .content-wrapper {
-    width: 75%;
+    width: 70%; /* Set content width to 70% of the screen */
     margin: 20px auto; /* Margin to separate from other content */
     text-align: left;
     background-color: white;  /* White background for main content wrapper */
@@ -181,7 +193,7 @@ main {
 
 /* Separate Content Wrapper for Specific Sections */
 .content-wrapper-gray {
-    width: 75%;
+    width: 70%; /* Set content width to 70% of the screen */
     margin: 20px auto;  /* Margin to separate from other content */
     text-align: left;
     background-color: #f0f0f0;  /* Light gray background for separate sections */
@@ -192,7 +204,7 @@ main {
 
 /* Footer Image Styles */
 footer .image-container {
-    width: 40%;
+    width: 400px;  /* Set the footer image width */
     margin: 20px auto;
 }
 
@@ -273,10 +285,34 @@ footer .image-container {
     transition: transform 0.3s ease;
 }
 
+/* Flexbox for Key Benefits Section */
+.key-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.key-benefits > div {
+    flex: 1;
+    min-width: 300px;
+    border: 2px solid black; /* Black border around each key benefit item */
+    padding: 20px; /* Padding inside the border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Center every second image on the right */
+.image-container.left {
+    margin-left: 0;
+    margin-right: auto;
+}
+.image-container.right {
+    margin-left: auto;
+    margin-right: 0;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    p {
+    p, ul {
         max-width: 100%;
         font-size: 14px;
     }
@@ -288,5 +324,8 @@ footer .image-container {
     }
     .btn-discover {
         font-size: 16px;
+    }
+    .banner img {
+        width: 500px; /* Larger size for mobile devices */
     }
 }

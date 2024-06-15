@@ -108,6 +108,7 @@ footer {
     }
     .footer-img {
         width: 400px;  /* Set the footer image width */
+        margin: 20px auto;
     }
 }
 
@@ -123,36 +124,55 @@ footer {
     text-align: center; /* Centering text */
     padding: 15px;
     z-index: 1000;
-    p {
-        margin: 0 0 20px;
-        color: white;  /* Adjusted for readability on white background */
-    }
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
+
+.cookie-banner .content {
+    width: 85%; /* Set the width of the content to 85% of the screen width */
+    margin: 0 auto; /* Center the content */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+}
+
+.cookie-banner p {
+    margin: 0 0 10px;
+    color: white;  /* Adjusted for readability on white background */
+}
+
 .cookie-banner a {
-    color: darkgreen;
+    color: green; /* Set the privacy policy link color to green */
     text-decoration: underline;
 }
-.btn-accept {
+
+.cookie-banner .btn-accept {
     background-color: darkgreen;
     color: white;
     border: none;
     padding: 10px 20px;
-    margin: 10px;
+    margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;  /* Rounded corners for buttons */
+    text-align: center;
+}
+
+.cookie-banner .btn-accept:hover {
+    background-color: green; /* Change background color to green on hover */
 }
 
 /* Banner Styles */
 .banner {
     width: 100%;
     text-align: center;
-    background: rgba(255, 255, 255, 1); /* transparent */
+    background: rgba(255, 255, 255, 1); /* 5% transparent */
     padding: 25px 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
     transition: padding 0.3s ease;
 }
 .banner.small-header {
@@ -167,12 +187,14 @@ footer {
     width: 400px; /* Larger initial size */
     transition: width 0.3s ease;
     transform-origin: center; /* Ensure the transform keeps the image centered */
-    opacity: 1; /* transparent */
+    opacity: 1; /* 5% transparent */
 }
 .banner img.shrink {
-    width: 250px; /* Reduced size on scroll */
+    width: 200px; /* Reduced size on scroll */
 }
-
+.banner img.enlarged {
+    width: 260px; /* 30% larger than reduced size */
+}
 
 /* Add margin to the main content to avoid overlap with the fixed header */
 main {
@@ -312,6 +334,13 @@ footer .image-container {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .content-wrapper, .content-wrapper-gray, footer {
+        width: 90%; /* Content spans 90% of the screen width on mobile devices */
+    }
+    footer .image-container {
+        width: 200px; /* Footer image width set to 200px on mobile devices */
+        margin: 20px auto; /* Center the image */
+    }
     p, ul {
         max-width: 100%;
         font-size: 14px;
@@ -326,6 +355,6 @@ footer .image-container {
         font-size: 16px;
     }
     .banner img {
-        width: 500px; /* Larger size for mobile devices */
+        width: 350px; /* Larger size for mobile devices */
     }
 }

@@ -280,7 +280,7 @@ header{
   width: 150px;
   padding: 10px;
   border: 2px solid black;
-  border-radius: 2px;
+  border-radius: 5px;
   display: inline-block;
 }
 .projects .btn:hover {
@@ -349,7 +349,7 @@ header{
   height: 65px;
   width: 300px;
   border: 3px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
 } 
 
 .btn_bantho:hover {
@@ -432,7 +432,16 @@ header{
 .research .divider > section:last-of-type {
   border-bottom: none;
 }
+/*BFunZone Image-------------------------*/
 
+.FunZoneImage {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.FunZoneImage img {
+  max-width: 800px;
+  width: 100%;
+}
 
 /*PONG-------------------------*/
 .PONG {
@@ -468,7 +477,7 @@ header{
   height: 65px;
   width: 300px;
   border: 3px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
 } 
 
 .btn_pong:hover {
@@ -510,7 +519,7 @@ header{
   height: 65px;
   width: 300px;
   border: 3px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
 } 
 
 .btn_cosmic:hover {
@@ -546,7 +555,7 @@ footer .btn-foot {
   text-decoration: none;
   padding: 12px;
   border: 2px solid #F5F5F5;
-  border-radius: 2px;
+  border-radius: 5px;
   /*display: inline-block;*/
 }
 footer .btn-foot:hover{

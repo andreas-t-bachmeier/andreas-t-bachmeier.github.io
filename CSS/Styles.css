@@ -303,6 +303,7 @@ section:hover {
 
 .btn-foot:hover, .btn_pong:hover, .btn_cosmic:hover {
   background-color: var(--dark-gray);
+  text-decoration: none;
 }
 
 /* Footer */
@@ -313,16 +314,7 @@ footer {
   padding: 50px 0;
 }
 
-footer .btn-foot {
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-footer h2 {
-  margin-bottom: 20px;
-}
-
-.contact-list {
+footer .contact-list {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -331,15 +323,19 @@ footer h2 {
   margin-bottom: 20px;
 }
 
-.contact-list li a {
-  text-decoration: none;
-  color: var(--secondary-color);
-  background-color: var(--accent-color);
-  padding: 10px 20px;
+footer .contact-list li {
+  display: inline-block;
 }
 
-.contact-list li a:hover {
-  background-color: var(--dark-gray);
+footer .contact-list li a {
+  text-decoration: none;
+}
+
+footer .contact-list li a img {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin: 0 10px;
 }
 
 footer p {

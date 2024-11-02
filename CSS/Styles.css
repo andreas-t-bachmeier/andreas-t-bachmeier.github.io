@@ -149,7 +149,7 @@ header.minimized h1 {
 
 .project-item {
   background-color: var(--secondary-color); /* White background */
-  color: var(--primary-color); /* Black text */
+  color: var(--dark-gray); /* Black text */
   padding: 15px;
   border: 1px solid var(--secondary-color);
   text-align: center;
@@ -168,6 +168,7 @@ header.minimized h1 {
 }
 
 .project-item h3 {
+  color: var(--primary-color); /* Sets the color to black */
   margin-bottom: 10px;
 }
 

@@ -1,9 +1,9 @@
 /* Variables for Colors */
 :root {
-  --primary-color: #000000; /* Black */
+  --primary-color: #161616;       /* Dark Gray */
   --secondary-color: #FFFFFF; /* White */
   --accent-color: #ff6400;    /* Orange */
-  --dark-gray: #26292A;       /* Dark Gray */
+  --dark-gray: #000000; /* Black */ 
 }
 
 /* Global Styles */
@@ -90,10 +90,11 @@ header.minimized h1 {
 }
 
 #profile_pic {
-  width: 300px; /* Made the image larger */
+  width: 400px; /* Made the image larger */
   height: auto;
   margin-left: 20px;
   margin-bottom: 20px;
+  margin-top: 80px;
   order: 2; /* Place on the right */
 }
 
@@ -125,7 +126,7 @@ header.minimized h1 {
 
 /* Projects Section */
 .projects {
-  background-color: #1a1a1a; /* Very Dark Gray */
+  background-color: black;
   color: var(--secondary-color);
   padding: 50px 0;
 }
@@ -188,12 +189,17 @@ header.minimized h1 {
 
 /* Section Tiles */
 section {
-  background-color: #1a1a1a; /* Very Dark Gray */
-  border: 1px solid var(--secondary-color);
-  margin: 20px 0;
+  background-color: black;
+  border: 2px solid var(--secondary-color);
+  margin: 20px auto; /* Center the section horizontally */
   padding: 30px;
   transition: transform 0.3s;
-  text-align: center;
+  width: 95%; /* Limit the section width to 90% of the viewport */
+  display: flex;
+  flex-direction: column; /* Stack inner elements vertically */
+  align-items: center; /* Center inner elements horizontally */
+  justify-content: center; /* Center inner elements vertically */
+  text-align: center; /* Ensure text is also centered */
 }
 
 section:hover {
@@ -223,7 +229,7 @@ section:hover {
 
 /* BANTHO Section */
 .BANTHO {
-  background-color: #1a1a1a; /* Very Dark Gray */
+  background-color: black;
   color: var(--secondary-color);
   text-align: center;
 }
@@ -249,7 +255,7 @@ section:hover {
 }
 
 .BANTHObutton .btn_bantho:hover {
-  background-color: var(--dark-gray);
+  background-color: var(--primary-color);
 }
 
 /* Discover Button */
@@ -270,17 +276,13 @@ section:hover {
 }
 
 .btn_discover:hover {
-  background-color: var(--dark-gray);
+  background-color: var(--primary-color);
   text-decoration: none;
-}
-
-.btn_discover:hover {
-  background-color: var(--dark-gray);
 }
 
 /* FunZone Image */
 .FunZoneImage {
-  padding: 20px 0;
+  padding: 50px 0;
 }
 
 .FunZoneImage img {
@@ -301,7 +303,12 @@ section:hover {
   text-align: center;
 }
 
-.btn-foot:hover, .btn_pong:hover, .btn_cosmic:hover {
+.btn_pong:hover, .btn_cosmic:hover {
+  background-color: var(--primary-color);
+  text-decoration: none;
+}
+
+.btn-foot:hover {
   background-color: var(--dark-gray);
   text-decoration: none;
 }
@@ -375,7 +382,7 @@ footer p {
 }
 
 .cookie-banner button:hover {
-  background-color: var(--dark-gray);
+  background-color: var(--primary-color);
 }
 
 /* Responsive Design */

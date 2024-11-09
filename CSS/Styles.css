@@ -442,9 +442,9 @@ footer p {
     flex-direction: column;
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -275px;
     background-color: var(--primary-color);
-    width: 300px;
+    width: 275px;
     height: 100%;
     padding-top: 60px;
     transition: left 0.3s ease;

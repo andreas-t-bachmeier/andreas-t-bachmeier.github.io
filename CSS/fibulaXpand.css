@@ -9,7 +9,7 @@ body {
 
 /* Navigation */
 nav {
-    width: 100%; /* Header spans full width */
+    width: 100%;
     margin: 0 auto;
     padding: 20px 0;
     position: fixed;
@@ -21,7 +21,7 @@ nav {
 }
 
 .nav-container {
-    width: 90%; /* Menu items and logo span 90% */
+    width: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -132,17 +132,17 @@ nav {
 .main-logo {
     width: 100%;
     text-align: center;
-    margin: 200px 0 20px; /* Increased top margin, reduced bottom margin */
+    margin: 200px 0 20px;
 }
 
 .main-logo img {
-    width: 90%; /* Image spans 90% of the whole screen */
-    max-width: none; /* Remove max-width to allow full 90% */
+    width: 90%;
+    max-width: none;
     transition: width 0.5s ease;
 }
 
 .main-logo.scrolled img {
-    width: 45%; /* Reduce size to 50% when scrolled */
+    width: 45%;
 }
 
 /* Sections */
@@ -155,14 +155,14 @@ nav {
 }
 
 .container {
-    width: 70%; /* Content spans 70% on large screens */
+    width: 70%;
     margin: 0 auto;
     text-align: justify;
 }
 
 @media (max-width: 768px) {
     .container {
-        width: 85%; /* Keep as is on mobile */
+        width: 85%;
     }
 }
 
@@ -209,7 +209,7 @@ nav {
     margin-top: 20px;
     text-align: center;
     width: 100%;
-    max-width: 300px; /* Set a consistent max-width */
+    max-width: 300px;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -230,11 +230,11 @@ nav {
     gap: 20px;
     max-width: 80%;
     margin: 0 auto;
-    justify-items: center; /* Center buttons within grid items */
+    justify-items: center;
 }
 
 .science-buttons .btn {
-    width: 100%; /* Buttons take full width of grid column */
+    width: 100%;
     text-align: center;
     margin: 0;
 }
@@ -252,11 +252,11 @@ nav {
     gap: 20px;
     max-width: 80%;
     margin: 0 auto;
-    justify-items: center; /* Center buttons within grid items */
+    justify-items: center;
 }
 
 .contact-buttons .btn {
-    width: 100%; /* Buttons take full width of grid column */
+    width: 100%;
     text-align: center;
     margin: 0;
 }
@@ -283,7 +283,7 @@ nav {
 .btn-center .btn {
     margin: 0 auto;
     width: 100%;
-    max-width: 300px; /* Set max-width to match other buttons */
+    max-width: 300px;
 }
 
 /* Image Gallery */
@@ -339,18 +339,18 @@ nav {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    grid-auto-rows: 1fr; /* Ensure all rows are equal height */
+    grid-auto-rows: 1fr;
 }
 
 .benefit-item {
     background-color: #fff;
     padding: 20px;
-    border-radius: 10px; /* Rounded corners */
-    border: 1px solid black; /* Black outline */
+    border-radius: 10px;
+    border: 1px solid black;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s; /* For hover effect */
+    transition: transform 0.3s;
 }
 
 .benefit-item:hover {
@@ -365,7 +365,7 @@ nav {
 
 /* Set background color for Key Benefits section */
 #benefits {
-    background-color: #f9f9f9; /* Same light gray as bg-light */
+    background-color: #f9f9f9;
 }
 
 /* Footer */
@@ -377,7 +377,7 @@ footer {
 
 footer p {
     margin: 0;
-    text-align: center; /* Centered text in footer */
+    text-align: center;
 }
 
 footer .container {
@@ -421,15 +421,15 @@ footer .container {
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
     .container {
-        width: 85%; /* Keep as is on mobile */
+        width: 85%;
     }
 
     .section h2 {
-        font-size: 1.5rem; /* Reduced by 25% */
+        font-size: 1.875rem;
     }
 
     .section h3 {
-        font-size: 1.25rem; /* Reduced by 25% */
+        font-size: 1.35rem;
     }
 
     .cookie-banner {
@@ -447,5 +447,19 @@ footer .container {
     .cookie-banner .btn {
         width: 100%;
         max-width: none;
+    }
+}
+
+/* Scale images down to 80% on larger screens */
+@media (min-width: 1024px) {
+    .main-logo img,
+    .image-gallery img {
+        width: 80%;
+        max-width: none;
+    }
+
+    /* Adjust the .main-logo.scrolled img to scale accordingly */
+    .main-logo.scrolled img {
+        width: 36%;
     }
 }

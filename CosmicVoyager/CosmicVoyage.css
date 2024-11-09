@@ -90,7 +90,7 @@ body, html {
   height: 62vh; /* 70% of the viewport height */
    /* Add any additional styles (background, border, etc.) below */
   border-radius: 20px; /* Rounded corners for the game area */
-  background-image: url('../Icons/background.png');
+  background-image: url('Icons/background.png');
   background-size: cover; /* Cover the entire area */
   background-position: center; /* Center the background image */
   margin: 0 auto; /* Center the game area horizontally */

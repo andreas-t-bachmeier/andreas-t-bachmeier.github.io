@@ -32,7 +32,24 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <h1>Andreas T. Bachmeier</h1>
+      <a href="index.html" class="logo"><img src="Images/LogoATB_white.png" alt="Logo"></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#fibulaxpand">fibulaXpand</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#bantho">BANTHO</a></li>
+          <li><a href="#funzone">Fun Zone</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-icon">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
     </div>
   </header>
 
@@ -52,14 +69,14 @@
   </div>
 
   <!-- Projects Section -->
-  <section class="projects">
+  <section id="projects" class="projects">
     <div class="container">
       <h2>Featured Projects</h2>
       <p>View selected projects below.</p>
       <div class="project-grid">
         <!-- Project Items -->
         <div class="project-item">
-          <img src="Images/Cosmic.png" alt="Promotion of Innovation">
+          <img src="Images/Cosmic.png" alt="Game Design Journey">
           <h3>Game Design Journey</h3>
           <p>Report on the creation of my web game "Cosmic Voyager" leveraging GenAI (eng).</p>
           <a class="btn" href="Files/Creation of Cosmic Voyager_AndreasTBachmeier.pdf">View Story</a>
@@ -123,7 +140,7 @@
   </section>
 
   <!-- Work Experience -->
-  <section class="work-experience">
+  <section id="experience" class="work-experience">
     <div class="container">
       <h2>Selected Work Experience</h2>
       <!-- Job Items -->
@@ -181,7 +198,7 @@
   </section>
 
   <!-- Education -->
-  <section class="education">
+  <section id="education" class="education">
     <div class="container">
       <h2>Selected Education</h2>
       <!-- Education Items -->
@@ -221,23 +238,17 @@
     </div>
   </section>
 
-  <!-- Research Image -->
-  <section class="researchimage">
+  <!-- fibulaXpand Section -->
+  <section id="fibulaxpand" class="discover-button">
     <div class="container">
       <img src="Images/Logo_fibulaXpand_v2_cut2-modified-gray.jpg" alt="fibulaXpand Logo">
-    </div>
-  </section>
-
-  <!-- Discover fibulaXpand Button -->
-  <section class="discover-button">
-    <div class="container">
       <p>With fibulaXpand we have developed a groundbreaking approach to repair severely injured limbs potentially saving them from amputation. Our innovative system enlarges the diameter of a bone and grows an autologous bone graft within the patient's leg enabling a faster recovery and return to daily activities.</p>
       <a class="btn_discover" href="fibulaXpand.html" target="_blank">Discover fibulaXpand</a>
     </div>
   </section>
 
   <!-- Research Section -->
-  <section class="research">
+  <section id="research" class="research">
     <div class="container">
       <h2>Selected Research</h2>
       <!-- Research Items -->
@@ -264,17 +275,10 @@
     </div>
   </section>
 
-  <!-- BANTHO Image -->
-  <section class="BANTHOimage">
+  <!-- BANTHO Section -->
+  <section id="bantho" class="BANTHO">
     <div class="container">
       <img src="Images/Baanto_logo_2_light.png" alt="BANTHO Logo">
-    </div>
-  </section>
-
-  <!-- BANTHO Section -->
-  <section class="BANTHO">
-    <div class="container">
-      <h2>My Brand "BANTHO"</h2>
       <p>Currently, I am building my very own e-commerce business, which will be officially launched in the coming months. Under my brand "BANTHO" I will sell sustainable garments and wall art with my unique designs for a good cause!</p>
       <p>Feel free to visit the "Official BANTHO Store" and subscribe to updates via email or social media!</p>
       <div class="BANTHObutton">
@@ -283,68 +287,57 @@
     </div>
   </section>
 
+  <!-- Fun Zone Section -->
+  <section id="funzone">
   <!-- FunZone Image -->
-  <section class="FunZoneImage">
-    <div class="container">
-      <img src="Images/funzone.png" alt="Fun Zone">
-    </div>
+  <div class="FunZoneImage">
+    <img src="Images/funzone.png" alt="Fun Zone">
+  </div>
+    <!-- PONG Section -->
+        <h2>Thanks for making it this far!</h2>
+        <p>As a reward you can play my pong game and see if you can beat the AI before you go.</p>
+        <div class="PONGbutton">
+          <a class="btn_pong" href="pong.html" target="_blank">Great! Play PONG!</a>
+        </div>
+    <!-- Cosmic Voyager Section -->
+        <p>Or you can try my completely self-devised Cosmic Voyager game.</p>
+        <div class="Cosmicbutton">
+          <a class="btn_cosmic" href="CosmicVoyager/CosmicVoyage.html" target="_blank">Great! Play Cosmic Voyager!</a>
+        </div>
   </section>
 
-  <!-- PONG Section -->
-  <section class="PONG">
-    <div class="container">
-      <h2>Thanks for making it this far!</h2>
-      <h2>As a reward you can play my pong game and see if you can beat the AI before you go.</h2>
-      <div class="PONGbutton">
-        <a class="btn_pong" href="pong.html" target="_blank">Great! Play PONG!</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cosmic Voyager Section -->
-  <section class="Cosmic">
-    <div class="container">
-      <h2>Or you can try my completely self-devised Cosmic Voyager game.</h2>
-      <div class="Cosmicbutton">
-        <a class="btn_cosmic" href="CosmicVoyager/CosmicVoyage.html" target="_blank">Great! Play Cosmic Voyager!</a>
-      </div>
-    </div>
-  </section>
-
-   <!-- Image -->
-   <section class="BottomImage">
+  <!-- Bottom Image -->
+  <section class="BottomImage">
     <div class="container">
       <img src="Images/Berlin_dark.png" alt="Munich Landscape">
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer id="contact">
     <div class="container">
-        <a class="btn-foot" href="Files/Resume_Andreas_T_Bachmeier.pdf" target="_blank">Download Resume</a>
-        <h2>Let's Keep in Touch!</h2>
-        <ul class="contact-list">
-            <li>
-                <a href="mailto:andreas.bachmeier@cdi.eu">
-                    <img src="Images/mail.png" alt="Email Icon" width="40" height="40">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/andreas-t-bachmeier-741a83157/" target="_blank">
-                    <img src="Images/linkedin.png" alt="LinkedIn Icon" width="40" height="40">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.researchgate.net/profile/Andreas-Bachmeier" target="_blank">
-                    <img src="Images/research.png" alt="ResearchGate Icon" width="40" height="40">
-                </a>
-            </li>
-        </ul>
-        <p>© 2024 - Dr. Andreas T. Bachmeier</p>
+      <a class="btn-foot" href="Files/Resume_Andreas_T_Bachmeier.pdf" target="_blank">Download Resume</a>
+      <h2>Let's Keep in Touch!</h2>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:andreas.bachmeier@cdi.eu">
+            <img src="Images/mail.png" alt="Email Icon" width="40" height="40">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/andreas-t-bachmeier-741a83157/" target="_blank">
+            <img src="Images/linkedin.png" alt="LinkedIn Icon" width="40" height="40">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.researchgate.net/profile/Andreas-Bachmeier" target="_blank">
+            <img src="Images/research.png" alt="ResearchGate Icon" width="40" height="40">
+          </a>
+        </li>
+      </ul>
+      <p>© 2024 - Dr. Andreas T. Bachmeier</p>
     </div>
-</footer>
-
-
+  </footer>
 
   <!-- Scripts -->
   <script>
@@ -364,14 +357,22 @@
   </script>
 
   <script>
-    // Header Minimize on Scroll
-    window.addEventListener('scroll', function() {
-      var header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.classList.add('minimized');
-      } else {
-        header.classList.remove('minimized');
-      }
+    // Toggle Menu for Small Screens
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a menu item (for small screens)
+    const navItems = document.querySelectorAll('.nav-links li a');
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
     });
   </script>
 

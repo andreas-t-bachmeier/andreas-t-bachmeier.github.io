@@ -6,6 +6,11 @@
   --dark-gray: #000000;       /* Black */ 
 }
 
+/* Enable smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Global Styles */
 * {
   margin: 0;

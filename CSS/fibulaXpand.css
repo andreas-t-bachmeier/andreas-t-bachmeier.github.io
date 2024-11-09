@@ -394,10 +394,15 @@ footer .container {
     color: #fff;
     text-align: center;
     padding: 15px;
+    box-sizing: border-box;
 }
 
 .cookie-banner p {
     margin-bottom: 10px;
+    max-width: 90%;
+    margin: 0 auto 10px;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .cookie-banner a {
@@ -411,4 +416,36 @@ footer .container {
     max-width: 300px;
     margin: 0 auto;
     display: block;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 85%; /* Keep as is on mobile */
+    }
+
+    .section h2 {
+        font-size: 1.5rem; /* Reduced by 25% */
+    }
+
+    .section h3 {
+        font-size: 1.25rem; /* Reduced by 25% */
+    }
+
+    .cookie-banner {
+        padding: 15px 10px;
+    }
+
+    .cookie-banner p {
+        font-size: 0.9rem;
+        max-width: 90%;
+        margin: 0 auto 10px;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .cookie-banner .btn {
+        width: 100%;
+        max-width: none;
+    }
 }

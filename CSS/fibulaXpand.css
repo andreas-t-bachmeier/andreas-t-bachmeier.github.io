@@ -402,7 +402,7 @@ footer .container {
     max-width: 90%;
     margin: 0 auto 10px;
     text-align: center;
-    word-wrap: break-word;
+    /*word-wrap: break-word;*/
 }
 
 .cookie-banner a {

@@ -4,6 +4,7 @@
   --secondary-color: #FFFFFF; /* White */
   --accent-color: #ff6400;    /* Orange */
   --dark-gray: #000000;       /* Black */ 
+  --gray: #2f2d2d;
 }
 
 /* Enable smooth scrolling */
@@ -163,6 +164,20 @@ nav ul.nav-links li a:hover::after {
   color: var(--secondary-color);
 }
 
+/* Feature Section */
+.feature-item .btn {
+  text-decoration: none;
+  color: var(--secondary-color);
+  background-color: var(--accent-color);
+  padding: 15px 30px;
+  font-size: 1.2em;
+  display: inline-block;
+  margin: 20px auto;
+}
+
+.feature-item .btn:hover {
+  background-color: var(--gray);
+}
 /* Projects Section */
 .projects {
   background-color: black;
@@ -226,6 +241,8 @@ nav ul.nav-links li a:hover::after {
 .project-item .btn:hover {
   background-color: var(--dark-gray);
 }
+
+
 
 /* Section Tiles */
 section {

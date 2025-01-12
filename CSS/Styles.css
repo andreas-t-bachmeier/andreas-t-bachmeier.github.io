@@ -460,13 +460,15 @@ footer p {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+
+
   .header-content {
     flex-direction: column;
     align-items: center;
   }
 
   :root {
-    --btnwidth: 250px;
+    --btnwidth: 90%;
     --btnfontsz: 1.0em;
   }
 
@@ -516,13 +518,10 @@ footer p {
   }
 
   .FunZoneImage img {
-    max-width: 300px;
+    max-width: 90%;
   }
   #end_pic {
-    margin: 0;                /* Remove default margins */
-    padding: 0;               /* Remove padding */
-    display: block;           /* Ensure predictable behavior */
-    width: 300px;             /* Explicit width */
+    width: 100%;             /* Explicit width */
     height: auto;             /* Maintain aspect ratio */
   }
 }

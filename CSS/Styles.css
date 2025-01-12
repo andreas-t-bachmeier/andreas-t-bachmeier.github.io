@@ -171,7 +171,8 @@ section {
   background-color: black;
   border: 2px solid var(--secondary-color);
   margin: 20px auto;
-  padding: 30px;
+  padding: 20px;
+  align-items: center;  
   transition: transform 0.3s;
   width: 85%;
   display: flex;
@@ -379,6 +380,8 @@ section:hover {
 
 
 #end_pic {
+  margin: 0;
+  padding: 0;
   width: 800px;
   height: auto;
 }
@@ -516,7 +519,10 @@ footer p {
     max-width: 300px;
   }
   #end_pic {
-    width: 300px;
-    height: auto;
+    margin: 0;                /* Remove default margins */
+    padding: 0;               /* Remove padding */
+    display: block;           /* Ensure predictable behavior */
+    width: 300px;             /* Explicit width */
+    height: auto;             /* Maintain aspect ratio */
   }
 }

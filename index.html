@@ -333,9 +333,20 @@
   <!-- Bottom Image/ Video -->
   <section class="BottomImage">
     <div class="container">
-      <video id="end_pic" autoplay loop muted playsinline width="500" alt="Berlin Video">
+      <video 
+        id="end_pic"
+        autoplay 
+        loop 
+        muted 
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        controls
+        poster="Files/poster-image.jpg"
+        width="500" 
+        alt="Berlin Video">
         <source src="Files/Berlin.mp4" type="video/mp4">
-    </video>
+      </video>
     </div>
   </section>
 
@@ -404,6 +415,25 @@
           navLinks.classList.remove('active');
         }
       });
+    });
+  </script>
+
+  <script>
+    // Force play on iOS
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('end_pic');
+        
+        // Play video on page load
+        video.play().catch(function(error) {
+            console.log("Video autoplay failed:", error);
+        });
+
+        // Try playing on first user interaction
+        document.body.addEventListener('touchstart', function() {
+            video.play().catch(function(error) {
+                console.log("Video play failed:", error);
+            });
+        }, { once: true });
     });
   </script>
 

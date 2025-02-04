@@ -446,24 +446,33 @@
     });
   </script>
 
-  <script>
-    // Force play on iOS
-    document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('end_pic');
-        
-        // Play video on page load
-        video.play().catch(function(error) {
-            console.log("Video autoplay failed:", error);
-        });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('end_pic');
+      
+      // Ensure the video is muted for autoplay policies in Chrome.
+      video.muted = true;
+      
+      // Attempt to play the video on page load.
+      video.play().catch(function(error) {
+          console.log("Video autoplay failed:", error);
+      });
 
-        // Try playing on first user interaction
-        document.body.addEventListener('touchstart', function() {
-            video.play().catch(function(error) {
-                console.log("Video play failed:", error);
-            });
-        }, { once: true });
-    });
-  </script>
+      // Try playing on first user interaction for touch devices.
+      document.body.addEventListener('touchstart', function() {
+          video.play().catch(function(error) {
+              console.log("Video play failed on touchstart:", error);
+          });
+      }, { once: true });
+
+      // Also try playing on first click for non-touch devices.
+      document.body.addEventListener('click', function() {
+          video.play().catch(function(error) {
+              console.log("Video play failed on click:", error);
+          });
+      }, { once: true });
+  });
+</script>
 
 </body>
 </html>

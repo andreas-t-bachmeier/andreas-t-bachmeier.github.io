@@ -450,27 +450,34 @@
   document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('end_pic');
       
-      // Ensure the video is muted for autoplay policies in Chrome.
+      // Ensure the video is properly configured for autoplay.
       video.muted = true;
+      video.setAttribute('playsinline', '');
+      video.preload = 'auto';
       
-      // Attempt to play the video on page load.
-      video.play().catch(function(error) {
-          console.log("Video autoplay failed:", error);
+      // Function to attempt playback.
+      const attemptPlay = function() {
+          video.play().catch(function(error) {
+              console.log("Video play error on interaction:", error);
+          });
+          // Remove the event listeners after the first attempt.
+          document.body.removeEventListener('touchstart', attemptPlay);
+          document.body.removeEventListener('click', attemptPlay);
+      };
+      
+      // Wait until the video has buffered enough to play.
+      video.addEventListener('canplay', function() {
+          // Optional slight delay to ensure buffering is sufficient.
+          setTimeout(function() {
+              video.play().catch(function(error) {
+                  console.log("Video play error after canplay:", error);
+              });
+          }, 500); // 500ms delay; adjust as needed
       });
-
-      // Try playing on first user interaction for touch devices.
-      document.body.addEventListener('touchstart', function() {
-          video.play().catch(function(error) {
-              console.log("Video play failed on touchstart:", error);
-          });
-      }, { once: true });
-
-      // Also try playing on first click for non-touch devices.
-      document.body.addEventListener('click', function() {
-          video.play().catch(function(error) {
-              console.log("Video play failed on click:", error);
-          });
-      }, { once: true });
+      
+      // Fallback for when autoplay still fails:
+      document.body.addEventListener('touchstart', attemptPlay, { once: true });
+      document.body.addEventListener('click', attemptPlay, { once: true });
   });
 </script>
 

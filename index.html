@@ -449,32 +449,36 @@
   document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('end_pic');
       
-      // Ensure the video is properly configured for autoplay.
+      // Configure the video element for autoplay.
       video.muted = true;
       video.setAttribute('playsinline', '');
       video.preload = 'auto';
       
-      // Function to attempt playback.
-      const attemptPlay = function() {
+      // Define a function to attempt playing the video.
+      function attemptPlay() {
           video.play().catch(function(error) {
-              console.log("Video play error on interaction:", error);
+              console.log("Video play error:", error);
           });
-          // Remove the event listeners after the first attempt.
-          document.body.removeEventListener('touchstart', attemptPlay);
-          document.body.removeEventListener('click', attemptPlay);
-      };
+      }
       
-      // Wait until the video has buffered enough to play.
-      video.addEventListener('canplay', function() {
-          // Optional slight delay to ensure buffering is sufficient.
-          setTimeout(function() {
-              video.play().catch(function(error) {
-                  console.log("Video play error after canplay:", error);
+      // Use IntersectionObserver to play the video when it enters the viewport.
+      if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      // Video is now in view; attempt to play it.
+                      setTimeout(attemptPlay, 500); // slight delay to help buffering
+                      obs.unobserve(video);
+                  }
               });
-          }, 500); // 500ms delay; adjust as needed
-      });
+          }, { threshold: 0.5 }); // Adjust threshold as needed
+          observer.observe(video);
+      } else {
+          // If IntersectionObserver is not supported, try playing immediately.
+          setTimeout(attemptPlay, 500);
+      }
       
-      // Fallback for when autoplay still fails:
+      // Fallback for user interactions (touch or click) in case autoplay still fails.
       document.body.addEventListener('touchstart', attemptPlay, { once: true });
       document.body.addEventListener('click', attemptPlay, { once: true });
   });

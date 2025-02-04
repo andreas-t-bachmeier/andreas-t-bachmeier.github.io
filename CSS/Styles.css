@@ -288,7 +288,7 @@ section:hover {
 }
 
 
-/* Discover Button */
+/* fibulaXpan & INSPYRALL*/
 .discover-button {
   text-align: center;
   margin-bottom: 20px;
@@ -309,6 +309,23 @@ section:hover {
 .btn_discover:hover {
   background-color: var(--primary-color);
   text-decoration: none;
+}
+
+
+.Inspyrall p {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+.Inspyrall_image {
+  padding: 50px 0;
+}
+
+.Inspyrall_image img {
+  display: block;
+  margin: 10px auto; /* Added top and bottom margins */
+  max-width: 250px;   /* Reduced the size to make it smaller */
 }
 
 /* BANTHO Section */
@@ -343,6 +360,17 @@ section:hover {
 .BANTHObutton .btn_bantho:hover {
   background-color: var(--primary-color);
 }
+
+.BANTHO_logo{
+  padding: 50px 0;
+}
+
+.BANTHO_logo img {
+  display: block;
+  margin: 10px auto; /* Added top and bottom margins */
+  max-width: 800px;   /* Reduced the size to make it smaller */
+}
+
 
 /* FunZone Image */
 .FunZoneImage {
@@ -520,6 +548,15 @@ footer p {
   .FunZoneImage img {
     max-width: 90%;
   }
+
+  .Inspyrall_image img {
+    max-width: 90%;
+  }
+
+  .BANTHO_logo img {
+    max-width: 90%;
+  }
+
   #end_pic {
     width: 100%;             /* Explicit width */
     height: auto;             /* Maintain aspect ratio */

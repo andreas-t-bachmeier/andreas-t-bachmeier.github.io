@@ -394,6 +394,24 @@ section:hover {
   max-width: 800px;   /* Reduced the size to make it smaller */
 }
 
+/* Bottom Image Section Container */
+.BottomImage {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents any accidental overflow */
+}
+
+/* Video Element */
+#end_pic {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+
 /* Buttons */
 .btn-foot, .btn_pong, .btn_cosmic {
   text-decoration: none;
@@ -573,6 +591,6 @@ footer p {
   }
 
   #end_pic {
-    width: 95%;             /* Explicit width */           /* Maintain aspect ratio */
+    width: 95%;             /* Explicit width */
   }
 }

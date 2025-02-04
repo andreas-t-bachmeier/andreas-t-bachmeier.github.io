@@ -319,7 +319,7 @@ section:hover {
 }
 
 .Inspyrall_image {
-  padding: 50px 0;
+  padding: 30px 0;
 }
 
 .Inspyrall_image img {
@@ -327,6 +327,17 @@ section:hover {
   margin: 10px auto; /* Added top and bottom margins */
   max-width: 250px;   /* Reduced the size to make it smaller */
 }
+
+.fibulaXpand_logo {
+  padding: 30px 0;
+}
+
+.fibulaXpand_logo img {
+  display: block;
+  margin: 10px auto; /* Added top and bottom margins */
+  max-width: 800px;   /* Reduced the size to make it smaller */
+}
+
 
 /* BANTHO Section */
 .BANTHO {
@@ -374,7 +385,7 @@ section:hover {
 
 /* FunZone Image */
 .FunZoneImage {
-  padding: 50px 0;
+  padding: 30px 0;
 }
 
 .FunZoneImage img {
@@ -550,11 +561,15 @@ footer p {
   }
 
   .Inspyrall_image img {
-    max-width: 90%;
+    width: 50%;
   }
 
   .BANTHO_logo img {
-    max-width: 90%;
+    width: 100%;
+  }
+
+  .fibulaXpand_logo img {
+    width: 100%;
   }
 
   #end_pic {

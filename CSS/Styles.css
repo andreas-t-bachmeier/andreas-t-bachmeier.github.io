@@ -573,7 +573,6 @@ footer p {
   }
 
   #end_pic {
-    width: 95%;             /* Explicit width */
-    height: auto;             /* Maintain aspect ratio */
+    width: 95%;             /* Explicit width */           /* Maintain aspect ratio */
   }
 }

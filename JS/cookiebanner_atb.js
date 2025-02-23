@@ -51,7 +51,7 @@
     // Create text paragraph
     var para = document.createElement("p");
     para.innerHTML = "This website uses cookies to ensure you get the best experience. " +
-                     "<a href='cookie-policy.html' target='_blank' style='color:#FF6400; text-decoration:underline;'>Review Privacy Policy</a>";
+                     "<a href='cookie-policy.html' target='_blank' style='color:#FF6400; text-decoration:underline;'>Review Cookie Policy</a>";
     banner.appendChild(para);
     
     // Create a container for buttons

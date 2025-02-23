@@ -51,7 +51,7 @@
     // Create text paragraph
     var para = document.createElement("p");
     para.innerHTML = "This website uses cookies to ensure you get the best experience on our website. " +
-                     "<a href='https://andreas-t-bachmeier.github.io/cookie-policy.html' target='_blank' style='color:#FF6400; text-decoration:underline;'>Review Cookie Policy</a>";
+                     "<a href='https://inspyrall.uwu.ai/#privacy' target='_blank' style='color:#FF6400; text-decoration:underline;'>Review Cookie Policy</a>";
     banner.appendChild(para);
     
     // Create a container for buttons

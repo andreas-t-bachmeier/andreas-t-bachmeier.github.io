@@ -50,7 +50,7 @@
     
     // Create text paragraph
     var para = document.createElement("p");
-    para.innerHTML = "This website uses cookies to ensure you get the best experience on our website. " +
+    para.innerHTML = "This website uses cookies to ensure you get the best experience. " +
                      "<a href='https://inspyrall.uwu.ai/#privacy' target='_blank' style='color:#FF6400; text-decoration:underline;'>Review Privacy Policy</a>";
     banner.appendChild(para);
     

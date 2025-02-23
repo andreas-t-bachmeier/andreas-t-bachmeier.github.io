@@ -21,22 +21,7 @@
   <link rel="manifest" href="Favicon/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KYK8CCBZ29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KYK8CCBZ29');
-</script>
 <body>
-
-  <!-- Cookie Banner -->
-  <div id="cookieBanner" class="cookie-banner">
-    <p>I use cookies to improve your experience. By using my website, you agree to the <a href="cookie-policy.html">cookie policy</a>.</p>
-    <button id="acceptCookies">Accept</button>
-  </div>
 
   <!-- Header -->
   <header>
@@ -409,21 +394,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    window.onload = function() {
-      var acceptBtn = document.getElementById("acceptCookies");
-      var cookieBanner = document.getElementById("cookieBanner");
-  
-      if (!localStorage.getItem("cookiesAccepted")) {
-        cookieBanner.style.display = "block";
-      }
-  
-      acceptBtn.onclick = function() {
-        localStorage.setItem("cookiesAccepted", "true");
-        cookieBanner.style.display = "none";
-      };
-    };
-  </script>
+
 
   <script>
     // Toggle Menu for Small Screens

@@ -480,40 +480,6 @@ footer p {
   font-size: 0.9em;
 }
 
-/* Cookie Banner */
-.cookie-banner {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--dark-gray);
-  color: var(--secondary-color);
-  padding: 15px;
-  text-align: center;
-  display: block;
-  z-index: 1000;
-}
-
-.cookie-banner p {
-  display: inline;
-}
-
-.cookie-banner a {
-  color: var(--accent-color);
-  text-decoration: underline;
-}
-
-.cookie-banner button {
-  background-color: var(--accent-color);
-  color: var(--secondary-color);
-  border: none;
-  padding: 10px 20px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-.cookie-banner button:hover {
-  background-color: var(--primary-color);
-}
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {

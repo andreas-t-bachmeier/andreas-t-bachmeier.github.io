@@ -46,7 +46,7 @@
     // Create banner container
     var banner = document.createElement("div");
     banner.id = "cookie-banner";
-    banner.style.cssText = "font-family:'Inter', sans-serif; color:#fff; background:#000; padding:20px; position:fixed; bottom:10px; left:10px; width:100%; max-width:300px; box-shadow:0 10px 20px rgba(0,0,0,0.2); border-radius:5px; margin:0; z-index:1000000; box-sizing:border-box; line-height:1.6; display:block;";
+    banner.style.cssText = "font-family:'Inter', sans-serif; color:#fff; background:#000; padding:20px; position:fixed; top:50%; left:50%; transform: translate(-50%, -50%); width:100%; max-width:300px; box-shadow:0 10px 20px rgba(0,0,0,0.2); border-radius:5px; margin:0; z-index:1000000; box-sizing:border-box; line-height:1.6; display:block;";
     
     // Create text paragraph
     var para = document.createElement("p");

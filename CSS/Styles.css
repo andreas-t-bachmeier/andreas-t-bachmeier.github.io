@@ -431,13 +431,28 @@ footer .contact-list li a img {
   height: 40px;
 }
 
+.intro-text p,
+.feature-item p,
+.project-item p,
+.startup-item p,
+.job-summary p,
+.edu-summary p,
+.res-summary p,
+.fun-intro p {
+  text-align: left;
+}
+
 @media screen and (max-width: 768px) {
   :root {
     --btnwidth: 90%;
     --btnfontsz: 1em;
   }
     body {
-    font-size: 20px; /* 75% of your desktop 24px */
+    font-size: 16px; 
+  }
+    .project-item p,
+  .startup-item p {
+    font-size: 14px;
   }
   .header-content {
     flex-direction: column;

@@ -409,6 +409,7 @@ footer .contact-list li a img:hover {
   max-width: 800px;
 }
 
+/* —— Footer layout —— */
 footer {
   background-color: var(--primary-color);
   color: var(--secondary-color);
@@ -423,13 +424,89 @@ footer .contact-list {
   gap: 20px;
   margin-bottom: 20px;
 }
-footer .contact-list li {
-  display: inline-block;
-}
-footer .contact-list li a img {
+footer .contact-list li img {
   width: 40px;
   height: 40px;
 }
+
+/* —— Imprint & Privacy Policy links —— */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 20px;
+}
+
+/* remove default triangle on details */
+.footer-links details {
+  position: relative;
+}
+.footer-links summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 0.9em;
+  text-decoration: none;
+}
+.footer-links summary::-webkit-details-marker {
+  display: none;
+}
+
+/* privacy link styling */
+.footer-links .footer-privacy {
+  color: var(--accent-color);
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+/* underline both on hover */
+.footer-links summary:hover,
+.footer-links .footer-privacy:hover {
+  text-decoration: underline;
+}
+
+/* —— Imprint content box —— */
+.imprint-content {
+  display: none;
+  max-width: 80%;
+  margin: 1em auto 0;
+  padding: 15px;
+  background: var(--gray);
+  color: var(--secondary-color);
+  text-align: center;
+  line-height: 1.4;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* show imprint-content when details is open */
+.footer-imprint[open] ~ .imprint-content {
+  display: block;
+}
+
+/* —— Footer credits —— */
+.footer-credits {
+  margin-top: 20px;
+  font-size: 0.7em;
+  color: var(--secondary-color);
+}
+/* allow the links + imprint box to wrap */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;        /* ← enable wrapping */
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 20px;
+}
+
+/* force the imprint box to a new row */
+.footer-links > .imprint-content {
+  flex-basis: 100%;       /* ← full width of the flex container */
+}
+
+
 
 .intro-text p,
 .feature-item p,

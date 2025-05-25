@@ -409,7 +409,7 @@ footer .contact-list li a img:hover {
   max-width: 800px;
 }
 
-/* —— Footer layout —— */
+/* —— Base footer layout —— */
 footer {
   background-color: var(--primary-color);
   color: var(--secondary-color);
@@ -429,20 +429,17 @@ footer .contact-list li img {
   height: 40px;
 }
 
-/* —— Imprint & Privacy Policy links —— */
+/* —— Imprint & Privacy links side-by-side —— */
 .footer-links {
   display: flex;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;       /* never wrap these two links */
   justify-content: center;
   align-items: center;
   gap: 1em;
   margin-top: 20px;
 }
 
-/* remove default triangle on details */
-.footer-links details {
-  position: relative;
-}
+/* Remove default triangle on <details> */
 .footer-links summary {
   list-style: none;
   cursor: pointer;
@@ -454,20 +451,20 @@ footer .contact-list li img {
   display: none;
 }
 
-/* privacy link styling */
+/* Privacy link styling */
 .footer-links .footer-privacy {
   color: var(--accent-color);
   font-size: 0.9em;
   text-decoration: none;
 }
 
-/* underline both on hover */
+/* Underline on hover */
 .footer-links summary:hover,
 .footer-links .footer-privacy:hover {
   text-decoration: underline;
 }
 
-/* —— Imprint content box —— */
+/* —— Imprint content (hidden by default) —— */
 .imprint-content {
   display: none;
   max-width: 80%;
@@ -481,7 +478,7 @@ footer .contact-list li img {
   font-size: 0.9em;
 }
 
-/* show imprint-content when details is open */
+/* Show it only when “Imprint” is open */
 .footer-imprint[open] ~ .imprint-content {
   display: block;
 }
@@ -492,6 +489,7 @@ footer .contact-list li img {
   font-size: 0.7em;
   color: var(--secondary-color);
 }
+
 /* allow the links + imprint box to wrap */
 .footer-links {
   display: flex;
@@ -594,16 +592,6 @@ footer .contact-list li img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-    .footer-links {
-    flex-wrap: nowrap;
-  }
-  /* Imprint remains hidden until opened */
-  .imprint-content {
-    display: none;
-  }
-  .footer-imprint[open] ~ .imprint-content {
-    display: block;
   }
 
 }

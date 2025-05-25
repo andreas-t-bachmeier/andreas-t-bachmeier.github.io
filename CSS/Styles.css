@@ -1,20 +1,17 @@
-/* Variables */
 :root {
-  --primary-color: #161616;  /* Dark Gray */
-  --secondary-color: #FFFFFF; /* White */
-  --accent-color: #ff6400;    /* Orange */
-  --dark-gray: #000000;       /* Black */ 
+  --primary-color: #161616;
+  --secondary-color: #FFFFFF;
+  --accent-color: #ff6400;
+  --dark-gray: #000000;
   --gray: #2f2d2d;
   --btnwidth: 350px;
   --btnfontsz: 1.2em;
 }
 
-/* Enable smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +20,7 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 1.6;
   color: var(--secondary-color);
   background-color: var(--primary-color);
@@ -45,9 +42,38 @@ a {
   color: var(--accent-color);
   text-decoration: none;
 }
-
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+nav ul.nav-links {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+}
+
+nav ul.nav-links li {
+  margin-left: 20px;
+}
+
+nav ul.nav-links li a {
+  color: var(--secondary-color);
+  font-size: 1em;
+  position: relative;
+  padding: 5px 0;
+}
+nav ul.nav-links li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--accent-color);
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s;
+}
+nav ul.nav-links li a:hover::after {
+  width: 100%;
 }
 
 img {
@@ -55,7 +81,6 @@ img {
   height: auto;
 }
 
-/* Header */
 header {
   background-color: var(--primary-color);
   padding: 10px 0;
@@ -63,8 +88,8 @@ header {
   width: 100%;
   top: 0;
   z-index: 1000;
-  opacity: 0.95; /* Slightly transparent */
-  border-bottom: 2px solid var(--accent-color); /* New line added */
+  opacity: 0.95;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 header .container {
@@ -82,45 +107,11 @@ nav {
   align-items: center;
 }
 
-nav ul.nav-links {
-  list-style: none;
-  display: flex;
-  margin-left: auto;
-}
-
-nav ul.nav-links li {
-  margin-left: 20px;
-}
-
-nav ul.nav-links li a {
-  color: var(--secondary-color);
-  text-decoration: none;
-  font-size: 1em;
-  position: relative;
-  padding: 5px 0;
-}
-
-nav ul.nav-links li a::after {
-  content: '';
-  width: 0%;
-  height: 2px;
-  background: var(--accent-color);
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  transition: width 0.3s;
-}
-
-nav ul.nav-links li a:hover::after {
-  width: 100%;
-}
-
 .menu-icon {
   display: none;
   flex-direction: column;
   cursor: pointer;
 }
-
 .menu-icon .bar {
   height: 3px;
   width: 25px;
@@ -128,106 +119,202 @@ nav ul.nav-links li a:hover::after {
   margin: 4px 0;
 }
 
-
-
-/* Main Content Adjustments */
 .header-content-wrapper {
-  margin-top: 130px; /* Increased top margin */
+  margin-top: 130px;
 }
-
 .header-content {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
 }
-
 .intro-text {
-  max-width: 800px;
+  max-width: 85%;
   flex: 1;
   margin: 20px;
-}
-
-#profile_pic {
-  width: 400px;
-  height: auto;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  margin-top: 80px;
-  order: 2; /* Place on the right */
-}
-
-.intro-text {
   order: 1;
+  overflow: hidden;
 }
-
+.intro-text #profile_pic {
+  float: right;
+  width: 400px;          /* or whatever fixed/em you prefer */
+  margin: 0 20px 20px 0; /* space on right & bottom */
+}
 .intro-text p {
   margin-bottom: 1em;
-  color: var(--secondary-color);
 }
 
-/* Section Tiles */
 section {
   background-color: black;
   border: 2px solid var(--secondary-color);
   margin: 20px auto;
   padding: 20px;
-  align-items: center;  
-  transition: transform 0.3s;
   width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
+  transition: transform 0.3s;
 }
-
 section:hover {
   transform: translateY(-15px);
 }
 
-/* Feature Section */
+/* —— FEATURED SECTION BUTTONS —— */
 .feature-item .btn {
-  text-decoration: none;
-  color: var(--secondary-color);
   background-color: var(--accent-color);
+  color: var(--dark-gray);
+  display: inline-block;
+  padding: 20px 30px;
+  font-size: var(--btnfontsz);
+  width: var(--btnwidth);
+  text-align: center;
+  margin: 20px 10px;
+}
+.feature-item .btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
+}
+
+/* —— PROJECT ITEMS BUTTONS —— */
+.project-item .btn {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  margin-top: auto;
+  display: inline-block;
+}
+.project-item .btn:hover {
+  background-color: var(--dark-gray);
+  color: var(--secondary-color);
+}
+
+/* —— decrease project and startup text by 25% —— */
+.project-item p,
+.startup-item p {
+  font-size: 0.75em;
+  padding-bottom: 20px; 
+}
+
+/* —— STARTUP ITEMS LOGOS —— */
+.startup-item .logo {
+  overflow: visible;      /* allow the full logo to show */
+  text-align: center;
+  padding: 15px;          /* spacing around each image */
+  margin-bottom: 20px;
+}
+/* CogniCache & INSPYRALL: 50% wider */
+#cognicache .logo img,
+#inspyrall .logo img {
+  width: 40%;
+  height: auto;
+  object-fit: contain;
+}
+/* BANTHO & fibulaXpand: 100% wider */
+#bantho .logo img,
+#fibulaxpand .logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* —— STARTUP ITEMS BUTTONS —— */
+.startup-item .btn_discover {
+  background-color: var(--accent-color);
+  color: var(--dark-gray);
   padding: 15px 30px;
   font-size: var(--btnfontsz);
   display: inline-block;
   margin: 20px auto;
-  margin-inline: 10px;
-  width: var(--btnwidth);
+  width: var(--btnwidth);   
+  text-align: center;        /* ensure centered text */
+  cursor: pointer;
+}
+.startup-item .btn_discover:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
 }
 
-.feature-item .btn:hover {
-  background-color: var(--gray);
+/* —— FUN ZONE BUTTONS —— */
+.btn_pong,
+.btn_cosmic {
+  background-color: var(--accent-color);
+  color: var(--dark-gray);
+  padding: 15px 30px;
+  font-size: var(--btnfontsz);
+  display: inline-block;
+  margin: 20px auto;
+  width: var(--btnwidth);
+  text-align: center;
+  cursor: pointer;
 }
-/* Projects Section */
+.btn_pong:hover,
+.btn_cosmic:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
+}
+
+/* —— match Discover More / Show Less buttons to Fun Zone style —— */
+#toggle-work,
+#toggle-edu {
+  background-color: var(--accent-color);
+  color: var(--dark-gray);
+  padding: 15px 30px;
+  font-size: var(--btnfontsz);
+  display: inline-block;
+  margin: 20px auto;
+  width: var(--btnwidth);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+#toggle-work:hover,
+#toggle-edu:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
+}
+
+/* —— FOOTER BUTTON —— */
+.btn-foot {
+  background-color: var(--accent-color);
+  color: var(--dark-gray);
+  padding: 15px 30px;
+  font-size: var(--btnfontsz);
+  display: inline-block;
+  margin: 20px auto;
+  width: var(--btnwidth);
+  text-align: center;
+}
+.btn-foot:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
+}
+
+/* —— FOOTER ICON HOVER “LIFT” EFFECT —— */
+footer .contact-list li a img {
+  transition: transform 0.3s ease;
+}
+footer .contact-list li a img:hover {
+  transform: translateY(-5px);
+}
+
+/* —— REMAINING STYLES —— */
 .projects {
   background-color: black;
-  color: var(--secondary-color);
   padding: 50px 0;
 }
-
 .projects h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
-.projects p {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
+  gap: 20px;
 }
-
 .project-item {
-  background-color: var(--secondary-color); /* White background */
-  color: var(--dark-gray); /* Black text */
+  background-color: var(--secondary-color);
+  color: var(--dark-gray);
   padding: 15px;
   border: 1px solid var(--secondary-color);
   text-align: center;
@@ -236,236 +323,98 @@ section:hover {
   flex-direction: column;
   justify-content: space-between;
 }
-
 .project-item:hover {
   transform: translateY(-10px);
 }
-
 .project-item img {
   margin-bottom: 15px;
 }
-
 .project-item h3 {
-  color: var(--primary-color); /* Black color */
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
-.project-item p {
-  margin-bottom: 15px;
+.work-experience,
+.education,
+.research {
+  padding-bottom: 20px;
 }
-
-.project-item .btn {
-  text-decoration: none;
-  color: var(--secondary-color);
-  background-color: var(--accent-color);
-  padding: 10px 20px;
-  margin-top: auto;
-}
-
-.project-item .btn:hover {
-  background-color: var(--dark-gray);
-}
-
-/* Work Experience & Education */
-.work-experience h2, .education h2, .research h2 {
+.work-experience h2,
+.education h2,
+.research h2 {
   color: var(--secondary-color);
 }
-
-.job-item, .edu-item, .res-item {
+.job-item,
+.edu-item,
+.res-item {
   color: var(--secondary-color);
-}
-
-.job-item, .edu-item {
   margin-bottom: 30px;
 }
-
-.job-detail, .edu-detail {
+.job-detail,
+.edu-detail {
   margin-bottom: 10px;
 }
-
-.job-summary, .edu-summary {
+.job-summary,
+.edu-summary {
   margin-bottom: 20px;
 }
 
-
-/* fibulaXpan & INSPYRALL*/
-.discover-button {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.btn_discover {
-  text-decoration: none;
-  color: var(--secondary-color);
-  background-color: var(--accent-color);
-  padding: 15px 30px;
-  font-size: var(--btnfontsz);
-  display: inline-block;
-  margin: 20px auto;
-  text-decoration: none;
-  width: var(--btnwidth);
-}
-
-.btn_discover:hover {
-  background-color: var(--primary-color);
-  text-decoration: none;
-}
-
-.CogniCache p {
-  max-width: 800px;
-  margin: 0 auto 20px auto;
-  text-align: center;
-}
-
-.CogniCache_image {
-  padding: 30px 0;
-}
-
-.CogniCache_image img {
-  display: block;
-  margin: 10px auto; /* Added top and bottom margins */
-  max-width: 250px;   /* Reduced the size to make it smaller */
-}
-
-.Inspyrall p {
-  max-width: 800px;
-  margin: 0 auto 20px auto;
-  text-align: center;
-}
-
-.Inspyrall_image {
-  padding: 30px 0;
-}
-
-.Inspyrall_image img {
-  display: block;
-  margin: 10px auto; /* Added top and bottom margins */
-  max-width: 250px;   /* Reduced the size to make it smaller */
-}
-
-.fibulaXpand_logo {
-  padding: 30px 0;
-}
-
-.fibulaXpand_logo img {
-  display: block;
-  margin: 10px auto; /* Added top and bottom margins */
-  max-width: 800px;   /* Reduced the size to make it smaller */
-}
-
-
-/* BANTHO Section */
-.BANTHO {
+.startups {
   background-color: black;
-  color: var(--secondary-color);
-  text-align: center;
-}
-
-.BANTHO h2 {
-  margin-bottom: 20px;
-}
-
-.BANTHO p {
-  max-width: 800px;
-  margin: 0 auto 20px auto;
-  text-align: center;
-}
-
-.BANTHObutton .btn_bantho {
-  text-decoration: none;
-  color: var(--secondary-color);
-  background-color: var(--accent-color);
-  padding: 15px 30px;
-  font-size: var(--btnfontsz);
-  display: inline-block;
-  margin: 20px auto;
-  width: var(--btnwidth);
-  
-}
-
-.BANTHObutton .btn_bantho:hover {
-  background-color: var(--primary-color);
-}
-
-.BANTHO_logo{
   padding: 50px 0;
 }
-
-.BANTHO_logo img {
-  display: block;
-  margin: 10px auto; /* Added top and bottom margins */
-  max-width: 800px;   /* Reduced the size to make it smaller */
+.startups h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.startup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+.startup-item {
+  background-color: var(--dark-gray);
+  padding: 20px;
+  border: 1px solid var(--secondary-color);
+  text-align: center;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.startup-item:hover {
+  transform: translateY(-10px);
 }
 
-
-/* FunZone Image */
+.fun-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;      /* space between buttons */
+  width: 100%;
+}
 .FunZoneImage {
   padding: 30px 0;
 }
-
 .FunZoneImage img {
   display: block;
-  margin: 10px auto; /* Added top and bottom margins */
-  max-width: 800px;   /* Reduced the size to make it smaller */
+  margin: 0 auto;
+  max-width: 800px;
 }
-
-/* Bottom Image Section Container */
 .BottomImage {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Prevents any accidental overflow */
+  overflow: hidden;
 }
-
-/* Video Element */
 #end_pic {
-  margin: 0;
-  padding: 0;
   width: 100%;
   max-width: 800px;
-  height: auto;
 }
 
-
-/* Buttons */
-.btn-foot, .btn_pong, .btn_cosmic {
-  text-decoration: none;
-  color: var(--secondary-color);
-  background-color: var(--accent-color);
-  padding: 15px 30px;
-  font-size: var(--btnfontsz);
-  display: inline-block;
-  margin: 20px auto;
-  text-align: center;
-  width: var(--btnwidth);
-}
-
-.btn_pong:hover, .btn_cosmic:hover {
-  background-color: var(--primary-color);
-  text-decoration: none;
-}
-
-.btn-foot:hover {
-  background-color: var(--dark-gray);
-  text-decoration: none;
-}
-
-
-#end_pic {
-  margin: 0;
-  padding: 0;
-  width: 800px;
-  height: auto;
-}
-
-/* Footer */
 footer {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   text-align: center;
   padding: 50px 0;
 }
-
 footer .contact-list {
   list-style: none;
   display: flex;
@@ -474,53 +423,33 @@ footer .contact-list {
   gap: 20px;
   margin-bottom: 20px;
 }
-
 footer .contact-list li {
   display: inline-block;
 }
-
-footer .contact-list li a {
-  text-decoration: none;
-}
-
 footer .contact-list li a img {
   width: 40px;
   height: 40px;
-  display: inline-block;
-  margin: 0 10px;
 }
 
-footer p {
-  margin-top: 40px;
-  font-size: 0.9em;
-}
-
-
-/* Responsive Design */
 @media screen and (max-width: 768px) {
-
-
+  :root {
+    --btnwidth: 90%;
+    --btnfontsz: 1em;
+  }
+    body {
+    font-size: 20px; /* 75% of your desktop 24px */
+  }
   .header-content {
     flex-direction: column;
     align-items: center;
   }
-
-  :root {
-    --btnwidth: 90%;
-    --btnfontsz: 1.0em;
-  }
-
   #profile_pic {
-    margin-left: 0;
-    margin-bottom: 20px;
-    margin-top: 20px;
     order: 1;
+    margin: 20px 0;
   }
-
   .intro-text {
     order: 2;
   }
-
   nav ul.nav-links {
     flex-direction: column;
     position: fixed;
@@ -533,49 +462,45 @@ footer p {
     transition: left 0.3s ease;
     z-index: 999;
   }
-
   nav ul.nav-links.active {
-    right: 0;
+    left: 0;
   }
-
   nav ul.nav-links li {
     margin: 20px 0;
     text-align: center;
   }
-
   nav ul.nav-links li a {
     font-size: 1.2em;
   }
-
   .menu-icon {
     display: flex;
   }
-
-  .project-grid {
-    grid-template-columns: 1fr;
+  .fun-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
   }
-
   .FunZoneImage img {
     max-width: 90%;
   }
-
-  .CogniCache_image img {
-    width: 50%;
-  }
-
-  .Inspyrall_image img {
-    width: 50%;
-  }
-
-  .BANTHO_logo img {
-    width: 100%;
-  }
-
-  .fibulaXpand_logo img {
-    width: 100%;
-  }
-
   #end_pic {
-    width: 95%;             /* Explicit width */
+    width: 95%;
   }
+    .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .startup-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  /* Uniform box heights */
+  .project-item,
+  .startup-item {
+    min-height: 300px;   /* tweak this value until it matches your tallest box */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
 }

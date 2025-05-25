@@ -432,6 +432,7 @@ footer .contact-list li img {
 /* —— Imprint & Privacy Policy links —— */
 .footer-links {
   display: flex;
+  flex-wrap: nowrap; 
   justify-content: center;
   align-items: center;
   gap: 1em;
@@ -593,6 +594,16 @@ footer .contact-list li img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+    .footer-links {
+    flex-wrap: nowrap;
+  }
+  /* Imprint remains hidden until opened */
+  .imprint-content {
+    display: none;
+  }
+  .footer-imprint[open] ~ .imprint-content {
+    display: block;
   }
 
 }

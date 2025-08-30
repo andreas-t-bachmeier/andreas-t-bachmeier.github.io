@@ -137,8 +137,8 @@ nav {
 }
 .intro-text #profile_pic {
   float: right;
-  width: 400px;          /* or whatever fixed/em you prefer */
-  margin: 0 20px 20px 0; /* space on right & bottom */
+  width: 350px;          /* or whatever fixed/em you prefer */
+  margin: 20px 20px 20px 0; /* space on right & bottom */
 }
 .intro-text p {
   margin-bottom: 1em;

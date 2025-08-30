@@ -138,10 +138,11 @@ nav {
 .intro-text #profile_pic {
   float: right;
   width: 300px;          /* or whatever fixed/em you prefer */
-  margin: 0 20px 20px 20px; /* space on right & bottom */
+  margin: 0 0 20px 20px; /* space on right & bottom */
 }
 .intro-text p {
   margin-bottom: 1em;
+  margin-right: 10px;
 }
 
 section {

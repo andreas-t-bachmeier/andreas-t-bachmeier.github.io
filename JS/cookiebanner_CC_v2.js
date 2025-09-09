@@ -1,4 +1,4 @@
-<script>
+
 (function () {
   console.log("[consent] Script loaded");
 
@@ -148,4 +148,4 @@
     initConsent();
   }
 })();
-</script>
+

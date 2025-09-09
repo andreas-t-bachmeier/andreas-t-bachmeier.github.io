@@ -1,0 +1,93 @@
+<script>
+(function(){
+  // --- Cookie utils ---
+  function setCookie(name, value, days){
+    var expires = "";
+    if(days){
+      var d = new Date();
+      d.setTime(d.getTime() + days*24*60*60*1000);
+      expires = "; expires=" + d.toUTCString();
+    }
+    var secure = location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = name + "=" + (value||"") + expires + "; path=/; SameSite=Lax" + secure;
+  }
+  function getCookie(name){
+    var nameEQ = name + "=", ca = document.cookie.split(';');
+    for(var i=0;i<ca.length;i++){ var c = ca[i].trim(); if(c.indexOf(nameEQ)===0) return c.substring(nameEQ.length); }
+    return null;
+  }
+
+  // --- Tag loaders (call only after consent) ---
+  function loadGoogleAnalytics(){
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-6YL7EGCQ7G"; // your GA ID
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-6YL7EGCQ7G', { 'anonymize_ip': true });
+  }
+  function loadLinkedIn(){
+    var pid = "7875210"; // confirm this is your partner ID
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(pid);
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript"; b.async = true;
+    b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+    s.parentNode.insertBefore(b, s);
+  }
+  function loadMarketingTags(){
+    loadGoogleAnalytics();
+    loadLinkedIn();
+    // Add other tools here (e.g., Hotjar, Meta Pixel) under consent
+  }
+
+  // --- Banner UI ---
+  function addBannerStyles(){
+    var style = document.createElement("style");
+    style.textContent = "#cookie-banner button{transition:background-color .3s}#cookie-banner button:hover{background-color:rgba(255,100,0,.8)}";
+    document.head.appendChild(style);
+  }
+  function createCookieBanner(){
+    var banner = document.createElement("div");
+    banner.id = "cookie-banner";
+    banner.style.cssText = "font-family:Inter,system-ui,sans-serif;color:#000;background:#fff;padding:20px;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:80%;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,.2);border-radius:5px;z-index:1000000;line-height:1.6";
+    var p = document.createElement("p");
+    p.innerHTML = "This website uses cookies for analytics/ads after your consent. <a href='https://cognicache.crd.co/#privacy' target='_blank' style='color:#FF6400;text-decoration:underline;'>Privacy Policy</a>";
+    banner.appendChild(p);
+    var btns = document.createElement("div");
+    btns.style.cssText = "margin-top:10px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap";
+    var accept = document.createElement("button");
+    accept.textContent = "Accept";
+    accept.style.cssText = "color:#000;background:#FF6400;border:none;padding:10px;width:45%;max-width:400px;cursor:pointer";
+    accept.onclick = function(){
+      setCookie("cookieaccepted","accepted",365);
+      banner.remove();
+      loadMarketingTags();
+    };
+    var decline = document.createElement("button");
+    decline.textContent = "Decline";
+    decline.style.cssText = "color:#000;background:#FF6400;border:none;padding:10px;width:45%;max-width:400px;cursor:pointer";
+    decline.onclick = function(){
+      setCookie("cookieaccepted","declined",365);
+      banner.remove();
+      // do not load tags
+    };
+    btns.append(accept, decline);
+    banner.appendChild(btns);
+    document.body.appendChild(banner);
+    addBannerStyles();
+  }
+
+  // --- Init ---
+  function initConsent(){
+    var c = getCookie("cookieaccepted");
+    if(!c){ createCookieBanner(); }
+    else if(c === "accepted"){ loadMarketingTags(); }
+  }
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", initConsent); }
+  else{ initConsent(); }
+})();
+</script>

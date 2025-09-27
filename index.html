@@ -32,11 +32,11 @@
           <li><a href="#funzone">Fun Zone</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="menu-icon">
+        <button class="menu-icon" type="button" aria-label="Toggle navigation" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
-        </div>
+        </button>
       </nav>
     </div>
   </header>
@@ -413,14 +413,32 @@
   const menuIcon = document.querySelector('.menu-icon');
   const navLinks = document.querySelector('nav ul.nav-links');
 
+  const toggleMenu = (forceState) => {
+    const isOpen =
+      typeof forceState === 'boolean'
+        ? forceState
+        : !navLinks.classList.contains('active');
+
+    navLinks.classList.toggle('active', isOpen);
+    menuIcon.classList.toggle('active', isOpen);
+    menuIcon.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
+
   menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+    toggleMenu();
   });
-    // Close menu when any nav-link is clicked
+
+  // Close menu when any nav-link is clicked
   document.querySelectorAll('nav ul.nav-links li a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
+      toggleMenu(false);
     });
+  });
+
+  document.addEventListener('keyup', (event) => {
+    if (event.key === 'Escape') {
+      toggleMenu(false);
+    }
   });
 </script>
   <script>

@@ -174,13 +174,33 @@ nav ul.nav-links li a:focus-visible::after {
   justify-content: center;
   cursor: pointer;
   gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
 }
 
 .menu-icon .bar {
   height: 2px;
   width: 26px;
   background: var(--secondary-color);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-icon:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+.menu-icon.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-icon.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .hero {
@@ -246,6 +266,8 @@ nav ul.nav-links li a:focus-visible::after {
   overflow: hidden;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(18px);
+  width: min(1180px, 94%);
+  margin: 0 auto;
 }
 
 .section-card::before {
@@ -289,17 +311,27 @@ nav ul.nav-links li a:focus-visible::after {
   border-radius: 24px;
   padding: 40px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
 .feature-item h3 {
   margin-bottom: 18px;
   color: var(--secondary-color);
+  text-align: center;
 }
 
 .feature-item p {
   color: var(--muted-gray);
   max-width: 720px;
   margin: 0 auto 24px;
+}
+
+.feature-item .btn {
+  margin-inline: auto;
+}
+
+.feature-item .btn + .btn {
+  margin-top: 16px;
 }
 
 .btn,
@@ -430,11 +462,11 @@ nav ul.nav-links li a:focus-visible::after {
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
   text-align: center;
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.42);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
+  min-height: 360px;
 }
 
 .startup-item:hover {
@@ -445,12 +477,20 @@ nav ul.nav-links li a:focus-visible::after {
 .startup-item p {
   color: var(--muted-gray);
   font-size: 0.98rem;
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+
+.startup-item .btn_discover {
+  margin-top: 18px;
+  align-self: center;
 }
 
 .startup-item .logo {
   display: grid;
   place-items: center;
   width: 100%;
+  margin-bottom: 24px;
 }
 
 #cognicache .logo img,
@@ -499,8 +539,7 @@ nav ul.nav-links li a:focus-visible::after {
 .job-summary p,
 .edu-summary p,
 .res-summary p,
-.fun-intro p,
-.feature-item p {
+.fun-intro p {
   text-align: left;
 }
 
@@ -529,6 +568,11 @@ nav ul.nav-links li a:focus-visible::after {
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
 
+.BottomImage .container {
+  display: flex;
+  justify-content: center;
+}
+
 #end_pic {
   width: 100%;
   max-width: 860px;
@@ -543,6 +587,19 @@ footer {
   box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.45);
   padding: 80px 0 60px;
   text-align: center;
+}
+
+.btn-foot {
+  margin-bottom: 36px;
+}
+
+.FunZoneImage {
+  margin-bottom: 32px;
+}
+
+.FunZoneImage img {
+  margin: 0 auto;
+  display: block;
 }
 
 footer .contact-list {
@@ -644,17 +701,20 @@ footer .contact-list li img:hover {
   }
 
   .hero-content {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 32px;
   }
 
   .hero-text {
-    grid-column: span 1;
     padding: 28px;
+    max-width: 640px;
   }
 
   .hero-media {
-    grid-column: span 1;
+    order: -1;
   }
 
   nav ul.nav-links {
@@ -671,6 +731,7 @@ footer .contact-list li img:hover {
     box-shadow: -12px 0 30px rgba(0, 0, 0, 0.4);
     padding: 80px 24px;
     backdrop-filter: blur(18px);
+    align-items: center;
   }
 
   nav ul.nav-links.active {

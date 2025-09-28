@@ -197,6 +197,7 @@ nav ul.nav-links li a:focus-visible::after {
 
 .menu-icon.active .bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
+
 }
 
 .menu-icon.active .bar:nth-child(2) {
@@ -206,6 +207,18 @@ nav ul.nav-links li a:focus-visible::after {
 .menu-icon.active .bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
+
+}
+
+.menu-icon.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 
 .hero {
   position: relative;
@@ -593,12 +606,22 @@ nav ul.nav-links li a:focus-visible::after {
   padding: 48px 0;
   border-radius: 20px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+
 }
 
 .BottomImage .container {
   display: flex;
   justify-content: center;
 }
+
+
+}
+
+.BottomImage .container {
+  display: flex;
+  justify-content: center;
+}
+
 
 #end_pic {
   width: 100%;
@@ -797,6 +820,15 @@ footer .contact-list li img:hover {
 
   header .container {
     padding: 14px 20px;
+
+  }
+
+  main {
+    gap: 64px;
+    padding: 150px 0 100px;
+  }
+
+
   }
 
   main {
@@ -816,6 +848,72 @@ footer .contact-list li img:hover {
   .project-item,
   .startup-item {
     padding: 24px;
+
+  }
+
+  #startups .logo img {
+    max-width: 180px;
+  }
+
+  #cognicache .logo img {
+    max-width: 120px;
+  }
+
+  #inspyrall .logo img {
+    max-width: 165px;
+  }
+
+  #bantho .logo img {
+    max-width: 260px;
+  }
+
+  #fibulaxpand .logo img {
+    max-width: 240px;
+  }
+
+  .btn,
+  .btn_discover,
+  .btn_pong,
+  .btn_cosmic,
+  .btn-foot,
+  #toggle-work,
+  #toggle-edu {
+    width: min(100%, 300px);
+  }
+}
+
+@media (max-width: 540px) {
+  header {
+    width: 92%;
+    top: 14px;
+    border-radius: 16px;
+  }
+
+  header .container {
+    padding: 12px 18px;
+  }
+
+  nav ul.nav-links {
+    width: 240px;
+  }
+
+  .hero-text,
+  .hero-media {
+    padding: 0;
+  }
+
+  .hero-text {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 12px 0 0;
+  }
+
+  #profile_pic {
+    width: 85%;
+  }
+
+
   }
 
   #startups .logo img {
@@ -874,6 +972,7 @@ footer .contact-list li img:hover {
     width: 85%;
   }
 
+
   .feature-item {
     padding: 28px;
   }
@@ -885,12 +984,31 @@ footer .contact-list li img:hover {
 
 @media (max-width: 540px) {
   #startups .logo img {
+
+    max-width: 190px;
+  }
+
+  #inspyrall .logo img {
+    width: 72%;
+    max-width: 210px;
+  }
+
+  #bantho .logo img {
+    width: 92%;
+    max-width: 280px;
+  }
+
+  #fibulaxpand .logo img {
+    width: 84%;
+    max-width: 250px;
+
     max-width: 160px;
   }
 
   #bantho .logo img,
   #fibulaxpand .logo img {
     width: 80%;
+
   }
 }
 

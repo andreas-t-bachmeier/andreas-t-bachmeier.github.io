@@ -528,7 +528,7 @@ nav ul.nav-links li a:focus-visible::after {
 
 #bantho .logo img,
 #fibulaxpand .logo img {
-  max-width: 220px;
+  max-width: 260px;
 }
 
 .work-experience .job-item,
@@ -829,7 +829,7 @@ footer .contact-list li img:hover {
 
   #bantho .logo img,
   #fibulaxpand .logo img {
-    max-width: 200px;
+    max-width: 230px;
   }
 
   .btn,
@@ -890,7 +890,7 @@ footer .contact-list li img:hover {
 
   #bantho .logo img,
   #fibulaxpand .logo img {
-    width: 70%;
+    width: 80%;
   }
 }
 

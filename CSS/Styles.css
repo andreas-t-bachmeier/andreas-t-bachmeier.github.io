@@ -3,8 +3,8 @@
   --secondary-color: #ffffff;
   --accent-color: #ff6400;
   --dark-gray: #050505;
-  --muted-gray: rgba(255, 255, 255, 0.45);
-  --card-bg: rgba(12, 12, 12, 0.75);
+  --muted-gray: rgba(255, 255, 255, 0.82);
+  --card-bg: rgba(12, 12, 12, 0.72);
   --border-color: rgba(255, 255, 255, 0.08);
   --glow-color: rgba(255, 100, 0, 0.35);
   --transition-base: 0.35s ease;
@@ -27,9 +27,9 @@ body {
   font-size: 18px;
   line-height: 1.7;
   color: var(--secondary-color);
-  background: radial-gradient(circle at 20% 20%, rgba(255, 100, 0, 0.1), transparent 55%),
-              radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 45%),
-              var(--primary-color);
+  background: linear-gradient(180deg, rgba(255, 100, 0, 0.5) 0%, rgba(18, 18, 18, 0.95) 38%, #000 100%),
+              radial-gradient(circle at 22% 18%, rgba(255, 100, 0, 0.12), transparent 55%),
+              radial-gradient(circle at 78% 0%, rgba(255, 255, 255, 0.08), transparent 48%);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
@@ -233,7 +233,7 @@ nav ul.nav-links li a:focus-visible::after {
   font-size: 1.05rem;
   background: rgba(255, 255, 255, 0.01);
   padding: 32px;
-  border-radius: 24px;
+  border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(18px);
@@ -252,7 +252,7 @@ nav ul.nav-links li a:focus-visible::after {
 
 #profile_pic {
   width: min(360px, 100%);
-  border-radius: 28px;
+  border-radius: 20px;
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
   animation: float 7s ease-in-out infinite;
 }
@@ -260,7 +260,7 @@ nav ul.nav-links li a:focus-visible::after {
 .section-card {
   position: relative;
   background: var(--card-bg);
-  border-radius: 28px;
+  border-radius: 18px;
   border: 1px solid var(--border-color);
   padding: 72px 0;
   overflow: hidden;
@@ -308,7 +308,7 @@ nav ul.nav-links li a:focus-visible::after {
 .feature-item {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
+  border-radius: 16px;
   padding: 40px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   text-align: center;
@@ -321,7 +321,7 @@ nav ul.nav-links li a:focus-visible::after {
 }
 
 .feature-item p {
-  color: var(--muted-gray);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 720px;
   margin: 0 auto 24px;
 }
@@ -352,7 +352,7 @@ nav ul.nav-links li a:focus-visible::after {
   font-weight: 600;
   letter-spacing: 0.05em;
   background: linear-gradient(135deg, var(--accent-color), #ff8533);
-  color: var(--dark-gray);
+  color: #141414;
   box-shadow: 0 16px 30px rgba(255, 100, 0, 0.25);
   transition: transform var(--transition-base), box-shadow var(--transition-base), filter var(--transition-base);
   border: none;
@@ -384,6 +384,7 @@ nav ul.nav-links li a:focus-visible::after {
 #toggle-edu:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 40px rgba(255, 100, 0, 0.3);
+  color: #1f1f1f;
 }
 
 .btn:hover::before,
@@ -414,7 +415,7 @@ nav ul.nav-links li a:focus-visible::after {
 .project-item {
   position: relative;
   background: rgba(8, 8, 8, 0.75);
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 28px;
   display: flex;
@@ -428,7 +429,7 @@ nav ul.nav-links li a:focus-visible::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.04);
   pointer-events: none;
 }
@@ -444,26 +445,27 @@ nav ul.nav-links li a:focus-visible::after {
 }
 
 .project-item p {
-  color: var(--muted-gray);
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.95rem;
   flex: 1 1 auto;
 }
 
 .startup-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
 }
 
 .startup-item {
   background: rgba(10, 10, 10, 0.78);
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 14px;
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.42);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
   min-height: 360px;
@@ -475,10 +477,9 @@ nav ul.nav-links li a:focus-visible::after {
 }
 
 .startup-item p {
-  color: var(--muted-gray);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.98rem;
-  margin-top: auto;
-  margin-bottom: 16px;
+  margin: 12px 0 20px;
 }
 
 .startup-item .btn_discover {
@@ -493,15 +494,20 @@ nav ul.nav-links li a:focus-visible::after {
   margin-bottom: 24px;
 }
 
+#startups .logo img {
+  max-width: 240px;
+}
+
 #cognicache .logo img,
 #inspyrall .logo img {
-  width: 50%;
+  width: 60%;
   object-fit: contain;
 }
 
 #bantho .logo img,
 #fibulaxpand .logo img {
-  width: 80%;
+  width: 95%;
+  max-width: 320px;
   object-fit: contain;
 }
 
@@ -510,7 +516,7 @@ nav ul.nav-links li a:focus-visible::after {
 .research .res-item {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 22px;
+  border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
@@ -533,7 +539,7 @@ nav ul.nav-links li a:focus-visible::after {
 .job-detail p,
 .edu-detail p,
 .res-detail p {
-  color: var(--muted-gray);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .job-summary p,
@@ -541,6 +547,7 @@ nav ul.nav-links li a:focus-visible::after {
 .res-summary p,
 .fun-intro p {
   text-align: left;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .more-work,
@@ -549,7 +556,7 @@ nav ul.nav-links li a:focus-visible::after {
 }
 
 .fun-intro {
-  color: var(--muted-gray);
+  color: rgba(255, 255, 255, 0.88);
   margin: 0 auto 28px;
   max-width: 680px;
 }
@@ -564,7 +571,7 @@ nav ul.nav-links li a:focus-visible::after {
 .BottomImage {
   background: rgba(5, 5, 5, 0.7);
   padding: 48px 0;
-  border-radius: 28px;
+  border-radius: 20px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
 
@@ -576,7 +583,7 @@ nav ul.nav-links li a:focus-visible::after {
 #end_pic {
   width: 100%;
   max-width: 860px;
-  border-radius: 24px;
+  border-radius: 18px;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -743,6 +750,12 @@ footer .contact-list li img:hover {
   }
 }
 
+@media (max-width: 980px) {
+  .startup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -801,6 +814,17 @@ footer .contact-list li img:hover {
 
   .feature-item {
     padding: 28px;
+  }
+}
+
+@media (max-width: 540px) {
+  #startups .logo img {
+    max-width: 160px;
+  }
+
+  #bantho .logo img,
+  #fibulaxpand .logo img {
+    width: 70%;
   }
 }
 

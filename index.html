@@ -467,6 +467,49 @@
         element.classList.add('is-visible');
       }
     });
+
+
+    const cleanupFallback = () => {
+      window.removeEventListener('scroll', fallbackReveal);
+      window.removeEventListener('resize', fallbackReveal);
+      window.removeEventListener('orientationchange', fallbackReveal);
+      window.removeEventListener('load', fallbackReveal);
+    };
+
+    function fallbackReveal() {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      animatedElements.forEach(element => {
+        if (element.classList.contains('is-visible')) {
+          return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= viewportHeight * 0.95) {
+          element.classList.add('is-visible');
+
+          if (observer) {
+            observer.unobserve(element);
+          }
+        }
+      });
+
+      const allVisible = Array.from(animatedElements).every(el =>
+        el.classList.contains('is-visible')
+      );
+
+      if (allVisible) {
+        cleanupFallback();
+      }
+    }
+
+    window.addEventListener('scroll', fallbackReveal);
+    window.addEventListener('resize', fallbackReveal);
+    window.addEventListener('orientationchange', fallbackReveal);
+    window.addEventListener('load', fallbackReveal);
+
+    fallbackReveal();
+
   </script>
 
 </body>

@@ -432,37 +432,6 @@ nav ul.nav-links li a:focus-visible::after {
   }
 }
 
-@media (max-width: 600px) {
-  .feature-link-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 14px;
-  }
-
-  .feature-link-icon {
-    margin-bottom: 4px;
-  }
-
-  .feature-link-text {
-    align-items: center;
-    text-align: center;
-  }
-}
-
-@media (max-width: 720px) {
-  .projects .project-grid,
-  .startup-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  .feature-item {
-    padding: 32px;
-  }
-}
-
 .btn,
 .btn_discover,
 .btn_pong,

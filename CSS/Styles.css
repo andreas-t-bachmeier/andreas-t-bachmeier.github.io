@@ -564,9 +564,8 @@ nav ul.nav-links li a:focus-visible::after {
 .startup-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
   gap: 24px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .startup-item {
@@ -574,14 +573,13 @@ nav ul.nav-links li a:focus-visible::after {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 28px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   gap: 18px;
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.42);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
-  min-height: 340px;
 }
 
 .startup-item:hover {
@@ -593,36 +591,24 @@ nav ul.nav-links li a:focus-visible::after {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.98rem;
   margin: 0 0 12px;
-  align-self: end;
 }
 
 .startup-item .btn_discover {
-  align-self: end;
-  justify-self: center;
+  align-self: center;
   width: min(240px, 100%);
+  margin-top: 12px;
 }
 
 .startup-item .logo {
   display: grid;
   place-items: center;
   width: 100%;
-  align-self: start;
 }
 
 #startups .logo img {
   width: 100%;
-  max-width: 190px;
+  max-width: 200px;
   object-fit: contain;
-}
-
-#cognicache .logo img,
-#inspyrall .logo img {
-  max-width: 150px;
-}
-
-#bantho .logo img,
-#fibulaxpand .logo img {
-  max-width: 260px;
 }
 
 .work-experience .job-item,
@@ -936,22 +922,6 @@ footer .contact-list li img:hover {
     max-width: 180px;
   }
 
-  #cognicache .logo img {
-    max-width: 120px;
-  }
-
-  #inspyrall .logo img {
-    max-width: 165px;
-  }
-
-  #bantho .logo img {
-    max-width: 260px;
-  }
-
-  #fibulaxpand .logo img {
-    max-width: 240px;
-  }
-
   .btn,
   .btn_discover,
   .btn_pong,
@@ -998,21 +968,22 @@ footer .contact-list li img:hover {
     width: 85%;
   }
 
+  .feature-item {
+    padding: 28px;
+  }
 
+  .feature-link-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  main {
+    padding: 140px 0 90px;
   }
 
   #startups .logo img {
     max-width: 160px;
-  }
-
-  #cognicache .logo img,
-  #inspyrall .logo img {
-    max-width: 120px;
-  }
-
-  #bantho .logo img,
-  #fibulaxpand .logo img {
-    max-width: 230px;
   }
 
   .btn,
@@ -1023,77 +994,6 @@ footer .contact-list li img:hover {
   #toggle-work,
   #toggle-edu {
     width: min(100%, 300px);
-  }
-}
-
-@media (max-width: 540px) {
-  header {
-    width: 92%;
-    top: 14px;
-    border-radius: 16px;
-  }
-
-  header .container {
-    padding: 12px 18px;
-  }
-
-  nav ul.nav-links {
-    width: 240px;
-  }
-
-  .hero-text,
-  .hero-media {
-    padding: 0;
-  }
-
-  .hero-text {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 12px 0 0;
-  }
-
-  #profile_pic {
-    width: 85%;
-  }
-
-
-  .feature-item {
-    padding: 28px;
-  }
-
-  main {
-    padding: 140px 0 90px;
-  }
-}
-
-@media (max-width: 540px) {
-  #startups .logo img {
-
-    max-width: 190px;
-  }
-
-  #inspyrall .logo img {
-    width: 72%;
-    max-width: 210px;
-  }
-
-  #bantho .logo img {
-    width: 92%;
-    max-width: 280px;
-  }
-
-  #fibulaxpand .logo img {
-    width: 84%;
-    max-width: 250px;
-
-    max-width: 160px;
-  }
-
-  #bantho .logo img,
-  #fibulaxpand .logo img {
-    width: 80%;
-
   }
 }
 

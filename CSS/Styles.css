@@ -12,6 +12,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #000;
 }
 
 *,
@@ -27,6 +28,7 @@ body {
   font-size: 18px;
   line-height: 1.7;
   color: var(--secondary-color);
+  background-color: #000;
   background: linear-gradient(180deg, #1b1b1d 0%, #101012 40%, #000 100%),
               radial-gradient(circle at 18% 16%, rgba(120, 120, 120, 0.16), transparent 52%),
               radial-gradient(circle at 80% -6%, rgba(80, 80, 80, 0.12), transparent 48%);

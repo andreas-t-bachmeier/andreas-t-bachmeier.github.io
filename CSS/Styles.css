@@ -872,6 +872,7 @@ footer .contact-list li img:hover {
 @media (max-width: 980px) {
   .startup-grid {
     grid-template-columns: 1fr;
+    grid-auto-rows: auto;
   }
 }
 

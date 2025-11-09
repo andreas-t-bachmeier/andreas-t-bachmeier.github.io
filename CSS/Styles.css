@@ -606,8 +606,8 @@ nav ul.nav-links li a:focus-visible::after {
 }
 
 #startups .logo img {
-  width: min(220px, 100%);
-  max-width: none;
+  width: 100%;
+  max-width: 200px;
   object-fit: contain;
 }
 
@@ -916,17 +916,6 @@ footer .contact-list li img:hover {
     width: min(200px, 100%);
   }
 
-  .feature-link-card {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    gap: 14px;
-  }
-
-  .feature-link-text {
-    width: 100%;
-  }
-
   .btn,
   .btn_discover,
   .btn_pong,
@@ -978,15 +967,17 @@ footer .contact-list li img:hover {
   }
 
   .feature-link-card {
-    gap: 16px;
-  }
-
-  #startups .logo img {
-    width: min(160px, 100%);
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
   }
 
   main {
     padding: 140px 0 90px;
+  }
+
+  #startups .logo img {
+    max-width: 160px;
   }
 
   .btn,

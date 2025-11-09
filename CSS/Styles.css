@@ -974,6 +974,10 @@ footer .contact-list li img:hover {
     padding: 12px 18px;
   }
 
+  .logo img {
+    width: 62px;
+  }
+
   nav ul.nav-links {
     width: 240px;
   }

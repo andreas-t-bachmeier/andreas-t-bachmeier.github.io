@@ -611,6 +611,20 @@ nav ul.nav-links li a:focus-visible::after {
   object-fit: contain;
 }
 
+@media (min-width: 981px) {
+  .startup-grid {
+    align-items: stretch;
+  }
+
+  .startup-item {
+    height: 100%;
+  }
+
+  .startup-item .btn_discover {
+    margin-top: auto;
+  }
+}
+
 .work-experience .job-item,
 .education .edu-item,
 .research .res-item {

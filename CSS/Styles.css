@@ -887,15 +887,10 @@ footer .contact-list li img:hover {
 
   header .container {
     padding: 14px 20px;
-
   }
 
-  main {
-    gap: 64px;
-    padding: 150px 0 100px;
-  }
-
-
+  .logo img {
+    width: 64px;
   }
 
   main {
@@ -915,11 +910,10 @@ footer .contact-list li img:hover {
   .project-item,
   .startup-item {
     padding: 24px;
-
   }
 
   #startups .logo img {
-    max-width: 180px;
+    width: min(200px, 100%);
   }
 
   .btn,
@@ -945,7 +939,7 @@ footer .contact-list li img:hover {
   }
 
   .logo img {
-    width: 62px;
+    width: 52px;
   }
 
   nav ul.nav-links {

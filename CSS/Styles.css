@@ -118,14 +118,14 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
   width: 100%;
   margin: 0;
-  padding: 18px 28px;
+  padding: 12px 24px;
 }
 
 .logo img {
-  width: 78px;
+  width: 36px;
   transition: transform var(--transition-base), filter var(--transition-base);
   filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4));
 }
@@ -144,13 +144,13 @@ nav ul.nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
 }
 
 nav ul.nav-links li a {
   position: relative;
   color: var(--secondary-color);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   padding: 6px 0;
@@ -481,11 +481,57 @@ nav ul.nav-links li a:focus-visible::after {
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
+.feature-visual-title {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--secondary-color);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .feature-visual-card img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 14px;
+}
+
+.feature-speaker {
+  text-align: center;
+}
+
+.feature-speaker-grid {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+.feature-speaker-card {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  max-width: none;
+  width: 100%;
+}
+
+.feature-speaker-card:nth-child(1),
+.feature-speaker-card:nth-child(2) {
+  flex-grow: 1.33;
+}
+
+.feature-speaker-card:nth-child(3) {
+  flex-grow: 1.61;
+}
+
+.feature-speaker-card img {
+  flex: 1;
+  height: clamp(240px, 32vw, 420px);
+  object-fit: cover;
 }
 
 .feature-visual-card:hover,
@@ -502,6 +548,14 @@ nav ul.nav-links li a:focus-visible::after {
 
   .feature-visual-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-speaker-grid {
+    flex-direction: column;
+  }
+
+  .feature-speaker-card img {
+    height: auto;
   }
 }
 
@@ -906,7 +960,7 @@ footer .contact-list li img:hover {
   }
 
   header .container {
-    padding: 16px 24px;
+    padding: 12px 20px;
   }
 
   main {
@@ -978,7 +1032,7 @@ footer .contact-list li img:hover {
   }
 
   .logo img {
-    width: 64px;
+    width: 29px;
   }
 
   main {
@@ -1027,7 +1081,7 @@ footer .contact-list li img:hover {
   }
 
   .logo img {
-    width: 52px;
+    width: 24px;
   }
 
   nav ul.nav-links {
